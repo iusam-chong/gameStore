@@ -23,7 +23,7 @@ $(function () {
         var formData = $(this).serialize();
         $.ajax({
             type:'POST',
-            url:'http://localhost:8888/gameStore/login/login',
+            url:'login/signIn',
             data: formData,
             // dataType: 'JSON',
             success:function(response) {

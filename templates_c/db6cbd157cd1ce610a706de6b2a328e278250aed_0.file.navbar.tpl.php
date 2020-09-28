@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-28 08:57:41
-  from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-09-28 14:17:00
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f71a585e00ac1_33514653',
+  'unifunc' => 'content_5f71d43c7df114_82705140',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
+    'db6cbd157cd1ce610a706de6b2a328e278250aed' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1601267055,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\navbar.tpl',
+      1 => 1601294230,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f71a585e00ac1_33514653 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f71d43c7df114_82705140 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->

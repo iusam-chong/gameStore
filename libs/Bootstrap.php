@@ -4,16 +4,13 @@ class Bootstrap
 {
     public function __construct()
     {
-        require_once('smarty/libs/Smarty.class.php');
-        require_once('libs/Controller.php');
-        require_once('libs/Model.php');
-        require_once('libs/View.php');
 
-        $url = $_GET['url'];
+        $url = (isset($_GET['url'])) ? $_GET['url'] : null ;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
-        print_r($url);
+        // print_r($url);
+        // echo "<br>";
 
         $url = $this->requireContr($url); 
         
@@ -25,10 +22,10 @@ class Bootstrap
         $file = 'controllers/' . $url[0] . '.php';
 
         if (file_exists($file)) {
-            echo 'require '.$file.'<br />';
+            //echo 'require '.$file.'<br />';
             require_once($file);
         } else {
-            echo 'require index';
+            //echo 'require index';
             require_once('controllers/index.php');
             unset($url);
             $url = array('index');
@@ -39,11 +36,11 @@ class Bootstrap
 
     public function runContrMethod($url)
     {
-        print_r($url); die();
+        //print_r($url); die();
 
         $controller = new $url[0];
 
-        die();
+        //die();
 
         $controller->loadModel($url[0]);
 

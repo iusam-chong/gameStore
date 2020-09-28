@@ -1,13 +1,14 @@
 <?php 
 
-class Index extends Controller{
-
+class Index extends Controller
+{
     function __construct()
     {
         parent::__construct();
 
         $this->smartyAssign();
         $this->view->render('index');
+
     }
 
     private function smartyAssign()

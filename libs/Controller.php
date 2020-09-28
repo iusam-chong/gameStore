@@ -1,12 +1,12 @@
 <?php
 
-class Controller {
-
+class Controller 
+{
     function __construct()
     {
-        
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $this->view = new View();
+            //Cookie::init();
         }
     }
 
