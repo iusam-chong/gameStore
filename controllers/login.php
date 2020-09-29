@@ -12,10 +12,10 @@ class Login extends Controller
         }
     }
 
-    public function smartyAssign()
+    private function smartyAssign()
     {
         $smarty = $this->view->smarty;
-        $loginStatus = true;
+        $loginStatus = false;
         $userName = ($loginStatus) ? 'JohnWick' : 'Guest';
 
         $smarty->assign('loginStatus', $loginStatus);
@@ -24,6 +24,10 @@ class Login extends Controller
 
     public function signIn()
     {
+        $response = array();
+
+        # all return false will be set status,message and return to ajax later 
+
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             return false;
         }
@@ -45,11 +49,15 @@ class Login extends Controller
             'userPasswd' => $_POST['password'],
         ];
 
-        if ($this->model->manualLogin($data)) {
-            echo "login";
-        } else {
-            echo "login failed";
-            echo hash('sha256', 'your_password');
+        if (!$this->model->manualLogin($data)) {
+            return false;
         }
+
+        // test 
+        
+        $response['message'] = 'test';
+
+        $response['status'] = 1;
+        echo json_encode($response);
     }
 }

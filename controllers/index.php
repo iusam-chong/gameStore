@@ -6,9 +6,11 @@ class Index extends Controller
     {
         parent::__construct();
 
+        echo (Cookie::renew()) ? 'renew' : 'false';
+        //echo (isset($_COOKIE['auth'])) ? $_COOKIE['auth'] : 'get nothing'; 
+
         $this->smartyAssign();
         $this->view->render('index');
-
     }
 
     private function smartyAssign()

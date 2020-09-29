@@ -6,7 +6,6 @@ class Controller
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $this->view = new View();
-            //Cookie::init();
         }
     }
 

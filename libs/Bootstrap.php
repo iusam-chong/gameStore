@@ -4,13 +4,9 @@ class Bootstrap
 {
     public function __construct()
     {
-
         $url = (isset($_GET['url'])) ? $_GET['url'] : null ;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
-
-        // print_r($url);
-        // echo "<br>";
 
         $url = $this->requireContr($url); 
         
@@ -22,10 +18,8 @@ class Bootstrap
         $file = 'controllers/' . $url[0] . '.php';
 
         if (file_exists($file)) {
-            //echo 'require '.$file.'<br />';
             require_once($file);
         } else {
-            //echo 'require index';
             require_once('controllers/index.php');
             unset($url);
             $url = array('index');
@@ -36,11 +30,7 @@ class Bootstrap
 
     public function runContrMethod($url)
     {
-        //print_r($url); die();
-
         $controller = new $url[0];
-
-        //die();
 
         $controller->loadModel($url[0]);
 

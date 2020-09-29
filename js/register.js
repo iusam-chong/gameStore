@@ -1,5 +1,5 @@
 $(function () {
-    console.log("login.js is running! working fine:1240");
+    console.log("register.js is running! working fine:1237");
 
     $('form').submit(function (e) {
         e.preventDefault();
@@ -8,13 +8,13 @@ $(function () {
         var formData = $(this).serialize();
         $.ajax({
             type:'POST',
-            url:'login/signIn',
+            url:'register/signUp',
             data: formData,
             dataType: 'JSON',
             success:function(response) {
                 if (response.status === 1) {
-                    console.log('login success');
-                    console.log(response.message);
+                    console.log('register success, redicrect');
+                    $(location).attr('href', 'login');
                 }
             }, error(){
                 console.log('something wrong!');
