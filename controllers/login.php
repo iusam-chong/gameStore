@@ -2,11 +2,14 @@
 
 class Login extends Controller
 {
-    function __construct()
+    public function __construct($contrName)
     {
-        parent::__construct();
+        parent::__construct($contrName);
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (parent::loginStatus()) {
+                parent::noPermitExist();
+            }
             $this->smartyAssign();
             $this->view->render('login');
         }
@@ -26,7 +29,7 @@ class Login extends Controller
     {
         $response = array();
 
-        # all return false will be set status,message and return to ajax later 
+        # all return false will be set status,message and return to ajax later
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             return false;
@@ -53,9 +56,9 @@ class Login extends Controller
             return false;
         }
 
-        // test 
-        
-        $response['message'] = 'test';
+        // test
+
+        $response['message'] = 'login success';
 
         $response['status'] = 1;
         echo json_encode($response);

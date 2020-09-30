@@ -8,13 +8,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">留言板</a>
+            <a class="navbar-brand" href="../gameStore/index">留言板</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home">全部<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="../gameStore/index">全部<span class="sr-only">(current)</span></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -29,8 +29,8 @@
                     </ul>
                 </li>
                 {{else}}
-                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-                <li><a href="register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
+                <li><a href="../gameStore/login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+                <li><a href="../gameStore/register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
                 {{/if}}
             </ul>
         </div><!-- /.navbar-collapse -->

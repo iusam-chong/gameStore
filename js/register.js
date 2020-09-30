@@ -1,14 +1,17 @@
 $(function () {
+
     console.log("register.js is running! working fine:1237");
 
     $('form').submit(function (e) {
         e.preventDefault();
         console.log("is clicking btn");
 
-        var formData = $(this).serialize();
+        let url = window.location.origin+window.location.pathname+'/signUp';
+        let formData = $(this).serialize();
+
         $.ajax({
             type:'POST',
-            url:'register/signUp',
+            url: url,
             data: formData,
             dataType: 'JSON',
             success:function(response) {

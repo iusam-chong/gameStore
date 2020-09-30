@@ -1,12 +1,15 @@
-<?php 
+<?php
 
 class Register extends Controller
 {
-    function __construct()
+    public function __construct($contrName)
     {
-        parent::__construct();
-        
+        parent::__construct($contrName);
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (parent::loginStatus()) {
+                parent::noPermitExist();
+            }
             $this->smartyAssign();
             $this->view->render('register');
         }
@@ -23,7 +26,7 @@ class Register extends Controller
     {
         $response = array();
 
-        # all return false will be set status,message and return to ajax later 
+        # all return false will be set status,message and return to ajax later
 
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             return false;
@@ -66,5 +69,5 @@ class Register extends Controller
     {
 
     }
-    
+
 }

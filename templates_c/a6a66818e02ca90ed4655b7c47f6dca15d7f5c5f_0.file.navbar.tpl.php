@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-29 09:14:21
+/* Smarty version 3.1.34-dev-7, created on 2020-09-30 06:50:13
   from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f72faedeb2ad3_48415543',
+  'unifunc' => 'content_5f742aa5d8c177_75134547',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1601267055,
+      1 => 1601435785,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f72faedeb2ad3_48415543 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f742aa5d8c177_75134547 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -31,13 +31,13 @@ function content_5f72faedeb2ad3_48415543 (Smarty_Internal_Template $_smarty_tpl)
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="home">留言板</a>
+            <a class="navbar-brand" href="../gameStore/index">留言板</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home">全部<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="../gameStore/index">全部<span class="sr-only">(current)</span></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -64,8 +64,8 @@ echo $_prefixVariable2;?>
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
 
-                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-                <li><a href="register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
+                <li><a href="../gameStore/login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+                <li><a href="../gameStore/register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
                 <?php ob_start();
 }
 $_prefixVariable4 = ob_get_clean();

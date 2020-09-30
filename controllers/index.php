@@ -1,26 +1,38 @@
-<?php 
+<?php
 
 class Index extends Controller
 {
-    function __construct()
+    public function __construct($contrName)
     {
-        parent::__construct();
+        parent::__construct($contrName);
 
-        echo (Cookie::renew()) ? 'renew' : 'false';
-        //echo (isset($_COOKIE['auth'])) ? $_COOKIE['auth'] : 'get nothing'; 
+        $user = (parent::loginStatus()) ? $this->loginData() : $this->noLoginData();
 
-        $this->smartyAssign();
+        $this->smartyAssign($user);
         $this->view->render('index');
     }
 
-    private function smartyAssign()
+    private function noLoginData()
+    {
+        $user = [
+            'user_name' => 'Hello there',
+        ];
+
+        return $user;
+    }
+
+    private function loginData()
+    {
+        $user = $this->model->getUserData();
+
+        return ($user) ? $user : $this->noLoginData();
+    }
+
+    private function smartyAssign($user)
     {
         $smarty = $this->view->smarty;
 
-        $loginStatus = true;
-        $userName = ($loginStatus) ? 'JohnWick' : 'Guest';
-
-        $smarty->assign('loginStatus', $loginStatus);
-        $smarty->assign('userName', $userName);
+        $smarty->assign('loginStatus', parent::loginStatus());
+        $smarty->assign('userName', $user['user_name']);
     }
 }

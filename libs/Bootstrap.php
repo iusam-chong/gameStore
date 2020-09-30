@@ -30,13 +30,12 @@ class Bootstrap
 
     public function runContrMethod($url)
     {
-        $controller = new $url[0];
-
-        $controller->loadModel($url[0]);
+        $controller = new $url[0]($url[0]);
 
         if (isset($url[1])) {
             if (!method_exists($controller, $url[1])) {
-                echo '(for develop only) method not found in controller.';
+                //echo '(for develop only) method not found in controller.';
+                header('location: http://localhost:8888/gameStore/'.$url[0]);
                 return false;
             }
             

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-29 09:14:21
+/* Smarty version 3.1.34-dev-7, created on 2020-09-30 06:50:13
   from '/Users/sam_chong/Documents/Github/gameStore/views/index/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f72faedeba4f2_50430471',
+  'unifunc' => 'content_5f742aa5d93962_88553305',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f72faedeba4f2_50430471 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f742aa5d93962_88553305 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <h1><?php ob_start();
 echo $_smarty_tpl->tpl_vars['userName']->value;

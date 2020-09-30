@@ -1,9 +1,20 @@
 <?php
 
-class IndexModel extends Model 
+class IndexModel extends Model
 {
-    function __construct()
+    public function __construct()
     {
-        echo "index modal loaded";
+
+    }
+
+    public function getUserData()
+    {
+        $identifier = Cookie::getIdentifier();
+
+        $sql = 'SELECT `user_name` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
+        $param = array($identifier);
+        $result = $this->select($sql, $param);
+
+        return $result;
     }
 }

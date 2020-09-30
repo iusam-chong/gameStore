@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-09-29 09:14:52
+/* Smarty version 3.1.34-dev-7, created on 2020-09-30 06:54:34
   from '/Users/sam_chong/Documents/Github/gameStore/views/login/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f72fb0ce3a3c7_44549614',
+  'unifunc' => 'content_5f742baa733269_02728156',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9e4e803dcf4bc5cf8d1e0dfa8178deb11a3edf34' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/login/page.tpl',
-      1 => 1601339051,
+      1 => 1601438393,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f72fb0ce3a3c7_44549614 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f742baa733269_02728156 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
@@ -43,6 +43,6 @@ function content_5f72fb0ce3a3c7_44549614 (Smarty_Internal_Template $_smarty_tpl)
     </div> <!-- ./row -->
 </div> <!-- ./container -->
 <?php echo '<script'; ?>
- src="js/login.js" defer><?php echo '</script'; ?>
+ src="../gameStore/js/login.js" defer><?php echo '</script'; ?>
 ><?php }
 }

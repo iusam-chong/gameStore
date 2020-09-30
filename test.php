@@ -1,10 +1,12 @@
 <?php
-if (isset($_POST['textUserName'])) {
-    echo $_POST['textUserName'];
-} else {
-    echo 'no variable set';
-}
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
+// echo setcookie('test', "cookie is set", $timeout, '/');
+// echo '<br/>';
+// if (setcookie('test', "cookie is set", $timeout, '/')) {
+//     echo "is set";
+// } else {
+//     echo "no set";
+// }
+
+$str = "admin";
+$hash = hash("sha256", $str);

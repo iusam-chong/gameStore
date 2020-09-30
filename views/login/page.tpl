@@ -19,4 +19,4 @@
         </div>
     </div> <!-- ./row -->
 </div> <!-- ./container -->
-<script src="js/login.js" defer></script>
+<script src="../gameStore/js/login.js" defer></script>
