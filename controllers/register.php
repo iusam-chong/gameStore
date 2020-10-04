@@ -19,6 +19,7 @@ class Register extends Controller
     {
         $smarty = $this->view->smarty;
 
+        $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('userName', 'Guest');
     }
 

@@ -1,6 +1,6 @@
 $(function () {
 
-    //console.log("login.js is running! working fine:1243");
+    console.log("login.js is running! working fine:1245");
     
     $('form').submit(function (e) {
         e.preventDefault();

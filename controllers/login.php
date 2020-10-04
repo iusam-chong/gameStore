@@ -18,11 +18,9 @@ class Login extends Controller
     private function smartyAssign()
     {
         $smarty = $this->view->smarty;
-        $loginStatus = false;
-        $userName = ($loginStatus) ? 'JohnWick' : 'Guest';
 
-        $smarty->assign('loginStatus', $loginStatus);
-        $smarty->assign('userName', $userName);
+        $smarty->assign('loginStatus', parent::loginStatus());
+        $smarty->assign('userName', 'Guest');
     }
 
     public function signIn()
