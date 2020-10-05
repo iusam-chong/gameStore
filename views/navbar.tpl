@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse" style="margin-bottom: 0;">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -8,13 +8,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../gameStore/index">留言板</a>
+            <a class="navbar-brand" href="../gameStore/index">Somy</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="../gameStore/index">全部<span class="sr-only">(current)</span></a></li>
+                <li><a href="../gameStore/index">商店<span class="sr-only"></span></a></li>
+                {{if $type === 'admin'}}
+                <li><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                {{/if}}
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

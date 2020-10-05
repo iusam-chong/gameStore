@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-03 08:21:59
-  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\navbar.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-05 09:45:28
+  from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f781887228315_88155961',
+  'unifunc' => 'content_5f7aeb38d62f53_59367415',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'db6cbd157cd1ce610a706de6b2a328e278250aed' => 
+    'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
     array (
-      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\navbar.tpl',
-      1 => 1601702188,
+      0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
+      1 => 1601877293,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f781887228315_88155961 (Smarty_Internal_Template $_smarty_tpl) {
-?><nav class="navbar navbar-default">
+function content_5f7aeb38d62f53_59367415 (Smarty_Internal_Template $_smarty_tpl) {
+?><nav class="navbar navbar-inverse" style="margin-bottom: 0;">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -31,20 +31,31 @@ function content_5f781887228315_88155961 (Smarty_Internal_Template $_smarty_tpl)
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../gameStore/index">留言板</a>
+            <a class="navbar-brand" href="../gameStore/index">Somy</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="../gameStore/index">全部<span class="sr-only">(current)</span></a></li>
+                <li><a href="../gameStore/index">商店<span class="sr-only"></span></a></li>
+                <?php ob_start();
+if ($_smarty_tpl->tpl_vars['type']->value === 'admin') {
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
+
+                <li><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                <?php ob_start();
+}
+$_prefixVariable2 = ob_get_clean();
+echo $_prefixVariable2;?>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <?php ob_start();
 if ($_smarty_tpl->tpl_vars['loginStatus']->value) {
-$_prefixVariable1 = ob_get_clean();
-echo $_prefixVariable1;?>
+$_prefixVariable3 = ob_get_clean();
+echo $_prefixVariable3;?>
 
                 <form id="logout" method="post" action=""></form>
 
@@ -52,8 +63,8 @@ echo $_prefixVariable1;?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php ob_start();
 echo $_smarty_tpl->tpl_vars['userName']->value;
-$_prefixVariable2 = ob_get_clean();
-echo $_prefixVariable2;?>
+$_prefixVariable4 = ob_get_clean();
+echo $_prefixVariable4;?>
  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#"><button type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
@@ -61,15 +72,15 @@ echo $_prefixVariable2;?>
                 </li>
                 <?php ob_start();
 } else {
-$_prefixVariable3 = ob_get_clean();
-echo $_prefixVariable3;?>
+$_prefixVariable5 = ob_get_clean();
+echo $_prefixVariable5;?>
 
                 <li><a href="../gameStore/login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
                 <li><a href="../gameStore/register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
                 <?php ob_start();
 }
-$_prefixVariable4 = ob_get_clean();
-echo $_prefixVariable4;?>
+$_prefixVariable6 = ob_get_clean();
+echo $_prefixVariable6;?>
 
             </ul>
         </div><!-- /.navbar-collapse -->

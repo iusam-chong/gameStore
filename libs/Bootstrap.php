@@ -4,6 +4,12 @@ class Bootstrap
 {
     public function __construct()
     {
+        ini_set('display_errors','off');    # 關閉錯誤輸出
+ 
+ini_set('display_errors','on');     # 開啟錯誤輸出
+ 
+error_reporting(E_ALL & ~E_NOTICE) ; 
+
         $url = (isset($_GET['url'])) ? $_GET['url'] : null ;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
@@ -35,7 +41,7 @@ class Bootstrap
         if (isset($url[1])) {
             if (!method_exists($controller, $url[1])) {
                 //echo '(for develop only) method not found in controller.';
-                header('location: http://localhost/gameStore/'.$url[0]);
+                header('location: http://localhost:8888/gameStore/'.$url[0]);
                 return false;
             }
             

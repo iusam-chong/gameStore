@@ -16,6 +16,7 @@ class Index extends Controller
     {
         $user = [
             'user_name' => 'Hello there',
+            'type' => null
         ];
 
         return $user;
@@ -33,6 +34,7 @@ class Index extends Controller
         $smarty = $this->view->smarty;
 
         $smarty->assign('loginStatus', parent::loginStatus());
+        $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
     }
 }

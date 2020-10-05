@@ -4,7 +4,7 @@ class Model
 {
     private $host = "localhost";
     private $user = "root";
-    private $pwd = "";
+    private $pwd = "root";
     private $dbName = "gameStore";
     private $charset = "utf8";
 

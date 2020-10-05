@@ -33,7 +33,7 @@ class Controller
 
     public function noPermitExist()
     {
-        header('location: http://localhost/gameStore/index');
+        header('location: http://localhost:8888/gameStore/index');
         exit();
     }
 }

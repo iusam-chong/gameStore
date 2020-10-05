@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-top: 50px;">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="thumbnail">
