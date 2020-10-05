@@ -72,6 +72,8 @@
 
 <hr>
 
+<img src="http://localhost:8888/gameStore/productmanage/productImage/9"></img>
+
 {{foreach $products as $product}}
     <p>name:{{$product.name}}<p>
     <p>price:{{$product.price}}<p>

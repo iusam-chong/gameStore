@@ -103,4 +103,12 @@ class ProductManage extends Controller
             return 'image type only can be gif/jpeg/png';
         }
     }
+
+    public function productImage($id)
+    {
+        $product = $this->model->getProductImage($id);
+        if ($product) {
+            echo $product['img'];
+        }
+    }
 }

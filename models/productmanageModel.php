@@ -34,4 +34,13 @@ class ProductManageModel extends Model
 
         return $result;
     }
+
+    public function getProductImage($id)
+    {
+        $sql = 'SELECT `image` FROM `products` WHERE (id = ?)';
+        $param = array($id);
+        $result = $this->select($sql, $param);
+
+        return $result;
+    }
 }

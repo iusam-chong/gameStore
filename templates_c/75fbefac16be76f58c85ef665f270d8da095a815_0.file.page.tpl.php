@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-05 09:47:41
+/* Smarty version 3.1.34-dev-7, created on 2020-10-05 10:25:35
   from '/Users/sam_chong/Documents/Github/gameStore/views/productmanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7aebbd99c254_63263975',
+  'unifunc' => 'content_5f7af49f1bff63_01646362',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '75fbefac16be76f58c85ef665f270d8da095a815' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/productmanage/page.tpl',
-      1 => 1601891253,
+      1 => 1601893530,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7aebbd99c254_63263975 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7af49f1bff63_01646362 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/productmanage.js" defer><?php echo '</script'; ?>
 >
@@ -96,6 +96,8 @@ echo '<script'; ?>
 </div>
 
 <hr>
+
+<img src="http://localhost:8888/gameStore/productmanage/productImage/9"></img>
 
 <?php ob_start();
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['products']->value, 'product');
