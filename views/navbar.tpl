@@ -28,7 +28,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{$userName}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><button type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
+                        <li><a href="#"><button id="logout" type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
                     </ul>
                 </li>
                 {{else}}

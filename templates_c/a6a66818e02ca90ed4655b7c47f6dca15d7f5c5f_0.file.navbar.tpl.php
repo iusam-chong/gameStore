@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-06 09:23:48
+/* Smarty version 3.1.34-dev-7, created on 2020-10-06 10:07:28
   from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7c37a4724b52_04559466',
+  'unifunc' => 'content_5f7c41e05a4f70_60044657',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1601976200,
+      1 => 1601978707,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7c37a4724b52_04559466 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7c41e05a4f70_60044657 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-inverse" style="margin-bottom: 0;">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,7 +67,7 @@ $_prefixVariable4 = ob_get_clean();
 echo $_prefixVariable4;?>
  <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><button type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
+                        <li><a href="#"><button id="logout" type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
                     </ul>
                 </li>
                 <?php ob_start();
