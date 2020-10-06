@@ -1,3 +1,4 @@
+<script type="module" src="../gameStore/js/nav.js" defer></script>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -11,11 +12,12 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse  navbar-ex1-collapse">
+        <div class="collapse navbar-collapse navbar-ex1-collapse" id="liList">
             <ul class="nav navbar-nav" style="float:none; margin: 0 auto;display: table;table-layout: fixed;">
-                <li class="active"><a href="#">商品</a></li>
-                <li><a href="#">後台帳號</a></li>
-                <li><a href="#">會員</a></li>
+                {* class="active" *}
+                <li id="productmanage"><a href="../gameStore/productmanage">商品</a></li>
+                <li id="membermanage"><a href="../gameStore/membermanage">會員</a></li>
+                <li><a href="#">後台帳號管理</a></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

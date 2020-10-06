@@ -1,50 +1,32 @@
 $(function () {
 
-    console.log("productManage.js is running! working fine:1253");
+    console.log('productManage.js is running! working fine:1259');
 
-    $('#productImg').click(function() {
-        $('#productImgSrc').attr('src', null);
+    $('.productImg').click(function() {
+        //console.log('click');
+        //$('#productImgSrc').attr('src', null);
+        $(this).closest('.productImgContr').find('.productImgSrc').attr('src', null);
     });
 
-    $("#productImg").change(function() {
-        //$("#productImgSrc").show();
+    $('.productImg').change(function() {
         readURL(this);
     });
     
     $('#newProduct form').submit(function(e) {
-
         e.preventDefault();
-        console.log('submit click');
+        //console.log('new porduct click');
+        newProduct(this);
+    });
 
-        let url = window.location.origin+window.location.pathname+'/newProduct';
-        //let formData = $(this).serialize();
+    $('.editProduct form').submit(function(e) {
+        e.preventDefault();
+        //console.log('edit product click');
+        editProduct(this);
+    });
 
-        $.ajax({
-            type:'POST',
-            url: url,
-            data: new FormData(this),
-            contentType: false,
-            cache: false,
-            processData:false,
-            dataType: 'JSON',
-            success:function(response) {
-                if (response.status === 1) {
-                    console.log('everything fine');
-                    // console.log(response.name);
-                    // console.log(response.price);
-                    // console.log(response.quantity);
-                    // console.log(response.description);
-
-                    //console.log(response.img);
-                    //location.reload();
-                } 
-                else if (response.status === 2) {
-                    console.log(response.img);
-                }
-            }, error(){
-                console.log('something wrong!');
-            }
-        });
+    $('.deleteProduct form').submit(function(e) {
+        e.preventDefault();
+        deleteProduct(this);
     });
 });
 
@@ -55,8 +37,94 @@ function readURL(input) {
         let reader = new FileReader();
 
         reader.onload = function (e) {
-            $("#productImgSrc").attr('src', e.target.result);
+            $(input).closest('.productImgContr').find('.productImgSrc').attr('src', e.target.result);
+            //$("#productImgSrc").attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function newProduct(data) {
+
+    let url = window.location.origin+window.location.pathname+'/newProduct';
+
+    $.ajax({
+        type:'POST',
+        url: url,
+        data: new FormData(data),
+        contentType: false,
+        cache: false,
+        processData:false,
+        dataType: 'JSON',
+        success:function(response) {
+            if (response.status === 1) {
+                console.log('everything fine');
+                
+                location.reload();
+            } 
+            else if (response.status === 2) {
+                console.log(response.img);
+            }
+        }, error(){
+            console.log('something wrong!');
+        }
+    });
+}
+
+function editProduct(data) {
+    
+    let url = window.location.origin+window.location.pathname+'/editProduct';
+
+    $.ajax({
+        type:'POST',
+        url: url,
+        data: new FormData(data),
+        contentType: false,
+        cache: false,
+        processData:false,
+        //dataType: 'JSON',
+        success:function(response) {
+            console.log(response);
+            location.reload();
+            // if (response.status === 1) {
+            //     console.log('everything fine');
+                
+            //     location.reload();
+            // } 
+            // else if (response.status === 2) {
+            //     console.log(response.img);
+            // }
+        }, error(){
+            console.log('something wrong!');
+        }
+    });
+}
+
+function deleteProduct(data) {
+    
+    let url = window.location.origin+window.location.pathname+'/deleteProduct';
+
+    $.ajax({
+        type:'POST',
+        url: url,
+        data: new FormData(data),
+        contentType: false,
+        cache: false,
+        processData:false,
+        //dataType: 'JSON',
+        success:function(response) {
+            console.log(response);
+            location.reload();
+            // if (response.status === 1) {
+            //     console.log('everything fine');
+                
+            //     location.reload();
+            // } 
+            // else if (response.status === 2) {
+            //     console.log(response.img);
+            // }
+        }, error(){
+            console.log('something wrong!');
+        }
+    });
 }

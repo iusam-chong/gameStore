@@ -60,5 +60,7 @@ class Login extends Controller
 
         $response['status'] = 1;
         echo json_encode($response);
+
+        return true;
     }
 }

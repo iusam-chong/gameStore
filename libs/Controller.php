@@ -6,8 +6,9 @@ class Controller
 
     public function __construct($modelName)
     {
+        $this->cookieStatus = Cookie::renew();
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $this->cookieStatus = Cookie::renew();
             $this->view = new View();
         }
         $this->loadModel($modelName);

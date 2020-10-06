@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="../gameStore/index">商店<span class="sr-only"></span></a></li>
+                <li><a href="../gameStore/shop">商店<span class="sr-only"></span></a></li>
                 {{if $type === 'admin'}}
                 <li><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
                 {{/if}}

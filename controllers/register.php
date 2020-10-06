@@ -64,6 +64,7 @@ class Register extends Controller
 
         $response['status'] = 1;
         echo json_encode($response);
+        return true;
     }
 
     private function chkFormFormat()

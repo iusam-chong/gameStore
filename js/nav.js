@@ -1,5 +1,12 @@
 $(function () {
 
-    console.log('nav.js is running');
-    console.log(window.location.pathname);
+    let url = window.location.pathname;
+    url = url.split('/');
+
+    let thisPage = $('#'+url[2]) ;
+    thisPage.addClass('active');
+
+    thisPage.click(function(e) {
+        e.preventDefault();
+    });
 });

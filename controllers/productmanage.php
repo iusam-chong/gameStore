@@ -5,7 +5,7 @@ class ProductManage extends Controller
     public function __construct($contrName)
     {
         parent::__construct($contrName);
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if (!parent::loginStatus()) {
                 parent::noPermitExist();
@@ -13,7 +13,7 @@ class ProductManage extends Controller
 
             $user = $this->model->getUserData();
 
-            if ($user['type'] !== 'admin'){
+            if ($user['type'] !== 'admin') {
                 parent::noPermitExist();
             }
             $this->smartyAssign($user);
@@ -24,7 +24,7 @@ class ProductManage extends Controller
     private function smartyAssign($user)
     {
         $products = $this->model->getProducts();
-        
+
         $smarty = $this->view->smarty;
 
         $smarty->assign('loginStatus', parent::loginStatus());
@@ -33,7 +33,7 @@ class ProductManage extends Controller
         $smarty->assign('products', $products);
     }
 
-    # alot of condition need to check 
+    # alot of condition need to check
     public function newProduct()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -44,21 +44,6 @@ class ProductManage extends Controller
 
         # condition to check input value
 
-        // $response['name'] = $_POST['productName'];
-        // $response['price'] = $_POST['productPrice'];
-        // $response['quantity'] = $_POST['productQuantity'];
-        // $response['description'] = $_POST['productDescription'];
-
-        // if (is_uploaded_file($_FILES['productImg']['tmp_name'])) {
-        //     $response['img'] = 'getImg';
-        // } else {
-        //     $response['img'] = 'cant get Img';
-        // }
-
-        // $response['message'] = 'newProduct function success';
-
-        
-    
         if ($response['img'] !== null) {
             $response['status'] = 2;
         } else {
@@ -82,6 +67,86 @@ class ProductManage extends Controller
             }
         }
         echo json_encode($response);
+        return true;
+    }
+
+    public function editProduct()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return false;
+        }
+
+        if (!parent::loginStatus()) {
+
+            $response['status'] = "no login";
+            echo json_encode($response);
+            exit();
+        }
+        
+        // should got isset or some condition to check $_POST
+
+        # check user input img exist
+        if (!file_exists($_FILES['productImg']['tmp_name']) || !is_uploaded_file($_FILES['productImg']['tmp_name'])) {
+            $response['img'] = null;
+
+            $img = null;
+        } else {
+            $response['img'] = $this->checkImg();
+
+            $imgData = file_get_contents($_FILES['productImg']['tmp_name']);
+            $imageProperties = $_FILES['productImg']['type'];
+            $img = $imgData . $imageProperties;
+        }
+
+        if ($response['img'] !== null) {
+            $response['status'] = 2;
+        } else {
+
+            $data = (object) [
+                'id' => $_POST['productId'],
+                'name' => $_POST['productName'],
+                'price' => $_POST['productPrice'],
+                'quantity' => $_POST['productQuantity'],
+                'description' => $_POST['productDescription'],
+                'image' => $img,
+            ];
+
+            //print_r($data);
+
+            if (!$this->model->modifyProduct($data)) {
+                $response['status'] = 3;
+            } else {
+                $response['status'] = 1;
+            }
+        }
+        echo json_encode($response);
+        return true;
+    }
+
+    public function deleteProduct()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return false;
+        }
+
+        if (!parent::loginStatus()) {
+
+            $response['status'] = "no login";
+            echo json_encode($response);
+            exit();
+        }
+
+        // should got isset or some condition
+        $id = $_POST['productId'];
+
+        if (!$this->model->disableProduct($id)) {
+            $response['status'] = 3;
+        } else {
+            $response['status'] = 1;
+        }
+
+        echo json_encode($response);
+        return true;
     }
 
     private function checkImg()
@@ -92,7 +157,7 @@ class ProductManage extends Controller
 
         if (!is_uploaded_file($_FILES['productImg']['tmp_name'])) {
             return 'cant get Img';
-        } 
+        }
 
         $info = getimagesize($_FILES['productImg']['tmp_name']);
         if ($info === false) {
@@ -101,14 +166,6 @@ class ProductManage extends Controller
 
         if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
             return 'image type only can be gif/jpeg/png';
-        }
-    }
-
-    public function productImage($id)
-    {
-        $product = $this->model->getProductImage($id);
-        if ($product) {
-            echo $product['img'];
         }
     }
 }
