@@ -22,7 +22,8 @@ class Statement extends Controller
     {
         //$carts = $this->model->getUserCart();
         //$cartTotal = $this->getCartTotal($carts);
-        $statement = $this->model->getUserStatement();
+        $order = $this->model->getOrder();
+        $orderDetails = $this->model->OrderDetails();
 
         $smarty = $this->view->smarty;
 
@@ -30,6 +31,7 @@ class Statement extends Controller
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
-        $smarty->assign('statement', $statement);
+        $smarty->assign('order', $order);
+        $smarty->assign('orderDetails', $orderDetails);
     }
 }
