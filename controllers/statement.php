@@ -1,6 +1,6 @@
 <?php
 
-class MemberManage extends Controller
+class Statement extends Controller
 {
     public function __construct($contrName)
     {
@@ -13,23 +13,23 @@ class MemberManage extends Controller
 
             $user = $this->model->getUserData();
 
-            if ($user['type'] !== 'admin') {
-                parent::noPermitExist();
-            }
             $this->smartyAssign($user);
-            $this->view->renderAdmin('membermanage');
+            $this->view->render('statement');
         }
     }
 
     private function smartyAssign($user)
     {
-        $member = $this->model->showAllMember();
+        //$carts = $this->model->getUserCart();
+        //$cartTotal = $this->getCartTotal($carts);
+        $statement = $this->model->getUserStatement();
+
         $smarty = $this->view->smarty;
 
-        $smarty->assign('title', 'Somy系統 - 會員管理');
+        $smarty->assign('title', 'Somy - 交易紀錄');
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
-        $smarty->assign('members', $member);
+        $smarty->assign('statement', $statement);
     }
 }

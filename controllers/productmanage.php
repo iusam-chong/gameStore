@@ -26,7 +26,8 @@ class ProductManage extends Controller
         $products = $this->model->getProducts();
 
         $smarty = $this->view->smarty;
-
+        
+        $smarty->assign('title', 'Somy系統 - 商品管理');
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);

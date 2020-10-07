@@ -1,3 +1,4 @@
+<script type="module" src="http://localhost:8888/gameStore/js/nav.js" defer></script>
 <nav class="navbar navbar-inverse" style="margin-bottom: 0;">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -14,9 +15,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="../gameStore/shop">商店<span class="sr-only"></span></a></li>
+                <li id="shop"><a href="../gameStore/shop">商店<span class="sr-only"></span></a></li>
+                {{if $loginStatus}}
+                <li id="cart"><a href="../gameStore/cart">購物車<span class="sr-only"></span></a></li>
+                <li><a href="#">交易紀錄<span class="sr-only"></span></a></li>
+                {{/if}}
                 {{if $type === 'admin'}}
-                <li><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                <li id="systemmanage"><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
                 {{/if}}
             </ul>
 
@@ -28,7 +33,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{$userName}} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><button id="logout" type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
+                        <li><a href="#"><button type="submit" form="logout" name="logout" class="btn btn-link btn-block">登出</button></a></li>
                     </ul>
                 </li>
                 {{else}}

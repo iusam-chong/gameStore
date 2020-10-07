@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-06 09:02:23
+/* Smarty version 3.1.34-dev-7, created on 2020-10-07 00:41:39
   from '/Users/sam_chong/Documents/Github/gameStore/views/adminbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7c329f896693_63363461',
+  'unifunc' => 'content_5f7d0ec3c3d327_77609366',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab4ec2d49404962ce276366270e6a76de4f7e472' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/adminbar.tpl',
-      1 => 1601974605,
+      1 => 1602030938,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7c329f896693_63363461 (Smarty_Internal_Template $_smarty_tpl) {
-echo '<script'; ?>
- type="module" src="../gameStore/js/nav.js" defer><?php echo '</script'; ?>
->
-<nav class="navbar navbar-default" role="navigation">
+function content_5f7d0ec3c3d327_77609366 (Smarty_Internal_Template $_smarty_tpl) {
+?><nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">

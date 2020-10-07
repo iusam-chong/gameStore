@@ -19,6 +19,7 @@ class Login extends Controller
     {
         $smarty = $this->view->smarty;
 
+        $smarty->assign('title', 'Somy - 會員登入');
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('userName', 'Guest');
     }

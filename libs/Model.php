@@ -38,7 +38,7 @@ class Model
     }
 
     # Query insert or delete can be use 
-    protected function insert($query, $param) 
+    protected function insert($query, $param = null) 
     {
         $stmt = $this->connect()->prepare($query);
         $result = $stmt->execute($param);

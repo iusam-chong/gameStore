@@ -1,4 +1,27 @@
-<div class="container" style="margin-top: 50px;">
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2020-10-07 02:30:35
+  from '/Users/sam_chong/Documents/Github/gameStore/views/register/page.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_5f7d284b99fb82_56275633',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '53bb06653927809309fa79741129618bc2b0072c' => 
+    array (
+      0 => '/Users/sam_chong/Documents/Github/gameStore/views/register/page.tpl',
+      1 => 1601861471,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5f7d284b99fb82_56275633 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="container" style="margin-top: 50px;">
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="thumbnail">
@@ -32,4 +55,7 @@
         </div>
     </div>
 </div>
-<script type="module" src="http://localhost:8888/gameStore/js/register.js" defer></script>
+<?php echo '<script'; ?>
+ type="module" src="../gameStore/js/register.js" defer><?php echo '</script'; ?>
+><?php }
+}

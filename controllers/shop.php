@@ -34,6 +34,7 @@ class Shop extends Controller
         $products = $this->model->getProducts();
         $smarty = $this->view->smarty;
 
+        $smarty->assign('title', 'Somy - 遊戲商店');
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
