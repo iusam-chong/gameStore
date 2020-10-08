@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-07 07:47:32
+/* Smarty version 3.1.34-dev-7, created on 2020-10-08 01:10:08
   from '/Users/sam_chong/Documents/Github/gameStore/views/shop/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7d72946b2179_17026569',
+  'unifunc' => 'content_5f7e66f05ea836_59996718',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7d72946b2179_17026569 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7e66f05ea836_59996718 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/shop.js" defer><?php echo '</script'; ?>
 >

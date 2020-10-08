@@ -37,7 +37,7 @@ class StatementModel extends Model
     {
         $userId = $this->getUserId();
 
-        $sql = 'SELECT o.id, od.product_id, p.name, od.quantity 
+        $sql = 'SELECT o.id, od.product_id, p.name, od.quantity, p.price
             FROM `order_details` AS od JOIN `order` AS o ON od.order_id = o.id JOIN `products` AS p ON p.id = od.product_id 
             WHERE o.user_id = ?';
         $param = array($userId);

@@ -16,7 +16,7 @@
                 {* class="active" *}
                 <li id="productmanage"><a href="../gameStore/productmanage">商品</a></li>
                 <li id="membermanage"><a href="../gameStore/membermanage">會員</a></li>
-                <li><a href="#">後台帳號管理</a></li>
+                <li id="adminmanage"><a href="../gameStore/adminmanage">後台帳號管理</a></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

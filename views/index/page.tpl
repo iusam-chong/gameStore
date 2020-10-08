@@ -1,2 +1,2 @@
 
-<h1>{{$userName}} ，歡迎頁</h1>
+<h1>{{$userName}} ，welcome</h1>

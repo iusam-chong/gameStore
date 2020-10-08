@@ -18,9 +18,9 @@
                 <li id="shop"><a href="../gameStore/shop">商店<span class="sr-only"></span></a></li>
                 {{if $loginStatus}}
                 <li id="cart"><a href="../gameStore/cart">購物車<span class="sr-only"></span></a></li>
-                <li><a href="#">交易紀錄<span class="sr-only"></span></a></li>
+                <li id="statement"><a href="../gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
                 {{/if}}
-                {{if $type === 'admin'}}
+                {{if $type === 'admin' || $type === 'superAdmin'}}
                 <li id="systemmanage"><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
                 {{/if}}
             </ul>

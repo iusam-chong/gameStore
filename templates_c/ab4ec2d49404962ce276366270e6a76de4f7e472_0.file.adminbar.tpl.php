@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-07 00:41:39
+/* Smarty version 3.1.34-dev-7, created on 2020-10-08 09:38:33
   from '/Users/sam_chong/Documents/Github/gameStore/views/adminbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7d0ec3c3d327_77609366',
+  'unifunc' => 'content_5f7ede19f2e868_73423933',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ab4ec2d49404962ce276366270e6a76de4f7e472' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/adminbar.tpl',
-      1 => 1602030938,
+      1 => 1602149910,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7d0ec3c3d327_77609366 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7ede19f2e868_73423933 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -38,7 +38,7 @@ function content_5f7d0ec3c3d327_77609366 (Smarty_Internal_Template $_smarty_tpl)
             <ul class="nav navbar-nav" style="float:none; margin: 0 auto;display: table;table-layout: fixed;">
                                 <li id="productmanage"><a href="../gameStore/productmanage">商品</a></li>
                 <li id="membermanage"><a href="../gameStore/membermanage">會員</a></li>
-                <li><a href="#">後台帳號管理</a></li>
+                <li id="adminmanage"><a href="../gameStore/adminmanage">後台帳號管理</a></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

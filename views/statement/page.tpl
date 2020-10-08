@@ -1,44 +1,41 @@
-<h1>this is statement</h1>
-
-{* {{foreach $order}}
-
-<p>{{$s.id}}</p>
-<p>{{$s.user_id}}</p>
-<p>{{$s.bill_time}}</p>
-<p>{{$s.product_id}}</p>
-<p>{{$s.name}}</p>
-<p>{{$s.quantity}}</p>
-<hr>
-
-{{/foreach}} *}
-
-{{foreach $order as $o}}
-    
-    <h1>{{$o.bill_time}}</h1>
-    {{foreach $orderDetail as $od}}
-        {{if $o.id === $od.id}}
-            <p>{{$od.name}}</p>
-            <p>{{$od.quantity}}</p>
-            <img src="http://localhost:8888/gameStore/show/image/{{$od.id}}">
-        {{/if}}
-    {{/foreach}}
-    <h4>{{$o.total}}</h4>
+<div class="container">
+    <h1 class="text-center">交易紀錄</h1>
     <hr>
-{{/foreach}}
+    {{if $order}}
+        {{foreach $order as $o}}
+        <table class="table table-striped" style="border:1px;">
+                <h5 class="text-center">{{$o.bill_time}}</h5>
+                <thead>
+                    <tr>
+                        <th colspan="2" scope="col" class="col-xs-8">遊戲商品</th>
+                        <th scope="col" class="col-xs-2 text-center">數量</th>
+                        <th scope="col" class="col-xs-2 text-center">價格</th>
+                    </tr>
+                </thead>
 
+            <tbody>
+                {{foreach $orderDetails as $od}}
+                {{if $o.id === $od.id}}
+                
+                <tr>
+                    <td class="col-xs-2" style="vertical-align: middle;"><img style="width:100px;" src="http://localhost:8888/gameStore/show/image/{{$od.product_id}}"></td>
+                    <td class="col-xs-6" style="vertical-align: middle;">{{$od.name}}</td>
+                    <td class="col-xs-2 text-center" style="vertical-align: middle;">{{$od.quantity}}</td>
+                    <td class="col-xs-2 text-center" style="vertical-align: middle;">{{$od.price}}</td>
+                </tr>
+                {{/if}}
+                {{/foreach}}
+                <tr>
+                    <td colspan="2" style="vertical-align: middle;"></td>
+                    <td class="text-center" style="vertical-align: middle;"><h5>TOTAL : </h5></td>
+                    <td class="text-center" style="vertical-align: middle;"><h5>{{$o.total}}</h5></td>
+                </tr>
 
-{* 
-<*assign var="i" value=0*> 
-<*foreach from=$r_article item=row*> 
-   <div class="scont stecont<*$i*>"> 
-      <ul> 
-         <*foreach from=$row item=r*> 
-            <li> 
-            <*$r['title']*><a href="article.php?aid=<*$r['id']*>" target="_blank">【線上閱讀】</a> <a href="<*$r['attachment']*>" target="_blank">【下載】</a> 
-            </li> 
-         <*/foreach*> 
-      </ul> 
-   </div> 
-   <*$i = $i + 1*> 
-<*/foreach*> 
-*}
+            </tbody>
+        </table>
+        <br>
+        {{/foreach}}
+    {{else if}}
+        <p class="text-center">查無交易</p>
+    {{/if}}
+</div>

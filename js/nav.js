@@ -13,7 +13,7 @@ $(function () {
         logout();
     });
 
-    loginStatus();
+    //loginStatus();
 });
 
 function navBarControl() {

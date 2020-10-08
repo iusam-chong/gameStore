@@ -2,27 +2,38 @@
 
 class MemberManageModel extends Model
 {
-    public function __construct()
-    {
-
-    }
-
     public function getUserData()
     {
         $identifier = Cookie::getIdentifier();
 
         $sql = 'SELECT `user_name`,`type` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
         $param = array($identifier);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function showAllMember()
     {
         $sql = 'SELECT * FROM `users` WHERE `type` = "user"';
-        $result = $this->selectAll($sql);
+        
+        return $this->selectAll($sql);
+    }
 
-        return $result;
+    public function userExist($userId)
+    {
+        $sql = 'SELECT * FROM `users` WHERE (`id` = ?)';
+        $param = array($userId);
+
+        return $this->select($sql, $param);
+    }
+
+    public function setStatus($userId, $status)
+    {
+        $status = ($status) ? 0 : 1; 
+
+        $sql = 'UPDATE `users` SET `enabled` = ? WHERE `id` = ?';
+        $param = array($status, $userId);
+
+        return $this->insert($sql, $param);
     }
 }

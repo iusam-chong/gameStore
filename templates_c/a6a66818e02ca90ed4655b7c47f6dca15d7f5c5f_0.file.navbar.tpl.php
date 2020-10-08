@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-07 03:32:34
+/* Smarty version 3.1.34-dev-7, created on 2020-10-08 09:48:39
   from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7d36d2c52294_94222005',
+  'unifunc' => 'content_5f7ee077e562f2_30721409',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1602041489,
+      1 => 1602150518,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7d36d2c52294_94222005 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f7ee077e562f2_30721409 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/nav.js" defer><?php echo '</script'; ?>
 >
@@ -47,14 +47,14 @@ $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 
                 <li id="cart"><a href="../gameStore/cart">購物車<span class="sr-only"></span></a></li>
-                <li><a href="#">交易紀錄<span class="sr-only"></span></a></li>
+                <li id="statement"><a href="../gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
                 <?php ob_start();
 }
 $_prefixVariable2 = ob_get_clean();
 echo $_prefixVariable2;?>
 
                 <?php ob_start();
-if ($_smarty_tpl->tpl_vars['type']->value === 'admin') {
+if ($_smarty_tpl->tpl_vars['type']->value === 'admin' || $_smarty_tpl->tpl_vars['type']->value === 'superAdmin') {
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
 
