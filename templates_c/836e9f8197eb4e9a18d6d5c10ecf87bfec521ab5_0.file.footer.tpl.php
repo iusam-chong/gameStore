@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-08 01:09:31
+/* Smarty version 3.1.34-dev-7, created on 2020-10-12 08:27:54
   from '/Users/sam_chong/Documents/Github/gameStore/views/footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7e66cb95d5f6_83393132',
+  'unifunc' => 'content_5f84138a5811b0_14137765',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7e66cb95d5f6_83393132 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f84138a5811b0_14137765 (Smarty_Internal_Template $_smarty_tpl) {
 ?></body>
 </html><?php }
 }

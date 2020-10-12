@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-08 01:11:47
+/* Smarty version 3.1.34-dev-7, created on 2020-10-12 09:09:52
   from '/Users/sam_chong/Documents/Github/gameStore/views/cart/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7e675306f663_07097463',
+  'unifunc' => 'content_5f841d60cefa44_14118447',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7e675306f663_07097463 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f841d60cefa44_14118447 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/cart.js" defer><?php echo '</script'; ?>
 >

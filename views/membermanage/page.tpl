@@ -1,8 +1,8 @@
 <script type="module" src="http://localhost:8888/gameStore/js/membermanage.js" defer></script>
-<div class="container">
-    <h1 class="text-center">會員管理</h1>
-    <hr>
 
+<h1 class="text-center">會員管理</h1>
+<hr>
+<div class="container">
     <table class="table">
         <thead>
             <tr>

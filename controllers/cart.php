@@ -63,10 +63,6 @@ class Cart extends Controller
             return true;
         }
 
-        // if ($this->model->productBought($productId)) {
-        //     return false;
-        // }
-
         if (!$this->model->addCart($productId)) {
             return false;
         }

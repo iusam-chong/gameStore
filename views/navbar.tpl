@@ -9,19 +9,19 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../gameStore/index">Somy</a>
+            <a class="navbar-brand" href="http://localhost:8888/gameStore/index">Somy</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li id="shop"><a href="../gameStore/shop">商店<span class="sr-only"></span></a></li>
+                <li id="shop"><a href="http://localhost:8888/gameStore/shop">商店<span class="sr-only"></span></a></li>
                 {{if $loginStatus}}
-                <li id="cart"><a href="../gameStore/cart">購物車<span class="sr-only"></span></a></li>
-                <li id="statement"><a href="../gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
+                <li id="cart"><a href="http://localhost:8888/gameStore/cart">購物車<span class="sr-only"></span></a></li>
+                <li id="statement"><a href="http://localhost:8888/gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
                 {{/if}}
                 {{if $type === 'admin' || $type === 'superAdmin'}}
-                <li id="systemmanage"><a href="../gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                <li id="systemmanage"><a href="http://localhost:8888/gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
                 {{/if}}
             </ul>
 
@@ -37,8 +37,8 @@
                     </ul>
                 </li>
                 {{else}}
-                <li><a href="../gameStore/login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
-                <li><a href="../gameStore/register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
+                <li><a href="http://localhost:8888/gameStore/login"><span class="glyphicon glyphicon-log-in"></span> 登入</a></li>
+                <li><a href="http://localhost:8888/gameStore/register"><span class="glyphicon glyphicon-user"></span> 註冊</a></li>
                 {{/if}}
             </ul>
         </div><!-- /.navbar-collapse -->

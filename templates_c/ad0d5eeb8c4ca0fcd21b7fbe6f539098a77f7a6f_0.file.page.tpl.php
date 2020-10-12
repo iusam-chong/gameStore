@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-08 08:13:56
+/* Smarty version 3.1.34-dev-7, created on 2020-10-12 08:53:14
   from '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7eca4430bad1_92409080',
+  'unifunc' => 'content_5f84197a0b47e5_96728121',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'ad0d5eeb8c4ca0fcd21b7fbe6f539098a77f7a6f' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl',
-      1 => 1602144706,
+      1 => 1602492792,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7eca4430bad1_92409080 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f84197a0b47e5_96728121 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/membermanage.js" defer><?php echo '</script'; ?>
 >
-<div class="container">
-    <h1 class="text-center">會員管理</h1>
-    <hr>
 
+<h1 class="text-center">會員管理</h1>
+<hr>
+<div class="container">
     <table class="table">
         <thead>
             <tr>

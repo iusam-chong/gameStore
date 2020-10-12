@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('shop is run:248');
+    console.log('shop is run:250');
 
     $('form').submit(function(e) {
         e.preventDefault(e);
@@ -9,7 +9,9 @@ $(function () {
         $(this).find('button').empty().append('已加入購物車');
     });
 
-    //loginStatus();
+    $('.pagination .active').click(function(e) {
+        e.preventDefault(e);
+    });
 })
 
 function addCart(data) {
@@ -40,32 +42,4 @@ function addCart(data) {
             console.log('something wrong!');
         }
     });
-}
-
-function loginStatus() {
-    // check user logged in ornot
-    let url = window.location.origin + '/gameStore/login/loginStatus';
-
-    $.ajax({
-        type: 'POST',
-        url: url,
-        dataType: 'JSON',
-        success: function (response) {
-            if (response.status === 1) {
-                console.log('user logged in');
-                //checkLogout();
-            }
-            if (response.status === 2) {
-                console.log('login status:user not logged in');
-                //checkLogin();
-            }
-        }, error() {
-            console.log('something wrong!');
-        }
-    });
-}
-
-function getUserProduct()
-{
-    
 }

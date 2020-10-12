@@ -11,18 +11,44 @@ class ShopModel extends Model
     {
         $identifier = Cookie::getIdentifier();
 
-        $sql = 'SELECT `user_name`,`type` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
+        $sql = 'SELECT users.id as `id`, `user_name`,`type` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
         $param = array($identifier);
-        $result = $this->select($sql, $param);
+
+        return $this->select($sql, $param);
+    }
+
+    public function getProducts($limit ,$offset)
+    {
+        $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC LIMIT ? OFFSET ?';
+        $param = array($limit, $offset);
+        $result = $this->selectAll($sql, $param);
+
+        return ($result) ? $result : false;
+    }
+
+    public function countProducts()
+    {
+        $sql = 'SELECT COUNT(`id`) as `count` FROM `products` WHERE `enabled` = 1';
+        $result = $this->select($sql);
+
+        return $result['count'];
+    }
+
+    public function userCartItem()
+    {
+        $userId = $this->getUserId();
+
+        $sql = 'SELECT `product_id` FROM `carts` WHERE `user_id` = ?';
+        $param = array($userId);
+        $result = $this->selectAll($sql, $param);
 
         return $result;
     }
 
-    public function getProducts()
+    public function getUserId()
     {
-        $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC';
-        $result = $this->selectAll($sql);
+        $user = $this->getUserData();
 
-        return ($result) ? $result : false;
+        return $user['id'];
     }
 }

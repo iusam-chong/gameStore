@@ -4,7 +4,7 @@
     {{if $order}}
         {{foreach $order as $o}}
         <table class="table table-striped" style="border:1px;">
-                <h5 class="text-center">{{$o.bill_time}}</h5>
+                <h5>訂單日期 : {{$o.bill_time}}</h5>
                 <thead>
                     <tr>
                         <th colspan="2" scope="col" class="col-xs-8">遊戲商品</th>

@@ -20,8 +20,6 @@ class Statement extends Controller
 
     private function smartyAssign($user)
     {
-        //$carts = $this->model->getUserCart();
-        //$cartTotal = $this->getCartTotal($carts);
         $order = $this->model->getOrder();
         $orderDetails = $this->model->OrderDetails();
 
@@ -31,7 +29,9 @@ class Statement extends Controller
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
+
         $smarty->assign('order', $order);
         $smarty->assign('orderDetails', $orderDetails);
     }
+
 }

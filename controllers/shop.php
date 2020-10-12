@@ -6,10 +6,64 @@ class Shop extends Controller
     {
         parent::__construct($contrName);
 
-        $user = (parent::loginStatus()) ? $this->loginData() : $this->noLoginData();
+        if (!$this->issetPage()) {
+            $this->page();
+        }
+    }
 
-        $this->smartyAssign($user);
+    private function loadPage($products, $pagination, $currentPage)
+    {
+        $this->view->smarty->assign('title', 'Somy - 遊戲商店');
+
+        $this->smartyAssignUser();
+        $this->smartyAssignProducts($products, $pagination, $currentPage);
+
         $this->view->render('shop');
+    }
+
+    private function smartyAssignUser()
+    {
+        $user = (parent::loginStatus()) ? $this->loginData() : $this->noLoginData();
+        $userCart = (parent::loginStatus()) ? $this->model->userCartItem() : null;
+
+        $smarty = $this->view->smarty;
+
+        $smarty->assign('loginStatus', parent::loginStatus());
+        $smarty->assign('type', $user['type']);
+        $smarty->assign('userName', $user['user_name']);
+        $smarty->assign('userCart', $userCart);
+    }
+
+    private function smartyAssignProducts($products, $pagination, $currentPage)
+    {
+        $smarty = $this->view->smarty;
+
+        $smarty->assign('products', $products);
+        $smarty->assign('pagination', $pagination);
+        $smarty->assign('currentPage', $currentPage);
+    }
+
+    public function page($page = 1)
+    {
+        # change this variable value will be change display product amount
+        $itemPerPage = 4;
+
+        $page = $this->checkPage($page);
+        $offset = ($page - 1) * $itemPerPage;
+
+        $currentPage = $page;
+        $products = $this->model->getProducts($itemPerPage, $offset);
+        if (!$products) {
+            $products = $this->model->getProducts($itemPerPage, 0);
+            $currentPage = 1;
+        }
+
+        $countProducts = $this->model->countProducts();
+        $pagination = ceil($countProducts / $itemPerPage);
+
+        $this->loadPage($products, $pagination, $currentPage);
+
+        return true;
     }
 
     private function noLoginData()
@@ -29,15 +83,20 @@ class Shop extends Controller
         return ($user) ? $user : $this->noLoginData();
     }
 
-    private function smartyAssign($user)
+    private function checkPage($page)
     {
-        $products = $this->model->getProducts();
-        $smarty = $this->view->smarty;
+        if (!preg_match('/(^\d+$)/', $page)) {
+            return 1;
+        }
 
-        $smarty->assign('title', 'Somy - 遊戲商店');
-        $smarty->assign('loginStatus', parent::loginStatus());
-        $smarty->assign('type', $user['type']);
-        $smarty->assign('userName', $user['user_name']);
-        $smarty->assign('products', $products);
+        return ($page < 1) ? 1 : $page;
+    }
+    
+    private function issetPage()
+    {
+        $url = rtrim($_GET['url'], '/');
+        $url = explode('/', $url);
+
+        return ($url[1]) ? true : false;
     }
 }

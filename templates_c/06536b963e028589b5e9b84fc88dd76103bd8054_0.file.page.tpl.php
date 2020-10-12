@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-08 01:21:50
+/* Smarty version 3.1.34-dev-7, created on 2020-10-12 09:09:51
   from '/Users/sam_chong/Documents/Github/gameStore/views/statement/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f7e69ae37ea89_93061238',
+  'unifunc' => 'content_5f841d5fb00774_94289059',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '06536b963e028589b5e9b84fc88dd76103bd8054' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/statement/page.tpl',
-      1 => 1602120104,
+      1 => 1602463025,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f7e69ae37ea89_93061238 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f841d5fb00774_94289059 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="container">
     <h1 class="text-center">交易紀錄</h1>
     <hr>
@@ -38,7 +38,7 @@ $_prefixVariable2 = ob_get_clean();
 echo $_prefixVariable2;?>
 
         <table class="table table-striped" style="border:1px;">
-                <h5 class="text-center"><?php ob_start();
+                <h5>訂單日期 : <?php ob_start();
 echo $_smarty_tpl->tpl_vars['o']->value['bill_time'];
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
