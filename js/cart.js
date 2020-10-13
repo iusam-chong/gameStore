@@ -1,19 +1,26 @@
 $(function () {
 
-    console.log('cart is run:251');
+    console.log('cart is run:2533');
 
     $('.deleteFromCart').submit(function(e) {
         e.preventDefault(e);
-        console.log('dltBtn is click');
         deleteFromCart(this);
     });
 
     $('#bill form').submit(function(e) {
         e.preventDefault(e);
-        console.log('bill is click');
         bill();
     });
-    //loginStatus();
+    
+    $('select').change(function(e) {
+        e.preventDefault(e);
+        $(this).closest('form').submit();  
+    });
+
+    $('.productQuantity form').submit(function(e) {
+        e.preventDefault(e);
+        editCartQuantity(this);
+    });
 })
 
 function deleteFromCart(data) {
@@ -75,4 +82,47 @@ function bill() {
             console.log('bill something wrong!');
         }
     });
+}
+
+function editCartQuantity(event) {
+
+    let url =  window.location.origin + '/gameStore/cart/editQuantity';
+
+    $.ajax({
+        type:'POST',
+        url: url,
+        data: new FormData(event),
+        contentType: false,
+        cache: false,
+        processData:false,
+        dataType: 'JSON',
+        success:function(response) {
+            if (response.status === true) {
+                console.log(response.message);
+                console.log(response.result);
+
+                showNewVar(event);
+            } 
+            else {
+                console.log(response.status + ' : ' + response.message);
+            }
+        }, error(){
+            console.log('server error. . .');
+        }
+    });
+}
+
+function showNewVar(event)
+{
+    let price = $(event).closest('tr').find('.price').html();
+    let quantity = $(event).closest('tr').find('select').val();
+    let subtotal = $(event).closest('tr').find('.subtotal');
+    subtotal.html(price*quantity);
+
+    let total = 0;
+    $('.subtotal').each(function() {
+        total += Number($(this).html());
+    });
+
+    $('#total').html(total);
 }

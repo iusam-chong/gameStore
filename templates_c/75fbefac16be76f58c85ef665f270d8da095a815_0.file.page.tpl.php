@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-12 08:45:16
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 06:48:56
   from '/Users/sam_chong/Documents/Github/gameStore/views/productmanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f84179c4809a7_66405517',
+  'unifunc' => 'content_5f854dd8cb1282_46398988',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '75fbefac16be76f58c85ef665f270d8da095a815' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/productmanage/page.tpl',
-      1 => 1601976725,
+      1 => 1602571727,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f84179c4809a7_66405517 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f854dd8cb1282_46398988 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/productmanage.js" defer><?php echo '</script'; ?>
 >
+<?php ob_start();
+if ($_smarty_tpl->tpl_vars['productAuth']->value) {
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
+
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4">
@@ -115,53 +120,53 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 $_smarty_tpl->tpl_vars['product']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['product']->value) {
 $_smarty_tpl->tpl_vars['product']->do_else = false;
-$_prefixVariable1 = ob_get_clean();
-echo $_prefixVariable1;?>
+$_prefixVariable2 = ob_get_clean();
+echo $_prefixVariable2;?>
 
             <tr>
                 <th scope="col" class="col-xs-1" style="vertical-align: middle;"> <?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable2 = ob_get_clean();
-echo $_prefixVariable2;?>
+$_prefixVariable3 = ob_get_clean();
+echo $_prefixVariable3;?>
 </th>
                 <td scope="col" class="col-xs-2" style="vertical-align: middle;"><img style="width:100px;" src="http://localhost:8888/gameStore/show/image/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable3 = ob_get_clean();
-echo $_prefixVariable3;?>
+$_prefixVariable4 = ob_get_clean();
+echo $_prefixVariable4;?>
 "></td>
                 <td scope="col" class="col-xs-4" style="vertical-align: middle;"><?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['name'];
-$_prefixVariable4 = ob_get_clean();
-echo $_prefixVariable4;?>
-</td>
-                <td scope="col" class="col-xs-2" style="vertical-align: middle;"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['product']->value['price'];
 $_prefixVariable5 = ob_get_clean();
 echo $_prefixVariable5;?>
 </td>
                 <td scope="col" class="col-xs-2" style="vertical-align: middle;"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['product']->value['quantity'];
+echo $_smarty_tpl->tpl_vars['product']->value['price'];
 $_prefixVariable6 = ob_get_clean();
 echo $_prefixVariable6;?>
+</td>
+                <td scope="col" class="col-xs-2" style="vertical-align: middle;"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['product']->value['quantity'];
+$_prefixVariable7 = ob_get_clean();
+echo $_prefixVariable7;?>
 </td>
                 <td scope="col" class="col-xs-1" style="vertical-align: middle;">
                     <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#editProduct<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable7 = ob_get_clean();
-echo $_prefixVariable7;?>
+$_prefixVariable8 = ob_get_clean();
+echo $_prefixVariable8;?>
 ">修改</a>
                     <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProduct<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable8 = ob_get_clean();
-echo $_prefixVariable8;?>
+$_prefixVariable9 = ob_get_clean();
+echo $_prefixVariable9;?>
 ">刪除</a>
                 </td>
             </tr>
             <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable9 = ob_get_clean();
-echo $_prefixVariable9;?>
+$_prefixVariable10 = ob_get_clean();
+echo $_prefixVariable10;?>
 
         </tbody>
     </table>
@@ -171,13 +176,13 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 $_smarty_tpl->tpl_vars['product']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['product']->value) {
 $_smarty_tpl->tpl_vars['product']->do_else = false;
-$_prefixVariable10 = ob_get_clean();
-echo $_prefixVariable10;?>
+$_prefixVariable11 = ob_get_clean();
+echo $_prefixVariable11;?>
 
     <div class="modal fade" id="editProduct<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable11 = ob_get_clean();
-echo $_prefixVariable11;?>
+$_prefixVariable12 = ob_get_clean();
+echo $_prefixVariable12;?>
 ">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -195,8 +200,8 @@ echo $_prefixVariable11;?>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="productName" name="productName" placeholder="輸入商品名稱" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['name'];
-$_prefixVariable12 = ob_get_clean();
-echo $_prefixVariable12;?>
+$_prefixVariable13 = ob_get_clean();
+echo $_prefixVariable13;?>
 ">
                                 </div>
                             </div>
@@ -206,8 +211,8 @@ echo $_prefixVariable12;?>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="輸入商品價格" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['price'];
-$_prefixVariable13 = ob_get_clean();
-echo $_prefixVariable13;?>
+$_prefixVariable14 = ob_get_clean();
+echo $_prefixVariable14;?>
 ">
                                 </div>
                             </div>
@@ -217,8 +222,8 @@ echo $_prefixVariable13;?>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="productQuantity" name="productQuantity" placeholder="輸入商品數量" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['quantity'];
-$_prefixVariable14 = ob_get_clean();
-echo $_prefixVariable14;?>
+$_prefixVariable15 = ob_get_clean();
+echo $_prefixVariable15;?>
 ">
                                 </div>
                             </div>
@@ -228,8 +233,8 @@ echo $_prefixVariable14;?>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" placeholder="輸入商品說明" id="productDescription" name="productDescription" rows="3" style="resize:none;" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'><?php ob_start();
 echo htmlspecialchars($_smarty_tpl->tpl_vars['product']->value['description']);
-$_prefixVariable15 = ob_get_clean();
-echo $_prefixVariable15;?>
+$_prefixVariable16 = ob_get_clean();
+echo $_prefixVariable16;?>
 </textarea>
                                 </div>
                             </div>
@@ -241,8 +246,8 @@ echo $_prefixVariable15;?>
                                         <input id="productImg" name="productImg" class="productImg" type="file" hidden />
                                         <img class="productImgSrc" src="http://localhost:8888/gameStore/show/image/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable16 = ob_get_clean();
-echo $_prefixVariable16;?>
+$_prefixVariable17 = ob_get_clean();
+echo $_prefixVariable17;?>
 " />
                                     </label>
                                 </div>
@@ -251,8 +256,8 @@ echo $_prefixVariable16;?>
 
                         <input type="hidden" name="productId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable17 = ob_get_clean();
-echo $_prefixVariable17;?>
+$_prefixVariable18 = ob_get_clean();
+echo $_prefixVariable18;?>
 "></input>
 
                         <div class="modal-footer">
@@ -267,8 +272,8 @@ echo $_prefixVariable17;?>
 
     <div class="modal fade" id="deleteProduct<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable18 = ob_get_clean();
-echo $_prefixVariable18;?>
+$_prefixVariable19 = ob_get_clean();
+echo $_prefixVariable19;?>
 " role="dialog">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
@@ -281,20 +286,20 @@ echo $_prefixVariable18;?>
                         <div class="col-sm-2">
                             <img style="width:100px;" src="http://localhost:8888/gameStore/show/image/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable19 = ob_get_clean();
-echo $_prefixVariable19;?>
+$_prefixVariable20 = ob_get_clean();
+echo $_prefixVariable20;?>
 " />
                         </div>
                         <div class="col-sm-8 col-sm-offset-1">
                             <p> 商品編號：<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable20 = ob_get_clean();
-echo $_prefixVariable20;?>
+$_prefixVariable21 = ob_get_clean();
+echo $_prefixVariable21;?>
 </p>
                             <p> 商品名稱：<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['name'];
-$_prefixVariable21 = ob_get_clean();
-echo $_prefixVariable21;?>
+$_prefixVariable22 = ob_get_clean();
+echo $_prefixVariable22;?>
 </p>
                             <p>進行此操作後資料將無法復原，請問確定刪除嗎?</p>
                         </div>
@@ -304,8 +309,8 @@ echo $_prefixVariable21;?>
                     <form method="post" action="">
                         <input type="hidden" name="productId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['product']->value['id'];
-$_prefixVariable22 = ob_get_clean();
-echo $_prefixVariable22;?>
+$_prefixVariable23 = ob_get_clean();
+echo $_prefixVariable23;?>
 "></input>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
                         <button type="submit" class="btn btn-success">確認</button>
@@ -317,8 +322,21 @@ echo $_prefixVariable22;?>
     <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable23 = ob_get_clean();
-echo $_prefixVariable23;?>
+$_prefixVariable24 = ob_get_clean();
+echo $_prefixVariable24;?>
 
-</div><?php }
+</div>
+<?php ob_start();
+} else {
+$_prefixVariable25 = ob_get_clean();
+echo $_prefixVariable25;?>
+
+<h1 class="text-center">商品管理</h1>
+<hr>
+<p class="text-center">無權限查閱</p>
+<?php ob_start();
+}
+$_prefixVariable26 = ob_get_clean();
+echo $_prefixVariable26;
+}
 }

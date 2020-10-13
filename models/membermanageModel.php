@@ -6,7 +6,8 @@ class MemberManageModel extends Model
     {
         $identifier = Cookie::getIdentifier();
 
-        $sql = 'SELECT `user_name`,`type` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
+        $sql = 'SELECT users.id, `user_name`, `type`, `enabled`, `member` FROM `users`, `auth`, `manage_auth` 
+            WHERE auth.identifier = ? AND users.id = auth.user_id AND users.id = manage_auth.admin_id';
         $param = array($identifier);
 
         return $this->select($sql, $param);

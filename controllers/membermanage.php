@@ -13,6 +13,11 @@ class MemberManage extends Controller
 
             $user = $this->model->getUserData();
 
+            if ($user['enabled'] === 0) {
+                Cookie::destroy();
+                parent::noPermitExist();
+            }
+
             if ($user['type'] !== 'admin' && $user['type' !== 'superAdmin']) {
                 parent::noPermitExist();
             }
@@ -30,6 +35,8 @@ class MemberManage extends Controller
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
+        $smarty->assign('memberAuth', $user['member']);
+
         $smarty->assign('members', $member);
     }
 
@@ -40,6 +47,8 @@ class MemberManage extends Controller
             $this->checkPostElement();
             $this->checkPostStatus();
             $this->checkUserExist();
+            $this->currentEmployeeAuth();
+
             $this->setUserStatus();
 
         } catch (Exception $e) {
@@ -95,6 +104,19 @@ class MemberManage extends Controller
     {
         if (!$this->model->setStatus($_POST['userId'], $_POST['status'])) {
             throw new Exception('Set user status fail.');
+        }
+        return true;
+    }
+
+    private function currentEmployeeAuth()
+    {
+        $currentAuth = $this->model->getUserData();
+
+        if (!$currentAuth['enabled']) {
+            throw new Exception('Your admin auth is disabled, you are not allow to action in any page.');
+        }
+        if (!$currentAuth['member']) {
+            throw new Exception('Your member auth is disabled, you have no permits in this page.');
         }
         return true;
     }

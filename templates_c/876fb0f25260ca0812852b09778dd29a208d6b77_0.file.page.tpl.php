@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-12 09:43:19
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 06:44:53
   from '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f842537307962_73446006',
+  'unifunc' => 'content_5f854ce58abd38_48613734',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '876fb0f25260ca0812852b09778dd29a208d6b77' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl',
-      1 => 1602495797,
+      1 => 1602571491,
       2 => 'file',
     ),
   ),
@@ -20,17 +20,22 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f842537307962_73446006 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f854ce58abd38_48613734 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/adminmanage.js" defer><?php echo '</script'; ?>
 >
+<?php ob_start();
+if ($_smarty_tpl->tpl_vars['employeeAuth']->value) {
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
+
 <div class="container">
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-            <h1 class="text-center">後台帳號管理</h1>
-            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h1 class="text-center">後台帳號管理</h1>
+                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+            </div>
         </div>
-    </div>
 
     <div class="modal fade" id="newAccount">
         <div class="modal-dialog" role="document">
@@ -85,7 +90,7 @@ echo '<script'; ?>
             <tr>
                 <th scope="col" class="col-xs-1 text-center">管理者編號</th>
                 <th scope="col" class="col-xs-3">帳號名稱</th>
-                <th scope="col" class="col-xs-2 text-center">註冊時間</th>
+                <th scope="col" class="col-xs-2 text-center">創建時間</th>
                 <th scope="col" class="col-xs-1 text-center">狀態</th>
                 <th scope="col" class="col-xs-1 text-center">商品管理權限</th>
                 <th scope="col" class="col-xs-1 text-center">會員管理權限</th>
@@ -98,87 +103,103 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 $_smarty_tpl->tpl_vars['admin']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['admin']->value) {
 $_smarty_tpl->tpl_vars['admin']->do_else = false;
-$_prefixVariable1 = ob_get_clean();
-echo $_prefixVariable1;?>
+$_prefixVariable2 = ob_get_clean();
+echo $_prefixVariable2;?>
 
             <tr>
                 <td class="text-center" style="vertical-align: middle;"><?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['id'];
-$_prefixVariable2 = ob_get_clean();
-echo $_prefixVariable2;?>
-</td>
-                <td style="vertical-align: middle;"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['admin']->value['user_name'];
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
 </td>
-                <td class="text-center" style="vertical-align: middle;"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['admin']->value['reg_time'];
+                <td style="vertical-align: middle;"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['admin']->value['user_name'];
 $_prefixVariable4 = ob_get_clean();
 echo $_prefixVariable4;?>
 </td>
+                <td class="text-center" style="vertical-align: middle;"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['admin']->value['reg_time'];
+$_prefixVariable5 = ob_get_clean();
+echo $_prefixVariable5;?>
+</td>
                 <td class="text-center" style="vertical-align: middle;">
+                    <?php ob_start();
+if ($_smarty_tpl->tpl_vars['userId']->value === $_smarty_tpl->tpl_vars['admin']->value['id']) {
+$_prefixVariable6 = ob_get_clean();
+echo $_prefixVariable6;?>
+
+                    <button class="btn btn-primary" disabled>啟用中</button>
+                    <?php ob_start();
+} else {
+$_prefixVariable7 = ob_get_clean();
+echo $_prefixVariable7;?>
+
                     <div class="enabledContr">
                         <form>
                             <input type="hidden" name="userId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['id'];
-$_prefixVariable5 = ob_get_clean();
-echo $_prefixVariable5;?>
+$_prefixVariable8 = ob_get_clean();
+echo $_prefixVariable8;?>
 ">
                             <input type="hidden" name="enabledStatus" class="status" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['enabled'];
-$_prefixVariable6 = ob_get_clean();
-echo $_prefixVariable6;?>
+$_prefixVariable9 = ob_get_clean();
+echo $_prefixVariable9;?>
 ">
                             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['admin']->value['enabled']) {
-$_prefixVariable7 = ob_get_clean();
-echo $_prefixVariable7;?>
+$_prefixVariable10 = ob_get_clean();
+echo $_prefixVariable10;?>
 
                             <button type="submit" class="btn btn-success">啟用中</button>
                             <?php ob_start();
 } else {
-$_prefixVariable8 = ob_get_clean();
-echo $_prefixVariable8;?>
+$_prefixVariable11 = ob_get_clean();
+echo $_prefixVariable11;?>
 
                             <button type="submit" class="btn btn-danger">停用中</button>
                             <?php ob_start();
 }
-$_prefixVariable9 = ob_get_clean();
-echo $_prefixVariable9;?>
+$_prefixVariable12 = ob_get_clean();
+echo $_prefixVariable12;?>
 
                         </form>
                     </div>
+                    <?php ob_start();
+}
+$_prefixVariable13 = ob_get_clean();
+echo $_prefixVariable13;?>
+
                 </td>
                 <td class="text-center" style="vertical-align: middle;">
                     <div class="productContr">
                         <form>
                             <input type="hidden" name="userId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['id'];
-$_prefixVariable10 = ob_get_clean();
-echo $_prefixVariable10;?>
+$_prefixVariable14 = ob_get_clean();
+echo $_prefixVariable14;?>
 ">
                             <input type="hidden" name="productStatus" class="status" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['product'];
-$_prefixVariable11 = ob_get_clean();
-echo $_prefixVariable11;?>
+$_prefixVariable15 = ob_get_clean();
+echo $_prefixVariable15;?>
 ">
                             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['admin']->value['product']) {
-$_prefixVariable12 = ob_get_clean();
-echo $_prefixVariable12;?>
+$_prefixVariable16 = ob_get_clean();
+echo $_prefixVariable16;?>
 
                             <button type="submit" class="btn btn-success">已授權</button>
                             <?php ob_start();
 } else {
-$_prefixVariable13 = ob_get_clean();
-echo $_prefixVariable13;?>
+$_prefixVariable17 = ob_get_clean();
+echo $_prefixVariable17;?>
 
                             <button type="submit" class="btn btn-danger">未授權</button>
                             <?php ob_start();
 }
-$_prefixVariable14 = ob_get_clean();
-echo $_prefixVariable14;?>
+$_prefixVariable18 = ob_get_clean();
+echo $_prefixVariable18;?>
 
                         </form>
                     </div>
@@ -188,75 +209,104 @@ echo $_prefixVariable14;?>
                         <form>
                             <input type="hidden" name="userId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['id'];
-$_prefixVariable15 = ob_get_clean();
-echo $_prefixVariable15;?>
+$_prefixVariable19 = ob_get_clean();
+echo $_prefixVariable19;?>
 ">
                             <input type="hidden" name="memberStatus" class="status" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['member'];
-$_prefixVariable16 = ob_get_clean();
-echo $_prefixVariable16;?>
+$_prefixVariable20 = ob_get_clean();
+echo $_prefixVariable20;?>
 ">
                             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['admin']->value['member']) {
-$_prefixVariable17 = ob_get_clean();
-echo $_prefixVariable17;?>
+$_prefixVariable21 = ob_get_clean();
+echo $_prefixVariable21;?>
 
                             <button type="submit" class="btn btn-success">已授權</button>
                             <?php ob_start();
 } else {
-$_prefixVariable18 = ob_get_clean();
-echo $_prefixVariable18;?>
+$_prefixVariable22 = ob_get_clean();
+echo $_prefixVariable22;?>
 
                             <button type="submit" class="btn btn-danger">未授權</button>
                             <?php ob_start();
 }
-$_prefixVariable19 = ob_get_clean();
-echo $_prefixVariable19;?>
+$_prefixVariable23 = ob_get_clean();
+echo $_prefixVariable23;?>
 
                         </form>
                     </div>
                 </td>
                 <td class="text-center" style="vertical-align: middle;">
+                    <?php ob_start();
+if ($_smarty_tpl->tpl_vars['userId']->value === $_smarty_tpl->tpl_vars['admin']->value['id']) {
+$_prefixVariable24 = ob_get_clean();
+echo $_prefixVariable24;?>
+
+                    <button class="btn btn-primary" disabled>已授權</button>
+                    <?php ob_start();
+} else {
+$_prefixVariable25 = ob_get_clean();
+echo $_prefixVariable25;?>
+
                     <div class="employeeContr">
                         <form>
                             <input type="hidden" name="userId" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['id'];
-$_prefixVariable20 = ob_get_clean();
-echo $_prefixVariable20;?>
+$_prefixVariable26 = ob_get_clean();
+echo $_prefixVariable26;?>
 ">
                             <input type="hidden" name="employeeStatus" class="status" value="<?php ob_start();
 echo $_smarty_tpl->tpl_vars['admin']->value['employee'];
-$_prefixVariable21 = ob_get_clean();
-echo $_prefixVariable21;?>
+$_prefixVariable27 = ob_get_clean();
+echo $_prefixVariable27;?>
 ">
                             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['admin']->value['employee']) {
-$_prefixVariable22 = ob_get_clean();
-echo $_prefixVariable22;?>
+$_prefixVariable28 = ob_get_clean();
+echo $_prefixVariable28;?>
 
                             <button type="submit" class="btn btn-success">已授權</button>
                             <?php ob_start();
 } else {
-$_prefixVariable23 = ob_get_clean();
-echo $_prefixVariable23;?>
+$_prefixVariable29 = ob_get_clean();
+echo $_prefixVariable29;?>
 
                             <button type="submit" class="btn btn-danger">未授權</button>
                             <?php ob_start();
 }
-$_prefixVariable24 = ob_get_clean();
-echo $_prefixVariable24;?>
+$_prefixVariable30 = ob_get_clean();
+echo $_prefixVariable30;?>
 
                         </form>
                     </div>
+                    <?php ob_start();
+}
+$_prefixVariable31 = ob_get_clean();
+echo $_prefixVariable31;?>
+
                 </td>
             </tr>
             <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable25 = ob_get_clean();
-echo $_prefixVariable25;?>
+$_prefixVariable32 = ob_get_clean();
+echo $_prefixVariable32;?>
 
         </tbody>
     </table>
-</div><?php }
+</div>
+<?php ob_start();
+} else {
+$_prefixVariable33 = ob_get_clean();
+echo $_prefixVariable33;?>
+
+<h1 class="text-center">後台帳號管理</h1>
+<hr>
+<p class="text-center">無權限查閱</p>
+<?php ob_start();
+}
+$_prefixVariable34 = ob_get_clean();
+echo $_prefixVariable34;
+}
 }

@@ -6,14 +6,26 @@ class AdminManageModel extends Model
     {
         $identifier = Cookie::getIdentifier();
 
-        $sql = 'SELECT `user_name`,`type` FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
+        $sql = 'SELECT users.id, `user_name`, `type`, `enabled`, `employee` FROM `users`, `auth`, `manage_auth` 
+            WHERE auth.identifier = ? AND users.id = auth.user_id AND users.id = manage_auth.admin_id';
         $param = array($identifier);
 
         return $this->select($sql, $param);
     }
 
+    public function getCurrentAuth()
+    {
+        $currentUser = $this->getUserData();
+        $userId = $currentUser['id'];
+
+        $sql = 'SELECT `product`, `member`, `employee` FROM `users`, `manage_auth` WHERE users.id = ? AND users.id = manage_auth.admin_id AND users.enabled = 1';
+        $param = array($userId);
+
+        return $this->select($sql, $param);
+    }
+
     # For checking user name used or not
-    public function getUser($userName)
+    public function checkUserExist($userName)
     {
         $sql = 'SELECT `id` FROM `users` WHERE (`user_name` = ?)';
         $param = array($userName);
@@ -55,5 +67,61 @@ class AdminManageModel extends Model
             WHERE `type` = "admin" AND users.id = m.admin_id';
 
         return $this->selectAll($sql);
+    }
+
+    public function modifyEnabledStatus($userId, $status)
+    {
+        $status = ($status) ? 0 : 1; 
+
+        $sql = 'UPDATE `users` SET `enabled` = ? WHERE `id` = ?';
+        $param = array($status, $userId);
+
+        return $this->insert($sql, $param);
+    }
+
+    public function setAllStatusDisable($userId)
+    {
+        $sql = 'UPDATE `manage_auth` SET `product` = 0, `member` = 0, `employee` = 0 WHERE `admin_id` = ?';
+        $param = array($userId);
+
+        return $this->insert($sql, $param);
+    }
+
+    public function setEnabledStatus($userId)
+    {
+        $sql = 'UPDATE `users` SET `enabled` = 1 WHERE `id` = ?';
+        $param = array($userId);
+
+        return $this->insert($sql, $param);
+    }
+
+    public function modifyProductStatus($userId, $status)
+    {
+        $status = ($status) ? 0 : 1; 
+
+        $sql = 'UPDATE `manage_auth` SET `product` = ? WHERE `admin_id` = ?';
+        $param = array($status, $userId);
+
+        return $this->insert($sql, $param);
+    }
+
+    public function modifyMemberStatus($userId, $status)
+    {
+        $status = ($status) ? 0 : 1; 
+
+        $sql = 'UPDATE `manage_auth` SET `member` = ? WHERE `admin_id` = ?';
+        $param = array($status, $userId);
+
+        return $this->insert($sql, $param);
+    }
+
+    public function modifyEmployeeStatus($userId, $status)
+    {
+        $status = ($status) ? 0 : 1; 
+
+        $sql = 'UPDATE `manage_auth` SET `employee` = ? WHERE `admin_id` = ?';
+        $param = array($status, $userId);
+
+        return $this->insert($sql, $param);
     }
 }

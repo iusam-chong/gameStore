@@ -2,6 +2,7 @@
 
 <h1 class="text-center">會員管理</h1>
 <hr>
+{{if $memberAuth}}
 <div class="container">
     <table class="table">
         <thead>
@@ -37,3 +38,6 @@
         </tbody>
     </table>
 </div>
+{{else}}
+<p class="text-center">無權限查閱</p>
+{{/if}}

@@ -72,11 +72,37 @@ class Cart extends Controller
         return true;
     }
 
+    public function editQuantity()
+    {
+        try {
+            $this->checkRequest();
+            $this->checkProductElement();
+
+            # should check quantiy format, another condition
+
+            $this->modifyCartQuantity();
+
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
+            return true;
+        }
+
+        $result = [
+            'productId' => $_POST['productId'],
+            'quantity' => $_POST['quantity']
+        ];
+
+        $message = 'edit product quantity in cart success.';
+        Json::ajaxReturn(true, $message, $result);
+        return true;
+    }
+
     public function getCartTotal($cart)
     {
         $total = 0 ;
         foreach($cart as $product) {
-            $total += $product['price'];
+            $total += ($product['price']*$product['quantity']);
         }
 
         return $total;
@@ -137,6 +163,30 @@ class Cart extends Controller
 
         $response['status'] = 1;
         echo json_encode($response);
+        return true;
+    }
+
+    private function checkRequest()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception('Request method not POST.');
+        }
+        return true;
+    }
+
+    private function checkProductElement()
+    {
+        if (!isset($_POST['productId'])) {
+            throw new Exception('User Id not found in POST request.');
+        }
+        return true;
+    }
+
+    private function modifyCartQuantity()
+    {
+        if (!$this->model->modifyCartQuantity($_POST['productId'], $_POST['quantity'])) {
+            throw new Exception('Modify product quantity in cart unsuccess.');
+        }
         return true;
     }
 }

@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('check js running : 283');
+    console.log('check js running : 285');
 
     $('form').submit(function(e) {
         e.preventDefault(e);
@@ -25,7 +25,8 @@ function modifyStatus(event) {
                 btnModify(event, response.result);
             } 
             else {
-                console.log(response.status + ' : ' + response.message);
+                alert(response.message);
+                location.reload();
             }
         }, error(){
             console.log('server error. . .');

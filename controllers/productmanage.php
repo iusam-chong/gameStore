@@ -13,6 +13,11 @@ class ProductManage extends Controller
 
             $user = $this->model->getUserData();
 
+            if ($user['enabled'] === 0) {
+                Cookie::destroy();
+                parent::noPermitExist();
+            }
+
             if ($user['type'] !== 'admin' && $user['type' !== 'superAdmin']) {
                 parent::noPermitExist();
             }
@@ -31,6 +36,8 @@ class ProductManage extends Controller
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
+        $smarty->assign('productAuth', $user['product']);
+
         $smarty->assign('products', $products);
     }
 

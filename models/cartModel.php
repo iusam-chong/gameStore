@@ -24,7 +24,7 @@ class CartModel extends Model
     {
         $userId = $this->getUserId();
 
-        $sql = 'SELECT products.name, products.price, products.id FROM `carts`,`products`
+        $sql = 'SELECT products.name, products.price, products.id, carts.quantity, products.quantity AS total_quantity FROM `carts`,`products`
             WHERE carts.product_id = products.id AND products.enabled = 1 AND carts.user_id = ?';
         $param = array($userId);
         $result = $this->selectAll($sql, $param);
@@ -96,6 +96,10 @@ class CartModel extends Model
             return false;
         }
 
+        if (!$this->minusProductQuantity($data)) {
+            return false;
+        }
+
         if (!$this->clearCart()) {
             return false;
         }
@@ -125,15 +129,26 @@ class CartModel extends Model
     {
         $query = 'INSERT INTO `order_details` (`order_id`, `product_id`, `quantity`) VALUES ';
 
-        # now our product is set only 1 quantity
-        $quantity = 1;
-
         foreach ($data as $d) {
-            $query = $query . '(' . $orderId . ',' . $d["id"] . ',' . $quantity . '),';
+            $query = $query . '(' . $orderId . ',' . $d["id"] . ',' . $d["quantity"] . '),';
         }
 
         $sql = rtrim($query, ', ');
         return $sql;
+    }
+
+    public function minusProductQuantity($data)
+    {
+        foreach ($data as $product) {
+            $product['total_quantity'] -= $product['quantity'];
+
+            $sql = 'UPDATE `products` SET `quantity` = ? WHERE `id` = ?';
+            $param = array($product['total_quantity'], $product['id']);
+            if (!$this->insert($sql, $param)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function clearCart()
@@ -145,5 +160,15 @@ class CartModel extends Model
         $result = $this->insert($sql, $param);
 
         return $result;
+    }
+
+    public function modifyCartQuantity($productId, $quantity)
+    {
+        $userId = $this->getUserId();
+
+        $sql = 'UPDATE `carts` SET `quantity` = ? WHERE `product_id` = ? AND `user_id` = ?';
+        $param = array($quantity, $productId, $userId);
+
+        return $this->insert($sql, $param);
     }
 }

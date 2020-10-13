@@ -1,4 +1,5 @@
 <script type="module" src="http://localhost:8888/gameStore/js/productmanage.js" defer></script>
+{{if $productAuth}}
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4">
@@ -196,3 +197,8 @@
     </div>
     {{/foreach}}
 </div>
+{{else}}
+<h1 class="text-center">商品管理</h1>
+<hr>
+<p class="text-center">無權限查閱</p>
+{{/if}}

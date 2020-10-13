@@ -1,11 +1,12 @@
 <script type="module" src="http://localhost:8888/gameStore/js/adminmanage.js" defer></script>
+{{if $employeeAuth}}
 <div class="container">
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-            <h1 class="text-center">後台帳號管理</h1>
-            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <h1 class="text-center">後台帳號管理</h1>
+                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+            </div>
         </div>
-    </div>
 
     <div class="modal fade" id="newAccount">
         <div class="modal-dialog" role="document">
@@ -60,7 +61,7 @@
             <tr>
                 <th scope="col" class="col-xs-1 text-center">管理者編號</th>
                 <th scope="col" class="col-xs-3">帳號名稱</th>
-                <th scope="col" class="col-xs-2 text-center">註冊時間</th>
+                <th scope="col" class="col-xs-2 text-center">創建時間</th>
                 <th scope="col" class="col-xs-1 text-center">狀態</th>
                 <th scope="col" class="col-xs-1 text-center">商品管理權限</th>
                 <th scope="col" class="col-xs-1 text-center">會員管理權限</th>
@@ -74,6 +75,9 @@
                 <td style="vertical-align: middle;">{{$admin.user_name}}</td>
                 <td class="text-center" style="vertical-align: middle;">{{$admin.reg_time}}</td>
                 <td class="text-center" style="vertical-align: middle;">
+                    {{if $userId === $admin.id}}
+                    <button class="btn btn-primary" disabled>啟用中</button>
+                    {{else}}
                     <div class="enabledContr">
                         <form>
                             <input type="hidden" name="userId" value="{{$admin.id}}">
@@ -85,6 +89,7 @@
                             {{/if}}
                         </form>
                     </div>
+                    {{/if}}
                 </td>
                 <td class="text-center" style="vertical-align: middle;">
                     <div class="productContr">
@@ -113,6 +118,9 @@
                     </div>
                 </td>
                 <td class="text-center" style="vertical-align: middle;">
+                    {{if $userId === $admin.id}}
+                    <button class="btn btn-primary" disabled>已授權</button>
+                    {{else}}
                     <div class="employeeContr">
                         <form>
                             <input type="hidden" name="userId" value="{{$admin.id}}">
@@ -124,9 +132,15 @@
                             {{/if}}
                         </form>
                     </div>
+                    {{/if}}
                 </td>
             </tr>
             {{/foreach}}
         </tbody>
     </table>
 </div>
+{{else}}
+<h1 class="text-center">後台帳號管理</h1>
+<hr>
+<p class="text-center">無權限查閱</p>
+{{/if}}
