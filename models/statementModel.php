@@ -20,29 +20,43 @@ class StatementModel extends Model
         return $user['id'];
     }
 
-    public function getOrder()
+    public function OrderDetails($order)
     {
-        $userId = $this->getUserId();
+        $data = $this->listOrderId($order);
 
-        $sql = 'SELECT o.*, COUNT(od.order_id) as `order_count`, SUM(p.price) as `total`
-            FROM `order` o LEFT JOIN `order_details` od ON o.id = od.order_id JOIN `products` p ON p.id = od.product_id
-            WHERE (o.user_id = ?) GROUP BY o.id ORDER BY o.bill_time DESC';
-        $param = array($userId);
-        $result = $this->selectAll($sql, $param);
-
-        return $result;
+        $sql = 'SELECT od.order_id, p.id AS product_id, od.quantity, p.name, p.price FROM `order_details` AS od, `products` AS p WHERE p.id = od.product_id AND`order_id` IN (' . $data . ')';
+        
+        return $this->selectAll($sql);
     }
 
-    public function OrderDetails()
+    public function listOrderId($order)
+    {
+        $query = "";
+        foreach ($order as $arr) {
+            $query .= $arr['id'] . ', ';
+        }
+
+        return rtrim($query, ', ');
+    }
+
+    public function getOrder($limit ,$offset)
     {
         $userId = $this->getUserId();
 
-        $sql = 'SELECT o.id, od.product_id, p.name, od.quantity, p.price
-            FROM `order_details` AS od JOIN `order` AS o ON od.order_id = o.id JOIN `products` AS p ON p.id = od.product_id 
-            WHERE o.user_id = ?';
-        $param = array($userId);
-        $result = $this->selectAll($sql, $param);
+        $sql = 'SELECT * FROM `order` WHERE `user_id` = ? ORDER BY `id` DESC LIMIT ? OFFSET ?';
+        $param = array($userId, $limit, $offset);
 
-        return $result;
+        return $this->selectAll($sql, $param);
+    }
+
+    public function countOrder()
+    {   
+        $userId = $this->getUserId();
+
+        $sql = 'SELECT COUNT(`id`) as `count` FROM `order` WHERE `user_id` = ?';
+        $param = array($userId);
+        $result = $this->select($sql, $param);
+
+        return $result['count'];
     }
 }

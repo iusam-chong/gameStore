@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-12 08:27:54
-  from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 16:19:01
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f84138a574954_68906484',
+  'unifunc' => 'content_5f85b755e18120_07936073',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
+    'db6cbd157cd1ce610a706de6b2a328e278250aed' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1602475484,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\navbar.tpl',
+      1 => 1602598483,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f84138a574954_68906484 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f85b755e18120_07936073 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/nav.js" defer><?php echo '</script'; ?>
 >
@@ -48,17 +48,17 @@ echo $_prefixVariable2;?>
 
                 <li id="cart"><a href="http://localhost:8888/gameStore/cart">購物車<span class="sr-only"></span></a></li>
                 <li id="statement"><a href="http://localhost:8888/gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
-                <?php ob_start();
-}
+                    <?php ob_start();
+if ($_smarty_tpl->tpl_vars['type']->value === 'admin' || $_smarty_tpl->tpl_vars['type']->value === 'superAdmin') {
 $_prefixVariable3 = ob_get_clean();
 echo $_prefixVariable3;?>
 
-                <?php ob_start();
-if ($_smarty_tpl->tpl_vars['type']->value === 'admin' || $_smarty_tpl->tpl_vars['type']->value === 'superAdmin') {
+                    <li id="systemmanage"><a href="http://localhost:8888/gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                    <?php ob_start();
+}
 $_prefixVariable4 = ob_get_clean();
 echo $_prefixVariable4;?>
 
-                <li id="systemmanage"><a href="http://localhost:8888/gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
                 <?php ob_start();
 }
 $_prefixVariable5 = ob_get_clean();

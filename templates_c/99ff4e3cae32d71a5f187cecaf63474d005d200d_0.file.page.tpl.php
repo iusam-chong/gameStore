@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 09:40:26
-  from '/Users/sam_chong/Documents/Github/gameStore/views/cart/page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:08:43
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\cart\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f85760a5e3541_33631599',
+  'unifunc' => 'content_5f85df1b57d816_76424675',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '3dd08e9a064baf3464639f20210fde8fd38eb7e7' => 
+    '99ff4e3cae32d71a5f187cecaf63474d005d200d' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/cart/page.tpl',
-      1 => 1602582005,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\cart\\page.tpl',
+      1 => 1602608921,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f85760a5e3541_33631599 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f85df1b57d816_76424675 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/cart.js" defer><?php echo '</script'; ?>
 >
@@ -36,7 +36,7 @@ echo $_prefixVariable1;?>
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th colspan="2" scope="col" class="col-xs-5 text-center">遊戲商品</th>
                 <th scope="col" class="col-xs-2 text-center">單價</th>
                 <th scope="col" class="col-xs-2 text-center">數量</th>

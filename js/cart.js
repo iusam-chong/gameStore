@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('cart is run:2533');
+    console.log('cart is run:8801');
 
     $('.deleteFromCart').submit(function(e) {
         e.preventDefault(e);

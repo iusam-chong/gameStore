@@ -19,9 +19,9 @@
                 {{if $loginStatus}}
                 <li id="cart"><a href="http://localhost:8888/gameStore/cart">購物車<span class="sr-only"></span></a></li>
                 <li id="statement"><a href="http://localhost:8888/gameStore/statement">交易紀錄<span class="sr-only"></span></a></li>
-                {{/if}}
-                {{if $type === 'admin' || $type === 'superAdmin'}}
-                <li id="systemmanage"><a href="http://localhost:8888/gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                    {{if $type === 'admin' || $type === 'superAdmin'}}
+                    <li id="systemmanage"><a href="http://localhost:8888/gameStore/productmanage">系統管理<span class="sr-only"></span></a></li>
+                    {{/if}}
                 {{/if}}
             </ul>
 

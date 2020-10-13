@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 06:44:53
-  from '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:38:50
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\adminmanage\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f854ce58abd38_48613734',
+  'unifunc' => 'content_5f85e62a85e295_83466155',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '876fb0f25260ca0812852b09778dd29a208d6b77' => 
+    '595c818509f5a416160c8cc3a1780fa0839d6702' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl',
-      1 => 1602571491,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\adminmanage\\page.tpl',
+      1 => 1602610728,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f854ce58abd38_48613734 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f85e62a85e295_83466155 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/adminmanage.js" defer><?php echo '</script'; ?>
 >
@@ -30,10 +30,13 @@ $_prefixVariable1 = ob_get_clean();
 echo $_prefixVariable1;?>
 
 <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <h1 class="text-center">後台帳號管理</h1>
-                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount" style="float:right; margin-top: 10px;">新增後台帳號</button>
             </div>
         </div>
 
@@ -87,7 +90,7 @@ echo $_prefixVariable1;?>
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-1 text-center">管理者編號</th>
                 <th scope="col" class="col-xs-3">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">創建時間</th>

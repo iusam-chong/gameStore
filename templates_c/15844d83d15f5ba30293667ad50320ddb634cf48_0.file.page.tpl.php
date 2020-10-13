@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 06:45:52
-  from '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:12:37
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\membermanage\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f854d20068b52_24388957',
+  'unifunc' => 'content_5f85e005c5a549_23331236',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ad0d5eeb8c4ca0fcd21b7fbe6f539098a77f7a6f' => 
+    '15844d83d15f5ba30293667ad50320ddb634cf48' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl',
-      1 => 1602571549,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\membermanage\\page.tpl',
+      1 => 1602609143,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f854d20068b52_24388957 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f85e005c5a549_23331236 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/membermanage.js" defer><?php echo '</script'; ?>
 >
@@ -35,7 +35,7 @@ echo $_prefixVariable1;?>
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-2 text-center">會員編號</th>
                 <th scope="col" class="col-xs-6">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">註冊時間</th>

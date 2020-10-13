@@ -6,7 +6,7 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-2 text-center">會員編號</th>
                 <th scope="col" class="col-xs-6">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">註冊時間</th>

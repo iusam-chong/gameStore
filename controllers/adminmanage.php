@@ -18,7 +18,7 @@ class AdminManage extends Controller
                 parent::noPermitExist();
             }
 
-            if ($user['type'] !== 'admin' && $user['type' !== 'superAdmin']) {
+            if ($user['type'] !== 'admin' && $user['type'] !== 'superAdmin') {
                 parent::noPermitExist();
             }
 

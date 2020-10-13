@@ -97,6 +97,6 @@ class Shop extends Controller
         $url = rtrim($_GET['url'], '/');
         $url = explode('/', $url);
 
-        return ($url[1]) ? true : false;
+        return (isset($url[1])) ? true : false;
     }
 }

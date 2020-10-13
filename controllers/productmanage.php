@@ -18,7 +18,7 @@ class ProductManage extends Controller
                 parent::noPermitExist();
             }
 
-            if ($user['type'] !== 'admin' && $user['type' !== 'superAdmin']) {
+            if ($user['type'] !== 'admin' && $user['type'] !== 'superAdmin') {
                 parent::noPermitExist();
             }
             $this->smartyAssign($user);

@@ -7,7 +7,7 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th colspan="2" scope="col" class="col-xs-5 text-center">遊戲商品</th>
                 <th scope="col" class="col-xs-2 text-center">單價</th>
                 <th scope="col" class="col-xs-2 text-center">數量</th>

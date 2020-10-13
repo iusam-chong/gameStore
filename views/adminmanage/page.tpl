@@ -1,10 +1,13 @@
 <script type="module" src="http://localhost:8888/gameStore/js/adminmanage.js" defer></script>
 {{if $employeeAuth}}
 <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4">
+        <div class="row" style="display: flex; align-items: center;">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                 <h1 class="text-center">後台帳號管理</h1>
-                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount">新增後台帳號</button>
+            </div>
+            <div class="col-lg-2">
+                <button class="btn btn-success btn-block" data-toggle="modal" data-target="#newAccount" style="float:right; margin-top: 10px;">新增後台帳號</button>
             </div>
         </div>
 
@@ -58,7 +61,7 @@
 <div class="container">
     <table class="table">
         <thead>
-            <tr>
+            <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-1 text-center">管理者編號</th>
                 <th scope="col" class="col-xs-3">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">創建時間</th>
