@@ -13,6 +13,17 @@ class ProductManageModel extends Model
         return $this->select($sql, $param);
     }
 
+    public function getCurrentAuth()
+    {
+        $currentAdmin = $this->getUserData();
+        $userId = $currentAdmin['id'];
+
+        $sql = 'SELECT `product`, `member`, `employee` FROM `users`, `manage_auth` WHERE users.id = ? AND users.id = manage_auth.admin_id AND users.enabled = 1';
+        $param = array($userId);
+
+        return $this->select($sql, $param);
+    }
+    
     public function insertProduct($product)
     {
         $sql = 'INSERT INTO `products` (`name`, `price`, `quantity`, `description`, `image`) VALUE (?, ?, ?, ?, ?)';

@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('productManage.js is running! working fine:1260');
+    console.log('productManage.js is running! working fine:1270');
 
     $('.productImg').click(function() {
         //console.log('click');
@@ -61,16 +61,17 @@ function newProduct(data) {
         processData:false,
         dataType: 'JSON',
         success:function(response) {
-            if (response.status === 1) {
-                console.log('everything fine');
-                
-                location.reload();
+            if (response.status === true) {
+                console.log(response);
+                //method(event);
             } 
-            else if (response.status === 2) {
-                console.log(response.img);
+            else {
+                alert(response.message);
+                //location.reload();
             }
         }, error(){
-            console.log('something wrong!');
+            alert('SERVER ERROR');
+            //location.reload();
         }
     });
 }

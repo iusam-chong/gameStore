@@ -82,40 +82,27 @@ class ProductManage extends Controller
         return true;
     }
 
-    # alot of condition need to check
+    
     public function newProduct()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
+        try {
+            $this->checkRequest();
+            $this->checkImg();
+
+            # alot of condition need to check
+
+            $this->currentEmployeeAuth();
+
+            $this->insertProduct();
+
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
+            return true;
         }
 
-        $response['img'] = $this->checkImg();
-
-        # condition to check input value
-
-        if ($response['img'] !== null) {
-            $response['status'] = 2;
-        } else {
-
-            $imgData = file_get_contents($_FILES['productImg']['tmp_name']);
-            $imageProperties = $_FILES['productImg']['type'];
-            $img = $imgData . $imageProperties;
-
-            $data = (object) [
-                'name' => $_POST['productName'],
-                'price' => $_POST['productPrice'],
-                'quantity' => $_POST['productQuantity'],
-                'description' => $_POST['productDescription'],
-                'image' => $img,
-            ];
-
-            if (!$this->model->insertProduct($data)) {
-                $response['status'] = 3;
-            } else {
-                $response['status'] = 1;
-            }
-        }
-        echo json_encode($response);
+        $message = 'Add product success, yahoo!';
+        Json::ajaxReturn(true, $message);
         return true;
     }
 
@@ -200,21 +187,57 @@ class ProductManage extends Controller
 
     private function checkImg()
     {
-        if (!is_array($_FILES)) {
-            return 'cant get Img';
-        }
-
         if (!is_uploaded_file($_FILES['productImg']['tmp_name'])) {
-            return 'cant get Img';
+            throw new Exception('No File detected');
         }
 
         $info = getimagesize($_FILES['productImg']['tmp_name']);
         if ($info === false) {
-            return 'unable to determine imega type of uploaded file';
+            throw new Exception('Unable to determine image type of uploaded file');
         }
-
         if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
-            return 'image type only can be gif/jpeg/png';
+            throw new Exception('Image type only can accept gif / jpeg / png');
         }
+        return true;
+    }
+
+    private function checkRequest()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            throw new Exception('Request method not POST.');
+        }
+        return true;
+    }
+
+    private function currentEmployeeAuth()
+    {
+        $currentAuth = $this->model->getCurrentAuth();
+
+        if (!$currentAuth) {
+            throw new Exception('Your admin auth is disabled or logged out, you are not allow to action in any page.');
+        }
+        if (!$currentAuth['product']) {
+            throw new Exception('Your employee manage auth is disabled, you have no permits in this page.');
+        }
+        return true;
+    }
+
+    private function insertProduct()
+    {
+        $imgData = file_get_contents($_FILES['productImg']['tmp_name']);
+            $imageProperties = $_FILES['productImg']['type'];
+            $img = $imgData . $imageProperties;
+
+            $data = (object) [
+                'name' => $_POST['productName'],
+                'price' => $_POST['productPrice'],
+                'quantity' => $_POST['productQuantity'],
+                'description' => $_POST['productDescription'],
+                'image' => $img,
+            ];
+
+            if (!$this->model->insertProduct($data)) {
+                $response['status'] = 3;
+            }
     }
 }
