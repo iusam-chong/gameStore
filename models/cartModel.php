@@ -8,9 +8,8 @@ class CartModel extends Model
 
         $sql = 'SELECT `user_name`, `type`, users.id FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
         $param = array($identifier);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function getUserId()
@@ -27,18 +26,16 @@ class CartModel extends Model
         $sql = 'SELECT products.name, products.price, products.id, carts.quantity, products.quantity AS total_quantity FROM `carts`,`products`
             WHERE carts.product_id = products.id AND products.enabled = 1 AND carts.user_id = ?';
         $param = array($userId);
-        $result = $this->selectAll($sql, $param);
 
-        return $result;
+        return $this->selectAll($sql, $param);
     }
 
     public function productExist($productId)
     {
         $sql = 'SELECT * FROM `products` WHERE (`id` = ?) AND `enabled` = 1';
         $param = array($productId);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function productInCart($productId)
@@ -47,9 +44,8 @@ class CartModel extends Model
 
         $sql = 'SELECT * FROM `carts` WHERE (`user_id` = ?) AND (`product_id` = ?)';
         $param = array($userId, $productId);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function addCart($productId)
@@ -58,9 +54,8 @@ class CartModel extends Model
 
         $sql = 'INSERT INTO `carts` (`user_id`, `product_id`) VALUES (?, ?)';
         $param = array($userId, $productId);
-        $result = $this->insert($sql, $param);
 
-        return $result;
+        return $this->insert($sql, $param);
     }
 
     public function deleteFromCart($productId)
@@ -69,9 +64,8 @@ class CartModel extends Model
 
         $sql = 'DELETE FROM `carts` WHERE (`user_id` = ?) AND (`product_id` = ?)';
         $param = array($userId, $productId);
-        $result = $this->insert($sql, $param);
 
-        return $result;
+        return $this->insert($sql, $param);
     }
 
     public function bill()
@@ -133,8 +127,7 @@ class CartModel extends Model
             $query = $query . '(' . $orderId . ',' . $d["id"] . ',' . $d["quantity"] . '),';
         }
 
-        $sql = rtrim($query, ', ');
-        return $sql;
+        return rtrim($query, ', ');
     }
 
     public function minusProductQuantity($data)
@@ -157,9 +150,8 @@ class CartModel extends Model
      
         $sql = 'DELETE FROM `carts` WHERE (`user_id` = ?)';
         $param = array($userId);
-        $result = $this->insert($sql, $param);
 
-        return $result;
+        return $this->insert($sql, $param);
     }
 
     public function modifyCartQuantity($productId, $quantity)

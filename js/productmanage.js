@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('productManage.js is running! working fine:1259');
+    console.log('productManage.js is running! working fine:1260');
 
     $('.productImg').click(function() {
         //console.log('click');
@@ -27,6 +27,10 @@ $(function () {
     $('.deleteProduct form').submit(function(e) {
         e.preventDefault();
         deleteProduct(this);
+    });
+
+    $('.pagination .active').click(function(e) {
+        e.preventDefault(e);
     });
 });
 

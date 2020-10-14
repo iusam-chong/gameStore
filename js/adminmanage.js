@@ -26,6 +26,10 @@ $(function () {
         e.preventDefault(e);
         modifyEmployeeStatus(this);
     })
+
+    $('.pagination .active').click(function(e) {
+        e.preventDefault(e);
+    });
 })
 
 function newAccount(event) {
@@ -78,7 +82,7 @@ function modifyEnabledStatus(event) {
                     setBtnMember(event, false);
                     setBtnEmployee(event, false);
                 }
-            } 
+            }
             else {
                 alert(response.message);
                 location.reload();

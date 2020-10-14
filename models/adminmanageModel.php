@@ -6,7 +6,7 @@ class AdminManageModel extends Model
     {
         $identifier = Cookie::getIdentifier();
 
-        $sql = 'SELECT users.id, `user_name`, `type`, `enabled`, `employee` FROM `users`, `auth`, `manage_auth` 
+        $sql = 'SELECT users.id, `user_name`, `type`, `enabled`, `employee` FROM `users`, `auth`, `manage_auth`
             WHERE auth.identifier = ? AND users.id = auth.user_id AND users.id = manage_auth.admin_id';
         $param = array($identifier);
 
@@ -39,7 +39,7 @@ class AdminManageModel extends Model
 
         $sql = 'INSERT INTO `users` (`user_name`, `password`, `type`) VALUES (?, ?, "admin")';
         $param = array($data->userName, $hash);
-        
+
         return $this->insert($sql, $param);
     }
 
@@ -48,7 +48,7 @@ class AdminManageModel extends Model
         $adminId = $this->getNewAdmin();
 
         $sql = 'INSERT INTO `manage_auth` (`admin_id`) VALUE (?)';
-        $param  = array($adminId);
+        $param = array($adminId);
 
         return $this->insert($sql, $param);
     }
@@ -61,17 +61,26 @@ class AdminManageModel extends Model
         return $result['id'];
     }
 
-    public function showAllAdmin()
+    public function showAllAdmin($limit, $offset)
     {
-        $sql = 'SELECT users.*, m.product, m.member, m.employee FROM `users`, `manage_auth` as `m` 
-            WHERE `type` = "admin" AND users.id = m.admin_id';
+        $sql = 'SELECT users.*, m.product, m.member, m.employee FROM `users`, `manage_auth` as `m`
+            WHERE `type` = "admin" AND users.id = m.admin_id LIMIT ? OFFSET ?';
+        $param = array($limit, $offset);
 
-        return $this->selectAll($sql);
+        return $this->selectAll($sql, $param);
+    }
+
+    public function countAdmin()
+    {
+        $sql = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `type` = "admin"';
+        $result = $this->select($sql);
+
+        return $result['count'];
     }
 
     public function modifyEnabledStatus($userId, $status)
     {
-        $status = ($status) ? 0 : 1; 
+        $status = ($status) ? 0 : 1;
 
         $sql = 'UPDATE `users` SET `enabled` = ? WHERE `id` = ?';
         $param = array($status, $userId);
@@ -97,7 +106,7 @@ class AdminManageModel extends Model
 
     public function modifyProductStatus($userId, $status)
     {
-        $status = ($status) ? 0 : 1; 
+        $status = ($status) ? 0 : 1;
 
         $sql = 'UPDATE `manage_auth` SET `product` = ? WHERE `admin_id` = ?';
         $param = array($status, $userId);
@@ -107,7 +116,7 @@ class AdminManageModel extends Model
 
     public function modifyMemberStatus($userId, $status)
     {
-        $status = ($status) ? 0 : 1; 
+        $status = ($status) ? 0 : 1;
 
         $sql = 'UPDATE `manage_auth` SET `member` = ? WHERE `admin_id` = ?';
         $param = array($status, $userId);
@@ -117,7 +126,7 @@ class AdminManageModel extends Model
 
     public function modifyEmployeeStatus($userId, $status)
     {
-        $status = ($status) ? 0 : 1; 
+        $status = ($status) ? 0 : 1;
 
         $sql = 'UPDATE `manage_auth` SET `employee` = ? WHERE `admin_id` = ?';
         $param = array($status, $userId);

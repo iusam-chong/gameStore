@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:38:50
-  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\adminmanage\page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-14 09:35:48
+  from '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f85e62a85e295_83466155',
+  'unifunc' => 'content_5f86c674349cd5_59693770',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '595c818509f5a416160c8cc3a1780fa0839d6702' => 
+    '876fb0f25260ca0812852b09778dd29a208d6b77' => 
     array (
-      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\adminmanage\\page.tpl',
-      1 => 1602610728,
+      0 => '/Users/sam_chong/Documents/Github/gameStore/views/adminmanage/page.tpl',
+      1 => 1602643643,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f85e62a85e295_83466155 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f86c674349cd5_59693770 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/adminmanage.js" defer><?php echo '</script'; ?>
 >
@@ -299,17 +299,69 @@ echo $_prefixVariable32;?>
         </tbody>
     </table>
 </div>
-<?php ob_start();
-} else {
+
+<div class="container text-center">
+    <ul class="pagination">
+        <?php ob_start();
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['pagination']->value+1 - (1) : 1-($_smarty_tpl->tpl_vars['pagination']->value)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;
 $_prefixVariable33 = ob_get_clean();
 echo $_prefixVariable33;?>
+
+        <?php ob_start();
+if ($_smarty_tpl->tpl_vars['currentPage']->value == $_smarty_tpl->tpl_vars['i']->value) {
+$_prefixVariable34 = ob_get_clean();
+echo $_prefixVariable34;?>
+
+        <li class="active"><a href="http://localhost:8888/gameStore/adminmanage/page/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable35 = ob_get_clean();
+echo $_prefixVariable35;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable36 = ob_get_clean();
+echo $_prefixVariable36;?>
+</a></li>
+        <?php ob_start();
+} else {
+$_prefixVariable37 = ob_get_clean();
+echo $_prefixVariable37;?>
+
+        <li><a href="http://localhost:8888/gameStore/adminmanage/page/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable38 = ob_get_clean();
+echo $_prefixVariable38;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable39 = ob_get_clean();
+echo $_prefixVariable39;?>
+</a></li>
+        <?php ob_start();
+}
+$_prefixVariable40 = ob_get_clean();
+echo $_prefixVariable40;?>
+
+        <?php ob_start();
+}
+}
+$_prefixVariable41 = ob_get_clean();
+echo $_prefixVariable41;?>
+
+    </ul>
+</div>
+<?php ob_start();
+} else {
+$_prefixVariable42 = ob_get_clean();
+echo $_prefixVariable42;?>
 
 <h1 class="text-center">後台帳號管理</h1>
 <hr>
 <p class="text-center">無權限查閱</p>
 <?php ob_start();
 }
-$_prefixVariable34 = ob_get_clean();
-echo $_prefixVariable34;
+$_prefixVariable43 = ob_get_clean();
+echo $_prefixVariable43;
 }
 }

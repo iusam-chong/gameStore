@@ -142,6 +142,18 @@
         </tbody>
     </table>
 </div>
+
+<div class="container text-center">
+    <ul class="pagination">
+        {{for $i=1 to $pagination}}
+        {{if $currentPage == $i}}
+        <li class="active"><a href="http://localhost:8888/gameStore/adminmanage/page/{{$i}}">{{$i}}</a></li>
+        {{else}}
+        <li><a href="http://localhost:8888/gameStore/adminmanage/page/{{$i}}">{{$i}}</a></li>
+        {{/if}}
+        {{/for}}
+    </ul>
+</div>
 {{else}}
 <h1 class="text-center">後台帳號管理</h1>
 <hr>

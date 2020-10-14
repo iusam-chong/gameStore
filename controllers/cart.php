@@ -21,7 +21,6 @@ class Cart extends Controller
     private function smartyAssign($user)
     {
         $carts = $this->model->getUserCart();
-        $cartTotal = $this->getCartTotal($carts);
 
         $smarty = $this->view->smarty;
 
@@ -30,45 +29,27 @@ class Cart extends Controller
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
         $smarty->assign('carts', $carts);
-        $smarty->assign('total', $cartTotal);
     }
 
     public function addCart()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
-        }
+        try {
+            $this->checkRequest();
+            $this->checkLoginStatus();
+            $this->checkProductElement();
+            $this->checkProductExist();
+            $this->checkProductAlreadyInCart();
 
-        if (!isset($_POST['productId'])) {
-            return false;
-        }
+            $this->addToCart();
 
-        if (!parent::loginStatus()) {
-            $response['status'] = 3;
-            echo json_encode($response);
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
             return true;
         }
 
-        $productId = $_POST['productId'];
-
-        if (!$this->model->productExist($productId)) {
-            return false;
-        }
-
-        # important! this method if match data from db should return true 
-        # and tell js users already add this item into the cart
-        if ($this->model->productInCart($productId)) {
-            $response['status'] = 2;
-            echo json_encode($response);
-            return true;
-        }
-
-        if (!$this->model->addCart($productId)) {
-            return false;
-        }
-        
-        $response['status'] = 1;
-        echo json_encode($response);
+        $message = 'Item add to cart success.';
+        Json::ajaxReturn(true, $message);
         return true;
     }
 
@@ -76,9 +57,11 @@ class Cart extends Controller
     {
         try {
             $this->checkRequest();
+            $this->checkLoginStatus();
             $this->checkProductElement();
-
-            # should check quantiy format, another condition
+            $this->checkQuantityElement();
+            $this->checkProductExist();
+            $this->checkProductExistInCart();
 
             $this->modifyCartQuantity();
 
@@ -90,79 +73,57 @@ class Cart extends Controller
 
         $result = [
             'productId' => $_POST['productId'],
-            'quantity' => $_POST['quantity']
+            'currentQuantity' => $_POST['quantity'],
         ];
 
-        $message = 'edit product quantity in cart success.';
+        $message = 'Edit product quantity in cart success.';
         Json::ajaxReturn(true, $message, $result);
         return true;
     }
 
-    public function getCartTotal($cart)
-    {
-        $total = 0 ;
-        foreach($cart as $product) {
-            $total += ($product['price']*$product['quantity']);
-        }
-
-        return $total;
-    }
-
     public function deleteFromCart()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
-        }
+        try {
+            $this->checkRequest();
+            $this->checkLoginStatus();
+            $this->checkProductElement();
+            $this->checkProductExist();
+            $this->checkProductExistInCart();
 
-        if (!isset($_POST['productId'])) {
-            return false;
-        }
+            $this->deleteProduct();
 
-        if (!parent::loginStatus()) {
-            $response['status'] = 3;
-            echo json_encode($response);
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
             return true;
         }
 
-        $productId = $_POST['productId'];
+        $result = [
+            'productId' => $_POST['productId'],
+        ];
 
-        if (!$this->model->productExist($productId)) {
-            return false;
-        }
-
-        if (!$this->model->productInCart($productId)) {
-            $response['status'] = 2;
-            echo json_encode($response);
-            return true;
-        }
-
-        if (!$this->model->deleteFromCart($productId)) {
-            return false;
-        }
-
-        $response['status'] = 1;
-        echo json_encode($response);
+        $message = 'Remove product from cart success.';
+        Json::ajaxReturn(true, $message, $result);
         return true;
     }
 
     public function bill()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
-        }
+        try {
+            $this->checkRequest();
+            $this->checkLoginStatus();
+            $this->compareProductInStore();
 
-        if (!parent::loginStatus()) {
-            $response['status'] = 3;
-            echo json_encode($response);
+            $this->billing();
+
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
             return true;
         }
 
-        if (!$this->model->bill()) {
-            return false;
-        }
-
-        $response['status'] = 1;
-        echo json_encode($response);
+        $message = 'Payment success, yahoo!';
+        Json::ajaxReturn(true, $message);
         return true;
     }
 
@@ -182,10 +143,94 @@ class Cart extends Controller
         return true;
     }
 
+    private function checkQuantityElement()
+    {
+        if (!isset($_POST['quantity'])) {
+            throw new Exception('Quantity not found in POST request.');
+        }
+        if (!preg_match('/^[1-9][0-9]*$/', $_POST['quantity'])) {
+            throw new Exception('Quantity is not a number.');
+        }
+        if ($_POST['quantity'] > 10) {
+            throw new Exception('Quantity only can be max to 10, illegal modify!');
+        }
+        return true;
+    }
+
+    private function checkLoginStatus()
+    {
+        if (!parent::loginStatus()) {
+            throw new Exception('User are not login.');
+        }
+        return true;
+    }
+
+    private function checkProductExist()
+    {
+        if (!$this->model->productExist($_POST['productId'])) {
+            throw new Exception('This product does not exist.');
+        }
+        return true;
+    }
+
+    # important! this method if match data from db should return true
+    # and tell js users already add this item into the cart
+    private function checkProductAlreadyInCart()
+    {
+        if ($this->model->productInCart($_POST['productId'])) {
+            throw new Exception('This product already in cart.');
+        }
+        return true;
+    }
+
+    private function checkProductExistInCart()
+    {
+        if (!$this->model->productInCart($_POST['productId'])) {
+            throw new Exception('This product does not exist.');
+        }
+        return true;
+    }
+
+    private function compareProductInStore()
+    {
+        $cart = $this->model->getUserCart();
+
+        foreach ($cart as $product) {
+            if ($product['quantity'] > $product['total_quantity']) {
+                throw new Exception('Transaction fail, some product in your cart is out of stock! Please retry angain.');
+            }
+        }
+        return true;
+    }
+
+    private function addToCart()
+    {
+        if (!$this->model->addCart($_POST['productId'])) {
+            throw new Exception('Item add to cart unsuccess.');
+        }
+        return true;
+    }
+
     private function modifyCartQuantity()
     {
         if (!$this->model->modifyCartQuantity($_POST['productId'], $_POST['quantity'])) {
             throw new Exception('Modify product quantity in cart unsuccess.');
+        }
+        return true;
+    }
+
+    private function deleteProduct()
+    {
+        if (!$this->model->deleteFromCart($_POST['productId'])) {
+            throw new Exception('Remove product from cart unsuccess.');
+        }
+        return true;
+    }
+
+    private function billing()
+    {
+        if (!$this->model->bill()) {
+            throw new Exception('Billing unsuccess.');
         }
         return true;
     }

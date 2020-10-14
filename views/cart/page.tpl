@@ -22,11 +22,23 @@
                 <td style="vertical-align: middle;">{{$product.name}}</td>
                 <td class="text-center price" style="vertical-align: middle;">{{$product.price}}</td>
                 <td class="text-center" style="vertical-align: middle;">
-                    <div class="productQuantity">
-                        <form action="#">
+                    <div>
+                        <form class="productQuantity">
                             <input type="hidden" name="productId" value="{{$product.id}}">
                             <select class="form-control center-block" name="quantity" class="selector" style="width:auto;">
+                                {{$flag = false}}
+
+                                {{if $product.total_quantity == 0}}
+                                <option value="delete" selected>product not exist</option>
+                                {{$flag = true}}
+                                {{elseif $product.total_quantity < $product.quantity}}
+                                <option value="edit {{$product.total_quantity}}" selected>product not exist</option>
+                                {{/if}}
+
                                 {{for $i=1 to $product.total_quantity max=10}}
+                                {{if $flag}}
+                                {{continue}}
+                                {{/if}}
                                 {{if $product.quantity === $i}}
                                 <option value="{{$i}}" selected>{{$i}}</option>
                                 {{else}}
@@ -41,7 +53,7 @@
                 <td class="col-xs-2" style="vertical-align: middle;">
                     <form class="deleteFromCart">
                         <input type="hidden" name="productId" value="{{$product.id}}"></input>
-                        <button class="btn btn-danger btn-block">刪除</button>
+                        <button type="submit" class="btn btn-danger btn-block">刪除</button>
                     </form>
                 </td>
             </tr>
@@ -51,7 +63,7 @@
                     <h4 style="float:right">TOTAL:</h4>
                 </td>
                 <td colspan="1" style="vertical-align: middle;">
-                    <h4 class="text-center" id="total">{{$total}}</h4>
+                    <h4 class="text-center" id="total"></h4>
                 </td>
                 <td colspan="1">
                     <div id="bill">

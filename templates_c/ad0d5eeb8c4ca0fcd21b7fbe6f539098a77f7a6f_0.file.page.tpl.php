@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:12:37
-  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\membermanage\page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-14 09:35:47
+  from '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f85e005c5a549_23331236',
+  'unifunc' => 'content_5f86c673c49917_33468182',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '15844d83d15f5ba30293667ad50320ddb634cf48' => 
+    'ad0d5eeb8c4ca0fcd21b7fbe6f539098a77f7a6f' => 
     array (
-      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\membermanage\\page.tpl',
-      1 => 1602609143,
+      0 => '/Users/sam_chong/Documents/Github/gameStore/views/membermanage/page.tpl',
+      1 => 1602640073,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f85e005c5a549_23331236 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f86c673c49917_33468182 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/membermanage.js" defer><?php echo '</script'; ?>
 >
@@ -111,15 +111,67 @@ echo $_prefixVariable11;?>
         </tbody>
     </table>
 </div>
-<?php ob_start();
-} else {
+
+<div class="container text-center">
+    <ul class="pagination">
+        <?php ob_start();
+$_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderingCache);$_smarty_tpl->tpl_vars['i']->step = 1;$_smarty_tpl->tpl_vars['i']->total = (int) ceil(($_smarty_tpl->tpl_vars['i']->step > 0 ? $_smarty_tpl->tpl_vars['pagination']->value+1 - (1) : 1-($_smarty_tpl->tpl_vars['pagination']->value)+1)/abs($_smarty_tpl->tpl_vars['i']->step));
+if ($_smarty_tpl->tpl_vars['i']->total > 0) {
+for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
+$_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;
 $_prefixVariable12 = ob_get_clean();
 echo $_prefixVariable12;?>
+
+        <?php ob_start();
+if ($_smarty_tpl->tpl_vars['currentPage']->value == $_smarty_tpl->tpl_vars['i']->value) {
+$_prefixVariable13 = ob_get_clean();
+echo $_prefixVariable13;?>
+
+        <li class="active"><a href="http://localhost:8888/gameStore/membermanage/page/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable14 = ob_get_clean();
+echo $_prefixVariable14;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable15 = ob_get_clean();
+echo $_prefixVariable15;?>
+</a></li>
+        <?php ob_start();
+} else {
+$_prefixVariable16 = ob_get_clean();
+echo $_prefixVariable16;?>
+
+        <li><a href="http://localhost:8888/gameStore/membermanage/page/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable17 = ob_get_clean();
+echo $_prefixVariable17;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable18 = ob_get_clean();
+echo $_prefixVariable18;?>
+</a></li>
+        <?php ob_start();
+}
+$_prefixVariable19 = ob_get_clean();
+echo $_prefixVariable19;?>
+
+        <?php ob_start();
+}
+}
+$_prefixVariable20 = ob_get_clean();
+echo $_prefixVariable20;?>
+
+    </ul>
+</div>
+<?php ob_start();
+} else {
+$_prefixVariable21 = ob_get_clean();
+echo $_prefixVariable21;?>
 
 <p class="text-center">無權限查閱</p>
 <?php ob_start();
 }
-$_prefixVariable13 = ob_get_clean();
-echo $_prefixVariable13;
+$_prefixVariable22 = ob_get_clean();
+echo $_prefixVariable22;
 }
 }

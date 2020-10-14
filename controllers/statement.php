@@ -63,7 +63,7 @@ class Statement extends Controller
             $currentPage = 1;
         }
 
-        $orderDetails = $this->model->OrderDetails($order);
+        $$orderDetails = ($order) ? $this->model->OrderDetails($order) : null;
 
         $countOrder = $this->model->countOrder();
         $pagination = ceil($countOrder / $itemPerPage);
@@ -72,21 +72,4 @@ class Statement extends Controller
 
         return true;
     }
-
-    private function checkPage($page)
-    {
-        if (!preg_match('/(^\d+$)/', $page)) {
-            return 1;
-        }
-        return ($page < 1) ? 1 : $page;
-    }
-    
-    private function issetPage()
-    {
-        $url = rtrim($_GET['url'], '/');
-        $url = explode('/', $url);
-
-        return (isset($url[1])) ? true : false;
-    }
-
 }

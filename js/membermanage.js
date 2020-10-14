@@ -1,10 +1,14 @@
 $(function () {
 
-    console.log('check js running : 285');
+    console.log('check js running : 288');
 
-    $('form').submit(function(e) {
+    $('.elementContr form').submit(function(e) {
         e.preventDefault(e);
         modifyStatus(this);
+    });
+
+    $('.pagination .active').click(function(e) {
+        e.preventDefault(e);
     });
 })
 

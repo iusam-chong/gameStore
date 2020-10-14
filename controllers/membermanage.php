@@ -21,23 +21,65 @@ class MemberManage extends Controller
             if ($user['type'] !== 'admin' && $user['type'] !== 'superAdmin') {
                 parent::noPermitExist();
             }
-            $this->smartyAssign($user);
-            $this->view->renderAdmin($contrName);
+            
+            if (!$this->issetPage()) {
+                $this->page();
+            }
         }
     }
 
-    private function smartyAssign($user)
+    private function loadPage($members, $pagination, $currentPage)
     {
-        $member = $this->model->showAllMember();
+        $this->view->smarty->assign('title', 'Somy系統 - 會員管理');
+
+        $this->smartyAssignUser();
+        $this->smartyAssignProducts($members, $pagination, $currentPage);
+
+        $this->view->renderAdmin('membermanage');
+    }
+
+    private function smartyAssignUser()
+    {
+        $user = $this->model->getUserData();  
+
         $smarty = $this->view->smarty;
 
-        $smarty->assign('title', 'Somy系統 - 會員管理');
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
         $smarty->assign('memberAuth', $user['member']);
+    }
 
-        $smarty->assign('members', $member);
+    private function smartyAssignProducts($members, $pagination, $currentPage)
+    {
+        $smarty = $this->view->smarty;
+
+        $smarty->assign('members', $members);
+        $smarty->assign('pagination', $pagination);
+        $smarty->assign('currentPage', $currentPage);
+    }
+
+    public function page($page = 1)
+    {
+        # change this variable value will be change display product amount
+        $itemPerPage = 5;
+
+        $page = $this->checkPage($page);
+        $offset = ($page - 1) * $itemPerPage;
+
+        $currentPage = $page;
+        $members = $this->model->showAllMember($itemPerPage, $offset);
+        if (!$members) {
+            $members = $this->model->showAllMember($itemPerPage, 0);
+            $currentPage = 1;
+        }
+
+        $countMembers = $this->model->countMember();
+        $pagination = ceil($countMembers / $itemPerPage);
+
+        $this->loadPage($members, $pagination, $currentPage);
+
+        return true;
     }
 
     public function modifyStatus()
@@ -113,7 +155,7 @@ class MemberManage extends Controller
         $currentAuth = $this->model->getUserData();
 
         if (!$currentAuth['enabled']) {
-            throw new Exception('Your admin auth is disabled, you are not allow to action in any page.');
+            throw new Exception('Your admin auth is disabled or logged out, you are not allow to action in any page.');
         }
         if (!$currentAuth['member']) {
             throw new Exception('Your member auth is disabled, you have no permits in this page.');

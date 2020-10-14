@@ -43,11 +43,12 @@
             </div>
             <br>
         {{/foreach}}
+        <hr>
     {{else if}}
         <p class="text-center">查無交易</p>
     {{/if}}
 </div>
-<hr>
+
 
 <div class="container text-center">
     <ul class="pagination">

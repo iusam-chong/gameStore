@@ -1,15 +1,19 @@
 $(function () {
 
-    console.log('cart is run:8801');
-
-    $('.deleteFromCart').submit(function(e) {
+    console.log('1058');
+    
+    $('form.deleteFromCart').submit(function(e) {
         e.preventDefault(e);
-        deleteFromCart(this);
+
+        let url =  window.location.origin + '/gameStore/cart/deleteFromCart';
+        requestPhp(this, url, deleteSuccess);
     });
 
     $('#bill form').submit(function(e) {
         e.preventDefault(e);
-        bill();
+
+        let url =  window.location.origin + '/gameStore/cart/bill';
+        requestPhp(this, url, paySuccess);
     });
     
     $('select').change(function(e) {
@@ -17,76 +21,18 @@ $(function () {
         $(this).closest('form').submit();  
     });
 
-    $('.productQuantity form').submit(function(e) {
+    $('form.productQuantity').submit(function(e) {
         e.preventDefault(e);
-        editCartQuantity(this);
+
+        let url =  window.location.origin + '/gameStore/cart/editQuantity';
+        requestPhp(this, url, reCalculateSub);
     });
+
+    initCart();
+    cartTotal();
 })
 
-function deleteFromCart(data) {
-
-    let url =  window.location.origin + '/gameStore/cart/deleteFromCart';
-
-    $.ajax({
-        type:'POST',
-        url: url,
-        data: new FormData(data),
-        contentType: false,
-        cache: false,
-        processData:false,
-        dataType: 'JSON',
-        success:function(response) {
-            //console.log(response);
-            if (response.status === 1) {
-                console.log('delete from cart success!');
-                location.reload();
-            } 
-            else if (response.status === 2) {
-                console.log('this product not found in cart');
-            }
-            else if (response.status === 3) {
-                console.log('no login, going redirect');
-                $(location).attr('href', 'login');
-            }
-        }, error(){
-            console.log('something wrong!');
-        }
-    });
-}
-
-function bill() {
-
-    let url =  window.location.origin + '/gameStore/cart/bill';
-
-    $.ajax({
-        type:'POST',
-        url: url,
-        contentType: false,
-        cache: false,
-        processData:false,
-        dataType: 'JSON',
-        success:function(response) {
-            console.log(response);
-            if (response.status === 1) {
-                console.log('bill success!');
-                location.reload();
-            } 
-            else if (response.status === 2) {
-                console.log('product get wrong');
-            }
-            else if (response.status === 3) {
-                console.log('no login, going redirect');
-                $(location).attr('href', 'login');
-            }
-        }, error(){
-            console.log('bill something wrong!');
-        }
-    });
-}
-
-function editCartQuantity(event) {
-
-    let url =  window.location.origin + '/gameStore/cart/editQuantity';
+function requestPhp(event, url, method) {
 
     $.ajax({
         type:'POST',
@@ -101,28 +47,69 @@ function editCartQuantity(event) {
                 console.log(response.message);
                 console.log(response.result);
 
-                showNewVar(event);
+                method(event);
             } 
             else {
-                console.log(response.status + ' : ' + response.message);
+                alert(response.message);
+                location.reload();
             }
         }, error(){
-            console.log('server error. . .');
+            alert('SERVER ERROR');
+            location.reload();
         }
     });
 }
 
-function showNewVar(event)
-{
+function reCalculateSub(event) {
+
     let price = $(event).closest('tr').find('.price').html();
     let quantity = $(event).closest('tr').find('select').val();
     let subtotal = $(event).closest('tr').find('.subtotal');
     subtotal.html(price*quantity);
 
+    cartTotal();
+}
+
+function cartTotal() {
     let total = 0;
     $('.subtotal').each(function() {
         total += Number($(this).html());
     });
 
     $('#total').html(total);
+}
+
+function deleteSuccess(event) {
+    
+    $(event).closest('tr').remove();
+    cartTotal();
+    
+    let countTr = $('tbody tr').length;
+    if (countTr <= 1) {
+        location.reload();
+    }
+}
+
+function paySuccess(event) {
+    $(location).attr('href', 'statement');
+}
+
+function initCart() {
+    $('select').each(function() {
+        
+        let optionVal = $(this).val();
+        let data = $(this).val().split(' ');
+
+        if (data[0] === 'edit') {
+
+            $(this).val(data[1]);
+            $(this).closest('form').submit();
+
+            $(this).find('option[value="'+optionVal+'"]').remove();
+
+        } else if (data[0] === 'delete') {
+
+            $(this).closest('tr').find('form.deleteFromCart').submit();
+        }
+    });
 }

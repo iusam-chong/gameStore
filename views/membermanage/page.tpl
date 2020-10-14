@@ -38,6 +38,18 @@
         </tbody>
     </table>
 </div>
+
+<div class="container text-center">
+    <ul class="pagination">
+        {{for $i=1 to $pagination}}
+        {{if $currentPage == $i}}
+        <li class="active"><a href="http://localhost:8888/gameStore/membermanage/page/{{$i}}">{{$i}}</a></li>
+        {{else}}
+        <li><a href="http://localhost:8888/gameStore/membermanage/page/{{$i}}">{{$i}}</a></li>
+        {{/if}}
+        {{/for}}
+    </ul>
+</div>
 {{else}}
 <p class="text-center">無權限查閱</p>
 {{/if}}

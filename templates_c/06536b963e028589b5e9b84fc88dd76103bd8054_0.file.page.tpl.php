@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-13 19:10:05
-  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\statement\page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-14 09:56:12
+  from '/Users/sam_chong/Documents/Github/gameStore/views/statement/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f85df6d9148c9_93509367',
+  'unifunc' => 'content_5f86cb3cacc069_38425931',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'b274e1a38d0b8a00047db70c90bc45bc2b80d13e' => 
+    '06536b963e028589b5e9b84fc88dd76103bd8054' => 
     array (
-      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\statement\\page.tpl',
-      1 => 1602609004,
+      0 => '/Users/sam_chong/Documents/Github/gameStore/views/statement/page.tpl',
+      1 => 1602669370,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f85df6d9148c9_93509367 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f86cb3cacc069_38425931 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/statement.js" defer><?php echo '</script'; ?>
 >
@@ -124,6 +124,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 $_prefixVariable12 = ob_get_clean();
 echo $_prefixVariable12;?>
 
+        <hr>
     <?php ob_start();
 } else {
 $_prefixVariable13 = ob_get_clean();
@@ -136,7 +137,7 @@ $_prefixVariable14 = ob_get_clean();
 echo $_prefixVariable14;?>
 
 </div>
-<hr>
+
 
 <div class="container text-center">
     <ul class="pagination">

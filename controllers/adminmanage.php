@@ -22,18 +22,21 @@ class AdminManage extends Controller
                 parent::noPermitExist();
             }
 
-            $this->smartyAssign($user);
-            $this->view->renderAdmin($contrName);
+            if (!$this->issetPage()) {
+                $this->page();
+            }
+
+            // $this->view->renderAdmin($contrName);
         }
     }
 
-    private function smartyAssign($user)
+    private function loadPage($admins, $pagination, $currentPage)
     {
-        $admins = $this->model->showAllAdmin();
+        $user = $this->model->getUserData();  
 
         $smarty = $this->view->smarty;
-
         $smarty->assign('title', 'Somy系統 - 後台帳號管理');
+
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userId', $user['id']);
@@ -41,6 +44,33 @@ class AdminManage extends Controller
         $smarty->assign('employeeAuth', $user['employee']);
 
         $smarty->assign('admins', $admins);
+        $smarty->assign('pagination', $pagination);
+        $smarty->assign('currentPage', $currentPage);
+        
+        $this->view->renderAdmin('adminmanage');
+    }
+
+    public function page($page = 1)
+    {
+        # change this variable value will be change display product amount
+        $itemPerPage = 5;
+
+        $page = $this->checkPage($page);
+        $offset = ($page - 1) * $itemPerPage;
+
+        $currentPage = $page;
+        $admins = $this->model->showAllAdmin($itemPerPage, $offset);
+        if (!$admins) {
+            $admins = $this->model->showAllAdmin($itemPerPage, 0);
+            $currentPage = 1;
+        }
+
+        $countAdmins = $this->model->countAdmin();
+        $pagination = ceil($countAdmins / $itemPerPage);
+
+        $this->loadPage($admins, $pagination, $currentPage);
+
+        return true;
     }
 
     public function newAdmin()
@@ -291,7 +321,7 @@ class AdminManage extends Controller
         $currentAuth = $this->model->getCurrentAuth();
 
         if (!$currentAuth) {
-            throw new Exception('Your admin auth is disabled, you are not allow to action in any page.');
+            throw new Exception('Your admin auth is disabled or logged out, you are not allow to action in any page.');
         }
         if (!$currentAuth['employee']) {
             throw new Exception('Your employee auth is disabled, you have no permits in this page.');

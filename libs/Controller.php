@@ -37,4 +37,21 @@ class Controller
         header('location: http://localhost:8888/gameStore/index');
         exit();
     }
+
+    protected function checkPage($page)
+    {
+        if (!preg_match('/(^\d+$)/', $page)) {
+            return 1;
+        }
+
+        return ($page < 1) ? 1 : $page;
+    }
+    
+    protected function issetPage()
+    {
+        $url = rtrim($_GET['url'], '/');
+        $url = explode('/', $url);
+
+        return (isset($url[1])) ? true : false;
+    }
 }

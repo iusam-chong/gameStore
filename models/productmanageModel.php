@@ -58,11 +58,20 @@ class ProductManageModel extends Model
         return $result;
     }
 
-    public function getProducts()
+    public function getProducts($limit ,$offset)
     {
-        $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC';
-        $result = $this->selectAll($sql);
+        $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC LIMIT ? OFFSET ?';
+        $param = array($limit, $offset);
+        $result = $this->selectAll($sql, $param);
 
         return ($result) ? $result : false;
+    }
+
+    public function countProducts()
+    {
+        $sql = 'SELECT COUNT(`id`) as `count` FROM `products` WHERE `enabled` = 1';
+        $result = $this->select($sql);
+
+        return $result['count'];
     }
 }

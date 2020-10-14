@@ -11,7 +11,7 @@ class ProductManage extends Controller
                 parent::noPermitExist();
             }
 
-            $user = $this->model->getUserData();
+            $user = $this->model->getUserData(); 
 
             if ($user['enabled'] === 0) {
                 Cookie::destroy();
@@ -21,24 +21,65 @@ class ProductManage extends Controller
             if ($user['type'] !== 'admin' && $user['type'] !== 'superAdmin') {
                 parent::noPermitExist();
             }
-            $this->smartyAssign($user);
-            $this->view->renderAdmin('productmanage');
+            
+            if (!$this->issetPage()) {
+                $this->page();
+            }
         }
     }
 
-    private function smartyAssign($user)
+    private function loadPage($products, $pagination, $currentPage)
     {
-        $products = $this->model->getProducts();
+        $this->view->smarty->assign('title', 'Somy系統 - 商品管理');
+
+        $this->smartyAssignUser();
+        $this->smartyAssignProducts($products, $pagination, $currentPage);
+
+        $this->view->renderAdmin('productmanage');
+    }
+
+    private function smartyAssignUser()
+    {
+        $user = $this->model->getUserData();   
 
         $smarty = $this->view->smarty;
-        
-        $smarty->assign('title', 'Somy系統 - 商品管理');
+
         $smarty->assign('loginStatus', parent::loginStatus());
         $smarty->assign('type', $user['type']);
         $smarty->assign('userName', $user['user_name']);
         $smarty->assign('productAuth', $user['product']);
+    }
+
+    private function smartyAssignProducts($products, $pagination, $currentPage)
+    {
+        $smarty = $this->view->smarty;
 
         $smarty->assign('products', $products);
+        $smarty->assign('pagination', $pagination);
+        $smarty->assign('currentPage', $currentPage);
+    }
+
+    public function page($page = 1)
+    {
+        # change this variable value will be change display product amount
+        $itemPerPage = 5;
+
+        $page = $this->checkPage($page);
+        $offset = ($page - 1) * $itemPerPage;
+
+        $currentPage = $page;
+        $products = $this->model->getProducts($itemPerPage, $offset);
+        if (!$products) {
+            $products = $this->model->getProducts($itemPerPage, 0);
+            $currentPage = 1;
+        }
+
+        $countProducts = $this->model->countProducts();
+        $pagination = ceil($countProducts / $itemPerPage);
+
+        $this->loadPage($products, $pagination, $currentPage);
+
+        return true;
     }
 
     # alot of condition need to check

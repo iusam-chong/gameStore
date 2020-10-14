@@ -13,11 +13,12 @@ class MemberManageModel extends Model
         return $this->select($sql, $param);
     }
 
-    public function showAllMember()
+    public function showAllMember($limit, $offset)
     {
-        $sql = 'SELECT * FROM `users` WHERE `type` = "user"';
-        
-        return $this->selectAll($sql);
+        $sql = 'SELECT * FROM `users` WHERE `type` = "user" LIMIT ? OFFSET ?';
+        $param = array($limit, $offset);
+
+        return $this->selectAll($sql, $param);
     }
 
     public function userExist($userId)
@@ -36,5 +37,13 @@ class MemberManageModel extends Model
         $param = array($status, $userId);
 
         return $this->insert($sql, $param);
+    }
+
+    public function countMember()
+    {
+        $sql = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `type` = "user"';
+        $result = $this->select($sql);
+
+        return $result['count'];
     }
 }

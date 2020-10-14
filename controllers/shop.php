@@ -82,21 +82,4 @@ class Shop extends Controller
 
         return ($user) ? $user : $this->noLoginData();
     }
-
-    private function checkPage($page)
-    {
-        if (!preg_match('/(^\d+$)/', $page)) {
-            return 1;
-        }
-
-        return ($page < 1) ? 1 : $page;
-    }
-    
-    private function issetPage()
-    {
-        $url = rtrim($_GET['url'], '/');
-        $url = explode('/', $url);
-
-        return (isset($url[1])) ? true : false;
-    }
 }
