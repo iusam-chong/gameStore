@@ -118,7 +118,7 @@ function deleteProduct(data) {
         //dataType: 'JSON',
         success:function(response) {
             console.log(response);
-            location.reload();
+            //location.reload();
             // if (response.status === 1) {
             //     console.log('everything fine');
                 
@@ -127,8 +127,8 @@ function deleteProduct(data) {
             // else if (response.status === 2) {
             //     console.log(response.img);
             // }
-        }, error(){
-            console.log('something wrong!');
+        }, error(response){
+            console.log(response);
         }
     });
 }

@@ -9,18 +9,16 @@ class ProductManageModel extends Model
         $sql = 'SELECT users.id, `user_name`, `type`, `enabled`, `product` FROM `users`, `auth`, `manage_auth` 
             WHERE auth.identifier = ? AND users.id = auth.user_id AND users.id = manage_auth.admin_id';
         $param = array($identifier);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function insertProduct($product)
     {
         $sql = 'INSERT INTO `products` (`name`, `price`, `quantity`, `description`, `image`) VALUE (?, ?, ?, ?, ?)';
         $param = array($product->name, $product->price, $product->quantity, $product->description, $product->image);
-        $result = $this->insert($sql, $param);
-
-        return $result;
+        
+        return $this->insert($sql, $param);
     }
 
     public function modifyProduct($product)
@@ -44,27 +42,24 @@ class ProductManageModel extends Model
     {
         $sql = 'UPDATE `products` SET `image` = ? WHERE `id` = ?';
         $param = array($product->image, $product->id);
-        $result = $this->insert($sql, $param);
-
-        return $result;
+        
+        return $this->insert($sql, $param);
     }
 
     public function disableProduct($id)
     {
         $sql = 'UPDATE `products` SET `enabled` = 0 WHERE `id` =?';
         $param = array($id);
-        $result = $this->insert($sql, $param);
 
-        return $result;
+        return $this->insert($sql, $param);
     }
 
     public function getProducts($limit ,$offset)
     {
         $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC LIMIT ? OFFSET ?';
         $param = array($limit, $offset);
-        $result = $this->selectAll($sql, $param);
 
-        return ($result) ? $result : false;
+        return $this->selectAll($sql, $param);
     }
 
     public function countProducts()
