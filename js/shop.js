@@ -1,12 +1,10 @@
 $(function () {
 
-    console.log('shop is run:250');
-
     $('form').submit(function(e) {
         e.preventDefault(e);
-        addCart(this);
-        $(this).find('button').attr('disabled', true);
-        $(this).find('button').empty().append('已加入購物車');
+        let url =  window.location.origin + '/gameStore/cart/addCart';
+
+        requestPhp(this, url, addCartSuccess);
     });
 
     $('.pagination .active').click(function(e) {
@@ -14,32 +12,33 @@ $(function () {
     });
 })
 
-function addCart(data) {
-
-    let url =  window.location.origin + '/gameStore/cart/addCart';
+function requestPhp(event, url, method) {
 
     $.ajax({
         type:'POST',
         url: url,
-        data: new FormData(data),
+        data: new FormData(event),
         contentType: false,
         cache: false,
         processData:false,
         dataType: 'JSON',
         success:function(response) {
-            //console.log(response);
-            if (response.status === 1) {
-                console.log('add to cart success!');
+            if (response.status === true) {
+                console.log(response);
+                method(event);
             } 
-            else if (response.status === 2) {
-                console.log('already add to cart');
-            }
-            else if (response.status === 3) {
-                console.log('no login, going redirect');
-                $(location).attr('href', 'login');
+            else {
+                console.log(response.message);
+                $(location).attr('href', window.location.origin + '/gameStore/login');
             }
         }, error(){
-            console.log('something wrong!');
+            alert('SERVER ERROR');
+            location.reload();
         }
     });
+}
+
+function addCartSuccess(event) {
+    $(event).find('button').attr('disabled', true);
+    $(event).find('button').empty().append('已加入購物車');
 }

@@ -197,7 +197,7 @@ class Cart extends Controller
 
         foreach ($cart as $product) {
             if ($product['quantity'] > $product['total_quantity']) {
-                throw new Exception('Transaction fail, some product in your cart is out of stock! Please retry angain.');
+                throw new Exception('Transaction fail, some product in your cart is out of stock! Please try angain.');
             }
         }
         return true;

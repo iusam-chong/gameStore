@@ -324,7 +324,7 @@ class AdminManage extends Controller
             throw new Exception('Your admin auth is disabled or logged out, you are not allow to action in any page.');
         }
         if (!$currentAuth['employee']) {
-            throw new Exception('Your employee auth is disabled, you have no permits in this page.');
+            throw new Exception('Your employee manage auth is disabled, you have no permits in this page.');
         }
         return true;
     }

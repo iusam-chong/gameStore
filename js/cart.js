@@ -1,7 +1,5 @@
 $(function () {
 
-    console.log('1058');
-    
     $('form.deleteFromCart').submit(function(e) {
         e.preventDefault(e);
 
@@ -44,9 +42,7 @@ function requestPhp(event, url, method) {
         dataType: 'JSON',
         success:function(response) {
             if (response.status === true) {
-                console.log(response.message);
-                console.log(response.result);
-
+                console.log(response);
                 method(event);
             } 
             else {

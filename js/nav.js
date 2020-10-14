@@ -1,11 +1,18 @@
 $(function () {
 
     // forward action will reload page
-    // console.log('nav is run233');
     if (!!window.performance && window.performance.navigation.type === 2) {
         window.location.reload();
     }
 
+    // another tab from the same domain says to quit!
+    $(window).on("storage",function(e){ 
+        var event = e.originalEvent
+        if (event.key == "quit") {
+            window.location.reload();
+        }
+    });
+    
     navBarControl();
 
     $('#logout').submit(function (e) {
@@ -13,7 +20,6 @@ $(function () {
         logout();
     });
 
-    //loginStatus();
 });
 
 function navBarControl() {
@@ -47,85 +53,12 @@ function logout() {
         dataType: 'JSON',
         success: function (response) {
             if (response.status === 1) {
-                $(location).attr('href', 'index');
+                localStorage.quit=$.now();
+                location.reload();
+                //$(location).attr('href', 'index');
             }
         }, error() {
             console.log('something wrong!');
         }
     });
-}
-
-function loginStatus() {
-    // check user logged in ornot
-    let url = window.location.origin + '/gameStore/logout/loginStatus';
-
-    $.ajax({
-        type: 'POST',
-        url: url,
-        dataType: 'JSON',
-        success: function (response) {
-            if (response.status === 1) {
-                //console.log('user logged in');
-                checkLogout();
-            }
-            if (response.status === 2) {
-                //console.log('login status:user not logged in');
-                checkLogin();
-            }
-        }, error() {
-            console.log('something wrong!');
-        }
-    });
-}
-
-function checkLogout() {
-
-    setTimeout(function () {
-
-        let url = window.location.origin + '/gameStore/logout/checkLogout';
-
-        $.ajax({
-            type: 'POST',
-            url: url,
-            dataType: 'JSON',
-            success: function (response) {
-                if (response.status === 1) {
-                    location.reload();
-                    //$(location).attr('href', 'index');
-                }
-                if (response.status === 2) {
-                    //console.log("check logout: logged in");
-                }
-            }, error() {
-                console.log('something wrong!');
-            },
-            complete: checkLogout
-        });
-    }, 1000);
-}
-
-function checkLogin() {
-
-    setTimeout(function () {
-
-        let url = window.location.origin + '/gameStore/logout/loginStatus';
-
-        $.ajax({
-            type: 'POST',
-            url: url,
-            dataType: 'JSON',
-            success: function (response) {
-                if (response.status === 1) {
-                    location.reload();
-                    //$(location).attr('href', 'index');
-                }
-                if (response.status === 2) {
-                    //console.log("checkLogin: not logged in");
-                }
-            }, error() {
-                console.log('something wrong!');
-            },
-            complete: checkLogin
-        });
-    }, 1500);
 }

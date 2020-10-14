@@ -2,11 +2,6 @@
 
 class ShopModel extends Model
 {
-    public function __construct()
-    {
-
-    }
-
     public function getUserData()
     {
         $identifier = Cookie::getIdentifier();
@@ -21,9 +16,8 @@ class ShopModel extends Model
     {
         $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC LIMIT ? OFFSET ?';
         $param = array($limit, $offset);
-        $result = $this->selectAll($sql, $param);
 
-        return ($result) ? $result : false;
+        return $this->selectAll($sql, $param);
     }
 
     public function countProducts()
@@ -40,9 +34,8 @@ class ShopModel extends Model
 
         $sql = 'SELECT `product_id` FROM `carts` WHERE `user_id` = ?';
         $param = array($userId);
-        $result = $this->selectAll($sql, $param);
 
-        return $result;
+        return $this->selectAll($sql, $param);
     }
 
     public function getUserId()

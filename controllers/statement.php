@@ -63,7 +63,7 @@ class Statement extends Controller
             $currentPage = 1;
         }
 
-        $$orderDetails = ($order) ? $this->model->OrderDetails($order) : null;
+        $orderDetails = ($order) ? $this->model->OrderDetails($order) : null;
 
         $countOrder = $this->model->countOrder();
         $pagination = ceil($countOrder / $itemPerPage);

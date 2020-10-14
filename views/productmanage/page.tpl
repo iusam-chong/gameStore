@@ -80,12 +80,12 @@
     <table class="table">
         <thead>
             <tr bgcolor="#003087" style="color: white;">
-                <th scope="col" class="col-xs-1">商品編號</th>
-                <th scope="col" class="col-xs-2">預覽圖</th>
+                <th scope="col" class="col-xs-1 text-center">編號</th>
+                <th scope="col" class="col-xs-2 text-center">預覽圖</th>
                 <th scope="col" class="col-xs-4">名稱</th>
-                <th scope="col" class="col-xs-2">價格</th>
-                <th scope="col" class="col-xs-2">庫存</th>
-                <th scope="col" class="col-xs-1">修改/刪除</th>
+                <th scope="col" class="col-xs-2 text-center">價格</th>
+                <th scope="col" class="col-xs-2 text-center">庫存</th>
+                <th scope="col" class="col-xs-1 text-center"></th>
             </tr>
         </thead>
         <tbody>
@@ -95,12 +95,12 @@
             {{else}}
             <tr>
             {{/if}}
-                <th scope="col" class="col-xs-1" style="vertical-align: middle;"> {{$product.id}}</th>
-                <td scope="col" class="col-xs-2" style="vertical-align: middle;"><img style="width:100px;" src="http://localhost:8888/gameStore/show/image/{{$product.id}}"></td>
-                <td scope="col" class="col-xs-4" style="vertical-align: middle;">{{$product.name}}</td>
-                <td scope="col" class="col-xs-2" style="vertical-align: middle;">{{$product.price}}</td>
-                <td scope="col" class="col-xs-2" style="vertical-align: middle;">{{$product.quantity}}</td>
-                <td scope="col" class="col-xs-1" style="vertical-align: middle;">
+                <th class="text-center" style="vertical-align: middle;"> {{$product.id}}</th>
+                <td class="text-center" style="vertical-align: middle;"><img style="width:100px;" src="http://localhost:8888/gameStore/show/image/{{$product.id}}"></td>
+                <td style="vertical-align: middle;">{{$product.name}}</td>
+                <td class="text-center" style="vertical-align: middle;">{{$product.price}}</td>
+                <td class="text-center" style="vertical-align: middle;">{{$product.quantity}}</td>
+                <td class="text-center" style="vertical-align: middle;">
                     <a href="#" class="btn btn-info btn-block" data-toggle="modal" data-target="#editProduct{{$product.id}}">修改</a>
                     <a href="#" class="btn btn-danger btn-block" data-toggle="modal" data-target="#deleteProduct{{$product.id}}">刪除</a>
                 </td>

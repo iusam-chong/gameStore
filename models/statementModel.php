@@ -8,9 +8,8 @@ class StatementModel extends Model
 
         $sql = 'SELECT `user_name`, `type`, users.id FROM `users`, `auth` WHERE auth.identifier = ? AND users.id = auth.user_id';
         $param = array($identifier);
-        $result = $this->select($sql, $param);
 
-        return $result;
+        return $this->select($sql, $param);
     }
 
     public function getUserId()

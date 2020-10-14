@@ -15,8 +15,8 @@ class AdminManageModel extends Model
 
     public function getCurrentAuth()
     {
-        $currentUser = $this->getUserData();
-        $userId = $currentUser['id'];
+        $currentAdmin = $this->getUserData();
+        $userId = $currentAdmin['id'];
 
         $sql = 'SELECT `product`, `member`, `employee` FROM `users`, `manage_auth` WHERE users.id = ? AND users.id = manage_auth.admin_id AND users.enabled = 1';
         $param = array($userId);

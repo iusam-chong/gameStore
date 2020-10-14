@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-14 08:55:25
-  from '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-14 17:17:18
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\navbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f86bcfd98a6f9_33485893',
+  'unifunc' => 'content_5f87167e8adf98_48628515',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'a6a66818e02ca90ed4655b7c47f6dca15d7f5c5f' => 
+    'db6cbd157cd1ce610a706de6b2a328e278250aed' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/navbar.tpl',
-      1 => 1602635542,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\navbar.tpl',
+      1 => 1602598483,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f86bcfd98a6f9_33485893 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f87167e8adf98_48628515 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/nav.js" defer><?php echo '</script'; ?>
 >

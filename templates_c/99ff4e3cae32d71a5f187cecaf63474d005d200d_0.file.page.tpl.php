@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-14 09:14:32
-  from '/Users/sam_chong/Documents/Github/gameStore/views/cart/page.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-10-14 17:23:54
+  from 'C:\Users\ALPHA\Documents\Github\gameStore\views\cart\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f86c17812fd96_27620147',
+  'unifunc' => 'content_5f87180ad6e6f4_65468858',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '3dd08e9a064baf3464639f20210fde8fd38eb7e7' => 
+    '99ff4e3cae32d71a5f187cecaf63474d005d200d' => 
     array (
-      0 => '/Users/sam_chong/Documents/Github/gameStore/views/cart/page.tpl',
-      1 => 1602666818,
+      0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\cart\\page.tpl',
+      1 => 1602675718,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f86c17812fd96_27620147 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f87180ad6e6f4_65468858 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/cart.js" defer><?php echo '</script'; ?>
 >
