@@ -1,5 +1,7 @@
 $(function () {
 
+    console.log('123s22dsdd');
+
     // forward action will reload page
     if (!!window.performance && window.performance.navigation.type === 2) {
         window.location.reload();
@@ -7,8 +9,10 @@ $(function () {
 
     // another tab from the same domain says to quit!
     $(window).on("storage",function(e){ 
-        var event = e.originalEvent
+        var event = e.originalEvent;
         if (event.key == "quit") {
+            window.location.reload();
+        } else if (event.key == "login") {
             window.location.reload();
         }
     });

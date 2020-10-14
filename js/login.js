@@ -1,7 +1,7 @@
 $(function () {
 
-    console.log("login.js is running! working fine:1245");
-    
+    console.log("login.js is running! working fine:13asd");
+
     $('form').submit(function (e) {
         e.preventDefault();
         //console.log("is clicking btn");
@@ -17,6 +17,8 @@ $(function () {
             success:function(response) {
                 if (response.status === 1) {
                     //console.log(response.message);
+
+                    localStorage.login=$.now();
                     location.reload();
                 }
             }, error(){
