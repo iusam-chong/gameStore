@@ -26,42 +26,70 @@ class Login extends Controller
 
     public function signIn()
     {
-        $response = array();
+        try {
+            $this->checkRequest();
+            $this->checkUserName();
+            $this->checkPassword();
+            $this->tryLogin();
 
-        # all return false will be set status,message and return to ajax later
+        } catch (Exception $e) {
 
+            Json::ajaxReturn(false, $e->getMessage());
+            return true;
+        }
+
+        $message = 'login success.';
+        Json::ajaxReturn(true, $message);
+        return true;
+    }
+
+    private function checkRequest()
+    {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
+            throw new Exception('Request method not POST.');
         }
+        return true;
+    }
 
-        if (!(isset($_POST['userName']) && isset($_POST['password']))) {
-            return false;
+    private function checkUserName()
+    {
+        if (!isset($_POST['userName'])) {
+            throw new Exception('User name not found in POST request.');
         }
-
         if (!(strlen(trim($_POST['userName'])) > 0)) {
-            return false;
+            throw new Exception('User name cannot only have space or null.');
         }
+        return true;
+    }
 
+    private function checkPassword()
+    {
+        if (!isset($_POST['password'])) {
+            throw new Exception('User name not found in POST request.');
+        }
         if (!(strlen(trim($_POST['password'])) > 0)) {
-            return false;
+            throw new Exception('User name cannot only have space or null.');
         }
+        return true;
+    }
 
-        $data = (object) [
+    private function tryLogin()
+    {
+        $loginData = (object) [
             'userName' => $_POST['userName'],
             'userPasswd' => $_POST['password'],
         ];
 
-        if (!$this->model->manualLogin($data)) {
-            return false;
+        $userData = $this->model->verifyLogin($loginData);
+        if (!$userData) {
+            throw new Exception('賬號或密碼錯誤');
         }
-
-        // test
-
-        $response['message'] = 'login success';
-
-        $response['status'] = 1;
-        echo json_encode($response);
-
+        if (!$this->model->checkEnable($userData)) {
+            throw new Exception('賬號已被封鎖');
+        }
+        if (!$this->model->initCookieLogin($userData)) {
+            throw new Exception('伺服器忙碌中，請稍後再試');
+        }
         return true;
     }
 }

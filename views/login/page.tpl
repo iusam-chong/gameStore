@@ -1,18 +1,19 @@
-<div class="container" style="margin-top: 50px;">
+<div class="container" style="top:30%; width:100%; position: absolute;">
     <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div class="thumbnail">
-                <div class="caption">
-                    <form method="post" action="">
-                        <div class="form-group">
-                            <label for="userName">帳號</label>
-                            <input name="userName" maxlength="16" type="text" class="form-control" id="userName">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-default center-block" style="width: 70%;">
+                <div class="panel-body">
+                    <h2 class="text-center">Login</h2><br>
+                    <form>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="text" class="form-control" placeholder="Username" name="userName" maxlength="16">
                         </div>
-                        <div class="form-group">
-                            <label for="password">密碼</label>
-                            <input name="password" maxlength="16" type="password" class="form-control" id="password">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                            <input type="password" class="form-control" placeholder="Password" name="password" maxlength="16">
                         </div>
-                        <button name="login" value="1" type="submit" class="btn btn-primary btn-block">登入</button>
+                        <button type="submit" class="btn btn-primary btn-block">登入</button>
                     </form>
                 </div>
             </div>

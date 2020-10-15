@@ -42,10 +42,12 @@ class MemberStatement extends Controller
         $smarty->assign('userName', $user['user_name']);
         $smarty->assign('employeeAuth', $user['employee']);
 
+        $member = $this->model->findMember($memberId);
+
         $smarty->assign('order', $order);
         $smarty->assign('orderDetails', $orderDetails);
         $smarty->assign('pagination', $pagination);
-        $smarty->assign('memberId', $memberId);
+        $smarty->assign('member', $member);
         $smarty->assign('currentPage', $currentPage);
         
         $this->view->renderAdmin('memberstatement');
@@ -60,13 +62,6 @@ class MemberStatement extends Controller
 
         $page = $this->checkPage($pagiPage);
         $offset = ($page - 1) * $itemPerPage;
-
-        // echo "hihi, pagiPage : " . $pagiPage;
-        // echo "<hr> member id : ". $memberId; 
-
-        // echo "<hr>";
-        // echo $page . " | " . $offset;
-        // return true;
 
         $currentPage = $page;
         $order = $this->model->getOrder($itemPerPage, $offset, $memberId);

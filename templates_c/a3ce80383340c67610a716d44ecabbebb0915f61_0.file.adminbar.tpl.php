@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-14 17:17:18
+/* Smarty version 3.1.34-dev-7, created on 2020-10-15 16:08:16
   from 'C:\Users\ALPHA\Documents\Github\gameStore\views\adminbar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f87167e9019c3_62958526',
+  'unifunc' => 'content_5f8857d0457f58_96657567',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3ce80383340c67610a716d44ecabbebb0915f61' => 
     array (
       0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\adminbar.tpl',
-      1 => 1602597247,
+      1 => 1602770892,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f87167e9019c3_62958526 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f8857d0457f58_96657567 (Smarty_Internal_Template $_smarty_tpl) {
 ?><nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,9 +36,9 @@ function content_5f87167e9019c3_62958526 (Smarty_Internal_Template $_smarty_tpl)
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="liList">
             <ul class="nav navbar-nav" style="float:none; margin: 0 auto;display: table;table-layout: fixed;">
-                                <li id="productmanage"><a href="../gameStore/productmanage">商品</a></li>
-                <li id="membermanage"><a href="../gameStore/membermanage">會員</a></li>
-                <li id="adminmanage"><a href="../gameStore/adminmanage">後台帳號管理</a></li>
+                                <li id="productmanage"><a href="http://localhost:8888/gameStore/productmanage">商品</a></li>
+                <li id="membermanage"><a href="http://localhost:8888/gameStore/membermanage">會員</a></li>
+                <li id="adminmanage"><a href="http://localhost:8888/gameStore/adminmanage">後台帳號管理</a></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

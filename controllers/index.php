@@ -15,7 +15,7 @@ class Index extends Controller
     private function noLoginData()
     {
         $user = [
-            'user_name' => 'Hello there',
+            'user_name' => null,
             'type' => null
         ];
 

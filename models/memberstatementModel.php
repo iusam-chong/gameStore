@@ -15,8 +15,8 @@ class MemberStatementModel extends Model
 
     public function findMember($id)
     {
-        //$sql = 'SELECT * FROM `users` WHERE `type` = "user" AND `id` = ?';
-        $sql = 'SELECT * FROM `users` WHERE `id` = ?';
+        $sql = 'SELECT * FROM `users` WHERE `type` = "user" AND `id` = ?';
+        //$sql = 'SELECT * FROM `users` WHERE `id` = ?';
         $param = array($id);
 
         return $this->select($sql, $param);

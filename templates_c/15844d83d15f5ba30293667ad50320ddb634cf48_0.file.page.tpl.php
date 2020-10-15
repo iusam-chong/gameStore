@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-14 17:23:45
+/* Smarty version 3.1.34-dev-7, created on 2020-10-15 16:10:30
   from 'C:\Users\ALPHA\Documents\Github\gameStore\views\membermanage\page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f8718012f8788_70978772',
+  'unifunc' => 'content_5f8858567a3b51_50865829',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '15844d83d15f5ba30293667ad50320ddb634cf48' => 
     array (
       0 => 'C:\\Users\\ALPHA\\Documents\\Github\\gameStore\\views\\membermanage\\page.tpl',
-      1 => 1602675718,
+      1 => 1602771029,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f8718012f8788_70978772 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f8858567a3b51_50865829 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/membermanage.js" defer><?php echo '</script'; ?>
 >
@@ -37,9 +37,10 @@ echo $_prefixVariable1;?>
         <thead>
             <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-2 text-center">會員編號</th>
-                <th scope="col" class="col-xs-6">帳號名稱</th>
+                <th scope="col" class="col-xs-4">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">註冊時間</th>
                 <th scope="col" class="col-xs-2 text-center">狀態</th>
+                <th scope="col" class="col-xs-2 text-center">訂單明細</th>
             </tr>
         </thead>
         <tbody>
@@ -101,12 +102,19 @@ echo $_prefixVariable10;?>
                         </form>
                     </div>
                 </td>
+                <td class="col-xs-1 text-center" style="vertical-align: middle;">
+                    <a type="button" class="btn btn-info" href="http://localhost:8888/gameStore/memberstatement/id/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['member']->value['id'];
+$_prefixVariable11 = ob_get_clean();
+echo $_prefixVariable11;?>
+" >查看</a>
+                </td>
             </tr>
             <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable11 = ob_get_clean();
-echo $_prefixVariable11;?>
+$_prefixVariable12 = ob_get_clean();
+echo $_prefixVariable12;?>
 
         </tbody>
     </table>
@@ -119,59 +127,59 @@ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderin
 if ($_smarty_tpl->tpl_vars['i']->total > 0) {
 for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
 $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;
-$_prefixVariable12 = ob_get_clean();
-echo $_prefixVariable12;?>
-
-        <?php ob_start();
-if ($_smarty_tpl->tpl_vars['currentPage']->value == $_smarty_tpl->tpl_vars['i']->value) {
 $_prefixVariable13 = ob_get_clean();
 echo $_prefixVariable13;?>
 
-        <li class="active"><a href="http://localhost:8888/gameStore/membermanage/page/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
+        <?php ob_start();
+if ($_smarty_tpl->tpl_vars['currentPage']->value == $_smarty_tpl->tpl_vars['i']->value) {
 $_prefixVariable14 = ob_get_clean();
 echo $_prefixVariable14;?>
-"><?php ob_start();
+
+        <li class="active"><a href="http://localhost:8888/gameStore/membermanage/page/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['i']->value;
 $_prefixVariable15 = ob_get_clean();
 echo $_prefixVariable15;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable16 = ob_get_clean();
+echo $_prefixVariable16;?>
 </a></li>
         <?php ob_start();
 } else {
-$_prefixVariable16 = ob_get_clean();
-echo $_prefixVariable16;?>
+$_prefixVariable17 = ob_get_clean();
+echo $_prefixVariable17;?>
 
         <li><a href="http://localhost:8888/gameStore/membermanage/page/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['i']->value;
-$_prefixVariable17 = ob_get_clean();
-echo $_prefixVariable17;?>
-"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
 $_prefixVariable18 = ob_get_clean();
 echo $_prefixVariable18;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable19 = ob_get_clean();
+echo $_prefixVariable19;?>
 </a></li>
         <?php ob_start();
 }
-$_prefixVariable19 = ob_get_clean();
-echo $_prefixVariable19;?>
+$_prefixVariable20 = ob_get_clean();
+echo $_prefixVariable20;?>
 
         <?php ob_start();
 }
 }
-$_prefixVariable20 = ob_get_clean();
-echo $_prefixVariable20;?>
+$_prefixVariable21 = ob_get_clean();
+echo $_prefixVariable21;?>
 
     </ul>
 </div>
 <?php ob_start();
 } else {
-$_prefixVariable21 = ob_get_clean();
-echo $_prefixVariable21;?>
+$_prefixVariable22 = ob_get_clean();
+echo $_prefixVariable22;?>
 
 <p class="text-center">無權限查閱</p>
 <?php ob_start();
 }
-$_prefixVariable22 = ob_get_clean();
-echo $_prefixVariable22;
+$_prefixVariable23 = ob_get_clean();
+echo $_prefixVariable23;
 }
 }

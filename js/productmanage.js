@@ -1,6 +1,6 @@
 $(function () {
 
-    console.log('productManage.js is running! working fine : 9090');
+    console.log('productManage.js is running! working fine : 999099');
 
     $('.pagination .active').click(function (e) {
         e.preventDefault(e);
@@ -29,7 +29,9 @@ $(function () {
     });
 
     $('.productImg').change(function () {
+        $(this).closest('div').find('.spareImg').removeClass('hidden');
         readURL(this);
+
         let errMessage = '圖片格式只支援JPEG/PNG/GIF, 檔案大小不能超過5mb';
         checkProdImg(this, errMessage);
         checkFromIsDone(this);
@@ -85,7 +87,7 @@ function checkFromIsDone(event) {
     }
 
     if (!checkProdImg(img)) {
-        status = false;
+         status = false;
     }
 
     // name = $(event).closest('form').find('.productName').val();
@@ -145,7 +147,12 @@ function checkProdImg(event, errMessage) {
     let allowed = ["jpeg", "png", "gif"];
     let found = false;
 
-    if (!input) {
+    if (input === undefined) {
+        let isEditProduct = $(event).closest('.editProduct')[0];
+        if (isEditProduct) {
+            $(event).closest('div').find('p').html('');
+            return true;
+        }
         return false;
     }
 
@@ -167,10 +174,10 @@ function checkProdImg(event, errMessage) {
 function readURL(input) {
 
     if (input.files && input.files[0]) {
-
+        
         let reader = new FileReader();
-
         reader.onload = function (e) {
+            $(input).closest('div').find('.spareImg').addClass('hidden');
             $(input).closest('.productImgContr').find('.productImgSrc').attr('src', e.target.result);
             //$("#productImgSrc").attr('src', e.target.result);
         }

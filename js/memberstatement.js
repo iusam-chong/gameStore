@@ -3,6 +3,10 @@ $(function () {
     $('#systemmanage').addClass('active'); 
     $('#membermanage').addClass('active');
 
+    $('#systemmanage').click(function (e) {
+        e.preventDefault();
+    });
+    
     calculateOrder();
     
     $('.pagination .active').click(function(e) {

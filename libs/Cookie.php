@@ -37,7 +37,7 @@ class Cookie
 
         # IMPORTANT! interval value is allow user static during time in this site
         # Search user token and get result form db
-        $sql = "SELECT * FROM `auth` WHERE (token = ?) AND (login_time >= (NOW() - INTERVAL 60 MINUTE))";
+        $sql = "SELECT * FROM `auth`, `users` WHERE users.enabled = 1 AND users.id = auth.user_id AND (token = ?) AND (login_time >= (NOW() - INTERVAL 60 MINUTE))";
         $param = array($token);
         $model = new Model();
         $result = $model->specialSelect($sql, $param);

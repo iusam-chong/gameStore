@@ -14,9 +14,9 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="liList">
             <ul class="nav navbar-nav" style="float:none; margin: 0 auto;display: table;table-layout: fixed;">
                 {* class="active" *}
-                <li id="productmanage"><a href="../gameStore/productmanage">商品</a></li>
-                <li id="membermanage"><a href="../gameStore/membermanage">會員</a></li>
-                <li id="adminmanage"><a href="../gameStore/adminmanage">後台帳號管理</a></li>
+                <li id="productmanage"><a href="http://localhost:8888/gameStore/productmanage">商品</a></li>
+                <li id="membermanage"><a href="http://localhost:8888/gameStore/membermanage">會員</a></li>
+                <li id="adminmanage"><a href="http://localhost:8888/gameStore/adminmanage">後台帳號管理</a></li>
             </ul>
         </div>
     </div><!-- /.container-fluid -->

@@ -8,9 +8,10 @@
         <thead>
             <tr bgcolor="#003087" style="color: white;">
                 <th scope="col" class="col-xs-2 text-center">會員編號</th>
-                <th scope="col" class="col-xs-6">帳號名稱</th>
+                <th scope="col" class="col-xs-4">帳號名稱</th>
                 <th scope="col" class="col-xs-2 text-center">註冊時間</th>
                 <th scope="col" class="col-xs-2 text-center">狀態</th>
+                <th scope="col" class="col-xs-2 text-center">訂單明細</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,9 @@
                             {{/if}}
                         </form>
                     </div>
+                </td>
+                <td class="col-xs-1 text-center" style="vertical-align: middle;">
+                    <a type="button" class="btn btn-info" href="http://localhost:8888/gameStore/memberstatement/id/{{$member.id}}" >查看</a>
                 </td>
             </tr>
             {{/foreach}}

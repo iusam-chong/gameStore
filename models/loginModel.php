@@ -2,40 +2,38 @@
 
 class LoginModel extends Model
 {
-    function __construct()
+    public function getUser($userName)
     {
-        //echo "login modal loaded";
+        $sql = "SELECT * FROM `users` WHERE (`user_name` = ?)";
+        $param = array($userName);
+
+        return $this->select($sql, $param);
     }
 
-    # Method login
-    public function manualLogin($data)
+    public function verifyLogin($loginData)
     {
-        # Check user if not exist then return FALSE
-        $result = $this->getUser($data->userName);
+        $result = $this->getUser($loginData->userName);
         if (!$result) {
             return false;
         }
 
-        # Check input password with password from db result, if not match return FALSE
-        if (!password_verify($data->userPasswd, $result['password'])) {
+        if (!password_verify($loginData->userPasswd, $result['password'])) {
             return false;
         }
-
-        # Initial cookie method using by user id
-        if (!Cookie::init($result['id'])) {
-            return false;
-        }
-
-        return true;
+        return $result;
     }
 
-    # Get user from user name 
-    public function getUser($userName) 
-    {    
-        $sql = "SELECT * FROM `users` WHERE (`user_name` = ?)";
-        $param = array($userName);
-        $row = $this->select($sql, $param);
-        
-        return $row;
+    public function checkEnable($user)
+    {
+        $sql = "SELECT * FROM `users` WHERE `enabled` = 1 AND (`id` = ?)";
+        $param = array($user['id']);
+
+        return $this->select($sql, $param);
+    }
+
+    public function initCookieLogin($user)
+    {
+        # Login with cookie, check it in CookieClass in lib folder
+        return (Cookie::init($user['id'])) ? true : false;
     }
 }

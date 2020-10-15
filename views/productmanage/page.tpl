@@ -163,6 +163,7 @@
                                 <div class="col-sm-10">
                                     <label class="btn btn-default btn-block productImgContr">
                                         <input id="productImg" name="productImg" class="productImg editImg" type="file" hidden />
+                                        <img class="spareImg hidden" style="width:100%;" src="http://localhost:8888/gameStore/show/image/{{$product.id}}" />
                                         <img class="productImgSrc" style="width:100%;" src="http://localhost:8888/gameStore/show/image/{{$product.id}}" />
                                         <p class="text-danger"></p>
                                     </label>
@@ -174,7 +175,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
-                            <button type="submit" class="btn btn-success submitBtn" disabled>確認</button>
+                            <button type="submit" class="btn btn-success submitBtn">確認</button>
                         </div>
                     </form>
                 </div>

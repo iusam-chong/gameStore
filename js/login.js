@@ -1,28 +1,28 @@
 $(function () {
 
-    console.log("login.js is running! working fine:13asd");
-
     $('form').submit(function (e) {
         e.preventDefault();
-        //console.log("is clicking btn");
-
         let url = window.location.origin+window.location.pathname+'/signIn';
-        let formData = $(this).serialize();
 
         $.ajax({
             type:'POST',
             url: url,
-            data: formData,
+            data: new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
             dataType: 'JSON',
             success:function(response) {
-                if (response.status === 1) {
-                    //console.log(response.message);
-
-                    localStorage.login=$.now();
-                    location.reload();
+                if (response.status === true) {
+                    console.log(response);
+                } 
+                else {
+                    console.log(response.message);
+                    //location.reload();
                 }
             }, error(){
-                console.log('something wrong!');
+                alert('SERVER ERROR');
+                location.reload();
             }
         });
     });
