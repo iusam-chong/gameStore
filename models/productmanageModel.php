@@ -65,6 +65,14 @@ class ProductManageModel extends Model
         return $this->insert($sql, $param);
     }
 
+    public function findProduct($productId)
+    {
+        $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 AND `id` = ?';
+        $param = array($productId);
+
+        return $this->select($sql, $param);
+    }
+
     public function getProducts($limit ,$offset)
     {
         $sql = 'SELECT * FROM `products` WHERE `enabled` = 1 ORDER BY `id` DESC LIMIT ? OFFSET ?';

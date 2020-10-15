@@ -4,11 +4,11 @@ class Bootstrap
 {
     public function __construct()
     {
-        // ini_set('display_errors', 'off');
-        // # 關閉錯誤輸出
-        // ini_set('display_errors', 'on');
-        // # 開啟錯誤輸出
-        // error_reporting(E_ALL & ~E_NOTICE);
+        ini_set('display_errors', 'off');
+        # 關閉錯誤輸出
+        ini_set('display_errors', 'on');
+        # 開啟錯誤輸出
+        error_reporting(E_ALL & ~E_NOTICE);
 
         ob_start();
 

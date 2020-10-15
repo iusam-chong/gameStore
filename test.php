@@ -8,5 +8,4 @@
 //     echo "no set";
 // }
 
-$str = "admin";
-$hash = hash("sha256", $str);
+phpinfo();

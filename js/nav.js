@@ -1,7 +1,5 @@
 $(function () {
 
-    console.log('123s22dsdd');
-
     // forward action will reload page
     if (!!window.performance && window.performance.navigation.type === 2) {
         window.location.reload();
@@ -13,7 +11,7 @@ $(function () {
         if (event.key == "quit") {
             window.location.reload();
         } else if (event.key == "login") {
-            window.location.reload();
+            //window.location.reload();
         }
     });
     

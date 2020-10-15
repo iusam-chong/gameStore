@@ -11,7 +11,7 @@ class ProductManage extends Controller
                 parent::noPermitExist();
             }
 
-            $user = $this->model->getUserData(); 
+            $user = $this->model->getUserData();
 
             if ($user['enabled'] === 0) {
                 Cookie::destroy();
@@ -21,7 +21,7 @@ class ProductManage extends Controller
             if ($user['type'] !== 'admin' && $user['type'] !== 'superAdmin') {
                 parent::noPermitExist();
             }
-            
+
             if (!$this->issetPage()) {
                 $this->page();
             }
@@ -40,7 +40,7 @@ class ProductManage extends Controller
 
     private function smartyAssignUser()
     {
-        $user = $this->model->getUserData();   
+        $user = $this->model->getUserData();
 
         $smarty = $this->view->smarty;
 
@@ -82,16 +82,15 @@ class ProductManage extends Controller
         return true;
     }
 
-    
     public function newProduct()
     {
         try {
             $this->checkRequest();
-            $this->checkImg();
-
-            # alot of condition need to check
-
             $this->currentEmployeeAuth();
+            $this->checkProdName();
+            $this->checkProdPrice();
+            $this->checkProdQuantity();
+            $this->checkImg();
 
             $this->insertProduct();
 
@@ -101,6 +100,11 @@ class ProductManage extends Controller
             return true;
         }
 
+        // $result = [
+        //     "PostSize" => (int) $_SERVER['CONTENT_LENGTH'],
+        //     "ImgSize" => $_FILES['productImg']['size'],
+        // ];
+
         $message = 'Add product success, yahoo!';
         Json::ajaxReturn(true, $message);
         return true;
@@ -108,80 +112,44 @@ class ProductManage extends Controller
 
     public function editProduct()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
+        try {
+            $this->checkRequest();
+            $this->currentEmployeeAuth();
+            $this->checkProdId();
+            $this->checkProdName();
+            $this->checkProdPrice();
+            $this->checkProdQuantity();
+
+            $this->modifyProduct();
+
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
+            return true;
         }
 
-        if (!parent::loginStatus()) {
-
-            $response['status'] = "no login";
-            echo json_encode($response);
-            exit();
-        }
-        
-        // should got isset or some condition to check $_POST
-
-        # check user input img exist
-        if (!file_exists($_FILES['productImg']['tmp_name']) || !is_uploaded_file($_FILES['productImg']['tmp_name'])) {
-            $response['img'] = null;
-
-            $img = null;
-        } else {
-            $response['img'] = $this->checkImg();
-
-            $imgData = file_get_contents($_FILES['productImg']['tmp_name']);
-            $imageProperties = $_FILES['productImg']['type'];
-            $img = $imgData . $imageProperties;
-        }
-
-        if ($response['img'] !== null) {
-            $response['status'] = 2;
-        } else {
-
-            $data = (object) [
-                'id' => $_POST['productId'],
-                'name' => $_POST['productName'],
-                'price' => $_POST['productPrice'],
-                'quantity' => $_POST['productQuantity'],
-                'description' => $_POST['productDescription'],
-                'image' => $img,
-            ];
-
-            //print_r($data);
-
-            if (!$this->model->modifyProduct($data)) {
-                $response['status'] = 3;
-            } else {
-                $response['status'] = 1;
-            }
-        }
-        echo json_encode($response);
+        $message = 'Edit product success, yahoo!';
+        Json::ajaxReturn(true, $message);
         return true;
     }
 
     public function deleteProduct()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return false;
+        try {
+            $this->checkRequest();
+            $this->currentEmployeeAuth();
+            $this->checkProdId();
+
+            $this->disableProduct();
+
+        } catch (Exception $e) {
+
+            Json::ajaxReturn(false, $e->getMessage());
+            return true;
         }
 
-        if (!parent::loginStatus()) {
-
-            $response['status'] = "no login";
-            echo json_encode($response);
-            exit();
-        }
-
-        // should got isset or some condition
-        $id = $_POST['productId'];
-
-        if (!$this->model->disableProduct($id)) {
-            $response['status'] = 3;
-        } else {
-            $response['status'] = 1;
-        }
-
-        echo json_encode($response);
+        $message = 'Delete product success, yahoo!';
+        Json::ajaxReturn(true, $message);
         return true;
     }
 
@@ -198,6 +166,9 @@ class ProductManage extends Controller
         if (($info[2] !== IMAGETYPE_GIF) && ($info[2] !== IMAGETYPE_JPEG) && ($info[2] !== IMAGETYPE_PNG)) {
             throw new Exception('Image type only can accept gif / jpeg / png');
         }
+        if (($_FILES['productImg']['size']) > (1024 * 1024 * 5)) {
+            throw new Exception('Image size cannot large than 5Mb');
+        }
         return true;
     }
 
@@ -207,6 +178,48 @@ class ProductManage extends Controller
             throw new Exception('Request method not POST.');
         }
         return true;
+    }
+
+    private function checkProdId()
+    {
+        if (!isset($_POST['productId'])) {
+            throw new Exception('Product Id not found in POST request');
+        }
+        if (!$this->model->findProduct($_POST['productId'])) {
+            throw new Exception('Product not found in shop');
+        }
+        return true;
+    }
+
+    private function checkProdName()
+    {
+        if (!isset($_POST['productName'])) {
+            throw new Exception('Product name not found in POST request');
+        }
+        if (!(strlen(trim($_POST['productName'])) > 0)) {
+            throw new Exception('Product name cannot only have space or null');
+        }
+        return true;
+    }
+
+    private function checkProdPrice()
+    {
+        if (!isset($_POST['productPrice'])) {
+            throw new Exception('Product price not found in POST request');
+        }
+        if (!preg_match('/^[1-9][0-9]*$/', $_POST['productPrice'])) {
+            throw new Exception('Product price only accept number');
+        }
+    }
+
+    private function checkProdQuantity()
+    {
+        if (!isset($_POST['productQuantity'])) {
+            throw new Exception('Product quantity not found in POST request');
+        }
+        if (!preg_match('/^[1-9][0-9]*$/', $_POST['productQuantity'])) {
+            throw new Exception('Product quantity only accept number');
+        }
     }
 
     private function currentEmployeeAuth()
@@ -222,22 +235,61 @@ class ProductManage extends Controller
         return true;
     }
 
-    private function insertProduct()
+    private function getUploadImg()
     {
         $imgData = file_get_contents($_FILES['productImg']['tmp_name']);
-            $imageProperties = $_FILES['productImg']['type'];
-            $img = $imgData . $imageProperties;
+        $imageProperties = $_FILES['productImg']['type'];
 
-            $data = (object) [
-                'name' => $_POST['productName'],
-                'price' => $_POST['productPrice'],
-                'quantity' => $_POST['productQuantity'],
-                'description' => $_POST['productDescription'],
-                'image' => $img,
-            ];
+        return $imgData . $imageProperties;
+    }
 
-            if (!$this->model->insertProduct($data)) {
-                $response['status'] = 3;
-            }
+    private function insertProduct()
+    {
+        $img = $this->getUploadImg();
+
+        $data = (object) [
+            'name' => $_POST['productName'],
+            'price' => $_POST['productPrice'],
+            'quantity' => $_POST['productQuantity'],
+            'description' => $_POST['productDescription'],
+            'image' => $img,
+        ];
+
+        if (!$this->model->insertProduct($data)) {
+            throw new Exception('New product unsuccess.');
+        }
+        return true;
+    }
+
+    private function modifyProduct()
+    {
+        $img = null;
+
+        if (is_uploaded_file($_FILES['productImg']['tmp_name'])) {
+            $this->checkImg();
+            $img = $this->getUploadImg();
+        }
+
+        $data = (object) [
+            'id' => $_POST['productId'],
+            'name' => $_POST['productName'],
+            'price' => $_POST['productPrice'],
+            'quantity' => $_POST['productQuantity'],
+            'description' => $_POST['productDescription'],
+            'image' => $img,
+        ];
+
+        if (!$this->model->modifyProduct($data)) {
+            throw new Exception('Edit product unsuccess.');
+        }
+        return true;
+    }
+
+    private function disableProduct()
+    {
+        if (!$this->model->disableProduct($_POST['productId'])) {
+            throw new Exception('Delete product unsuccess.');
+        }
+        return true;
     }
 }
