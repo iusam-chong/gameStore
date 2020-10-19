@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-15 09:47:23
+/* Smarty version 3.1.34-dev-7, created on 2020-10-16 02:37:45
   from '/Users/sam_chong/Documents/Github/gameStore/views/memberstatement/page.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f881aab6d43e6_20691842',
+  'unifunc' => 'content_5f8907791178b0_49627637',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '67ef9030df0eec5559fcc6360468f78bd89238ec' => 
     array (
       0 => '/Users/sam_chong/Documents/Github/gameStore/views/memberstatement/page.tpl',
-      1 => 1602755241,
+      1 => 1602807097,
       2 => 'file',
     ),
   ),
@@ -20,29 +20,59 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f881aab6d43e6_20691842 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f8907791178b0_49627637 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="module" src="http://localhost:8888/gameStore/js/memberstatement.js" defer><?php echo '</script'; ?>
 >
-<h1 class="text-center">會員交易明細</h1>
+<div class="container">
+    <div class="row" style="display: flex; align-items: center;">
+        <div class="col-lg-2">
+            <a type="button" class="btn btn-danger" href="http://localhost:8888/gameStore/membermanage" style="float:left; margin-top: 10px;">返回</a>
+
+        </div>
+        <div class="col-lg-8">
+            <h1 class="text-center" style="margin-top: 10px;"> 會員交易明細</h1>
+        </div>
+        <div class="col-lg-2" style="float:right; margin-top: 10px;">
+            <table class="table table-condensed">
+                <tr>
+                    <td style="border:none;">會員編號 :</td>
+                    <td style="border:none;"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['member']->value['id'];
+$_prefixVariable1 = ob_get_clean();
+echo $_prefixVariable1;?>
+</td>
+                </tr>
+                <tr>
+                    <td style="border:none;">賬號名稱 :</td>
+                    <td style="border:none;"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['member']->value['user_name'];
+$_prefixVariable2 = ob_get_clean();
+echo $_prefixVariable2;?>
+</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 <hr>
 <div class="container">
     <?php ob_start();
 if ($_smarty_tpl->tpl_vars['order']->value) {
-$_prefixVariable1 = ob_get_clean();
-echo $_prefixVariable1;?>
+$_prefixVariable3 = ob_get_clean();
+echo $_prefixVariable3;?>
 
         <?php ob_start();
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['order']->value, 'o');
 $_smarty_tpl->tpl_vars['o']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['o']->value) {
 $_smarty_tpl->tpl_vars['o']->do_else = false;
-$_prefixVariable2 = ob_get_clean();
-echo $_prefixVariable2;?>
+$_prefixVariable4 = ob_get_clean();
+echo $_prefixVariable4;?>
 
             <div class="order">
                 <table class="table">
-                    
+        
                     <thead>
                         <tr bgcolor="#003087" style="color: white;">
                             <th colspan="2" scope="col" class="col-xs-6 text-center">遊戲商品</th>
@@ -58,55 +88,57 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 $_smarty_tpl->tpl_vars['od']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['od']->value) {
 $_smarty_tpl->tpl_vars['od']->do_else = false;
-$_prefixVariable3 = ob_get_clean();
-echo $_prefixVariable3;?>
+$_prefixVariable5 = ob_get_clean();
+echo $_prefixVariable5;?>
 
                             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['o']->value['id'] === $_smarty_tpl->tpl_vars['od']->value['order_id']) {
-$_prefixVariable4 = ob_get_clean();
-echo $_prefixVariable4;?>
+$_prefixVariable6 = ob_get_clean();
+echo $_prefixVariable6;?>
 
                 
                                 <tr class="statement">
                                     <td class="col-xs-2" style="vertical-align: middle;"><img style="width:50px;" src="http://localhost:8888/gameStore/show/image/<?php ob_start();
 echo $_smarty_tpl->tpl_vars['od']->value['product_id'];
-$_prefixVariable5 = ob_get_clean();
-echo $_prefixVariable5;?>
+$_prefixVariable7 = ob_get_clean();
+echo $_prefixVariable7;?>
 "></td>
                                     <td class="col-xs-4" style="vertical-align: middle;"><?php ob_start();
 echo $_smarty_tpl->tpl_vars['od']->value['name'];
-$_prefixVariable6 = ob_get_clean();
-echo $_prefixVariable6;?>
+$_prefixVariable8 = ob_get_clean();
+echo $_prefixVariable8;?>
 </td>
                                     <td class="col-xs-2 text-center quantity" style="vertical-align: middle;"><?php ob_start();
 echo $_smarty_tpl->tpl_vars['od']->value['quantity'];
-$_prefixVariable7 = ob_get_clean();
-echo $_prefixVariable7;?>
+$_prefixVariable9 = ob_get_clean();
+echo $_prefixVariable9;?>
 </td>
                                     <td class="col-xs-2 text-center price" style="vertical-align: middle;"><?php ob_start();
 echo $_smarty_tpl->tpl_vars['od']->value['price'];
-$_prefixVariable8 = ob_get_clean();
-echo $_prefixVariable8;?>
+$_prefixVariable10 = ob_get_clean();
+echo $_prefixVariable10;?>
 </td>
                                     <td class="col-xs-2 text-center subtotal" style="vertical-align: middle;">0</td>
                                 </tr>
                             <?php ob_start();
 }
-$_prefixVariable9 = ob_get_clean();
-echo $_prefixVariable9;?>
+$_prefixVariable11 = ob_get_clean();
+echo $_prefixVariable11;?>
 
                         <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable10 = ob_get_clean();
-echo $_prefixVariable10;?>
+$_prefixVariable12 = ob_get_clean();
+echo $_prefixVariable12;?>
 
                         <tr>
-                            <td colspan="3" style="vertical-align: middle;"><h5>訂單日期 : <?php ob_start();
+                            <td colspan="3" style="vertical-align: middle;">
+                                <h5>訂單日期 : <?php ob_start();
 echo $_smarty_tpl->tpl_vars['o']->value['bill_time'];
-$_prefixVariable11 = ob_get_clean();
-echo $_prefixVariable11;?>
-</h5></td>
+$_prefixVariable13 = ob_get_clean();
+echo $_prefixVariable13;?>
+</h5>
+                            </td>
                             <td class="text-center" style="vertical-align: middle;">
                                 <h5>TOTAL :</h5>
                             </td>
@@ -121,20 +153,20 @@ echo $_prefixVariable11;?>
         <?php ob_start();
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
-$_prefixVariable12 = ob_get_clean();
-echo $_prefixVariable12;?>
+$_prefixVariable14 = ob_get_clean();
+echo $_prefixVariable14;?>
 
         <hr>
     <?php ob_start();
 } else {
-$_prefixVariable13 = ob_get_clean();
-echo $_prefixVariable13;?>
+$_prefixVariable15 = ob_get_clean();
+echo $_prefixVariable15;?>
 
         <p class="text-center">窮鬼無交易紀錄</p>
     <?php ob_start();
 }
-$_prefixVariable14 = ob_get_clean();
-echo $_prefixVariable14;?>
+$_prefixVariable16 = ob_get_clean();
+echo $_prefixVariable16;?>
 
 </div>
 
@@ -146,55 +178,55 @@ $_smarty_tpl->tpl_vars['i'] = new Smarty_Variable(null, $_smarty_tpl->isRenderin
 if ($_smarty_tpl->tpl_vars['i']->total > 0) {
 for ($_smarty_tpl->tpl_vars['i']->value = 1, $_smarty_tpl->tpl_vars['i']->iteration = 1;$_smarty_tpl->tpl_vars['i']->iteration <= $_smarty_tpl->tpl_vars['i']->total;$_smarty_tpl->tpl_vars['i']->value += $_smarty_tpl->tpl_vars['i']->step, $_smarty_tpl->tpl_vars['i']->iteration++) {
 $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 1;$_smarty_tpl->tpl_vars['i']->last = $_smarty_tpl->tpl_vars['i']->iteration === $_smarty_tpl->tpl_vars['i']->total;
-$_prefixVariable15 = ob_get_clean();
-echo $_prefixVariable15;?>
+$_prefixVariable17 = ob_get_clean();
+echo $_prefixVariable17;?>
 
             <?php ob_start();
 if ($_smarty_tpl->tpl_vars['currentPage']->value == $_smarty_tpl->tpl_vars['i']->value) {
-$_prefixVariable16 = ob_get_clean();
-echo $_prefixVariable16;?>
-
-                <li class="active"><a href="http://localhost:8888/gameStore/memberstatement/id/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['memberId']->value;
-$_prefixVariable17 = ob_get_clean();
-echo $_prefixVariable17;?>
-/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
 $_prefixVariable18 = ob_get_clean();
 echo $_prefixVariable18;?>
-"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
+
+                <li class="active"><a href="http://localhost:8888/gameStore/memberstatement/id/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['member']->value['id'];
 $_prefixVariable19 = ob_get_clean();
 echo $_prefixVariable19;?>
+/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable20 = ob_get_clean();
+echo $_prefixVariable20;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable21 = ob_get_clean();
+echo $_prefixVariable21;?>
 </a></li>
             <?php ob_start();
 } else {
-$_prefixVariable20 = ob_get_clean();
-echo $_prefixVariable20;?>
-
-                <li><a href="http://localhost:8888/gameStore/memberstatement/id/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['memberId']->value;
-$_prefixVariable21 = ob_get_clean();
-echo $_prefixVariable21;?>
-/<?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
 $_prefixVariable22 = ob_get_clean();
 echo $_prefixVariable22;?>
-"><?php ob_start();
-echo $_smarty_tpl->tpl_vars['i']->value;
+
+                <li><a href="http://localhost:8888/gameStore/memberstatement/id/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['member']->value['id'];
 $_prefixVariable23 = ob_get_clean();
 echo $_prefixVariable23;?>
+/<?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable24 = ob_get_clean();
+echo $_prefixVariable24;?>
+"><?php ob_start();
+echo $_smarty_tpl->tpl_vars['i']->value;
+$_prefixVariable25 = ob_get_clean();
+echo $_prefixVariable25;?>
 </a></li>
             <?php ob_start();
 }
-$_prefixVariable24 = ob_get_clean();
-echo $_prefixVariable24;?>
+$_prefixVariable26 = ob_get_clean();
+echo $_prefixVariable26;?>
 
         <?php ob_start();
 }
 }
-$_prefixVariable25 = ob_get_clean();
-echo $_prefixVariable25;?>
+$_prefixVariable27 = ob_get_clean();
+echo $_prefixVariable27;?>
 
     </ul>
 </div><?php }

@@ -54,10 +54,10 @@ class Login extends Controller
     private function checkUserName()
     {
         if (!isset($_POST['userName'])) {
-            throw new Exception('User name not found in POST request.');
+            throw new Exception('登入失敗');
         }
         if (!(strlen(trim($_POST['userName'])) > 0)) {
-            throw new Exception('User name cannot only have space or null.');
+            throw new Exception('請輸入登入帳號');
         }
         return true;
     }
@@ -65,10 +65,10 @@ class Login extends Controller
     private function checkPassword()
     {
         if (!isset($_POST['password'])) {
-            throw new Exception('User name not found in POST request.');
+            throw new Exception('登入失敗');
         }
         if (!(strlen(trim($_POST['password'])) > 0)) {
-            throw new Exception('User name cannot only have space or null.');
+            throw new Exception('請輸入密碼');
         }
         return true;
     }
@@ -82,7 +82,7 @@ class Login extends Controller
 
         $userData = $this->model->verifyLogin($loginData);
         if (!$userData) {
-            throw new Exception('賬號或密碼錯誤');
+            throw new Exception('登入賬號或密碼錯誤');
         }
         if (!$this->model->checkEnable($userData)) {
             throw new Exception('賬號已被封鎖');

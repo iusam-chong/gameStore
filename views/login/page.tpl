@@ -3,17 +3,21 @@
         <div class="col-sm-4 col-sm-offset-4">
             <div class="panel panel-default center-block" style="width: 70%;">
                 <div class="panel-body">
-                    <h2 class="text-center">Login</h2><br>
+                    <h2 class="text-center">Somy</h2>
                     <form>
+                        <h3 id="errContent" class="text-center hidden">
+                            <small class="text-danger"><span class="glyphicon glyphicon-warning-sign"></span></small>
+                            <small id="errMessage" class="text-danger"></small>
+                        </h3>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" class="form-control" placeholder="Username" name="userName" maxlength="16">
+                            <input id="userName" type="text" class="form-control" placeholder="登入帳號" name="userName" maxlength="16">
                         </div>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                            <input type="password" class="form-control" placeholder="Password" name="password" maxlength="16">
+                            <input id="password" type="password" class="form-control" placeholder="密碼" name="password" maxlength="16">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">登入</button>
+                        <button id="loginBtn" type="submit" class="btn btn-primary btn-block" disabled>登入</button>
                     </form>
                 </div>
             </div>

@@ -42,7 +42,6 @@ function requestPhp(event, url, method) {
         dataType: 'JSON',
         success:function(response) {
             if (response.status === true) {
-                console.log(response);
                 method(event);
             } 
             else {
